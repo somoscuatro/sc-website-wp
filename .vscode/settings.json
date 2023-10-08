@@ -1,0 +1,17 @@
+{
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true
+	},
+	"eslint.validate": ["javascript"],
+	"[javascript]": {
+		"editor.formatOnSave": false
+	},
+	"[css]": {
+		"editor.formatOnSave": false
+	},
+	"[twig]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}
