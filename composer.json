@@ -1,0 +1,33 @@
+{
+	"name": "somoscuatro/sc-website",
+	"description": "The somoscuatro WordPress website.",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require-dev": {
+		"wp-coding-standards/wpcs": "dev-develop",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+		"phpstan/phpstan": "^1.9",
+		"phpstan/extension-installer": "^1.2",
+		"szepeviktor/phpstan-wordpress": "^1.1",
+		"php-stubs/woocommerce-stubs": "^7.1",
+		"squizlabs/php_codesniffer": "^3.7",
+		"php-stubs/acf-pro-stubs": "^6.0",
+		"php-stubs/wp-cli-stubs": "^2.8",
+		"php-stubs/generator": "^0.8.3"
+	},
+	"scripts": {
+		"lint": "vendor/bin/phpcs --standard=phpcs.xml wp-content/themes/somoscuatro",
+		"lint:fix": "vendor/bin/phpcbf --standard=phpcs.xml wp-content/themes/somoscuatro",
+		"sniff": "vendor/bin/phpstan analyse --memory-limit 1G"
+	},
+	"config": {
+		"platform": {
+			"php": "8.2"
+		},
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true,
+			"composer/installers": true
+		}
+	}
+}

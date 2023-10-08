@@ -1,0 +1,45 @@
+{
+	"name": "@somoscuatro/sc-website",
+	"description": "The somoscuatro WordPress website.",
+	"version": "0.1.0",
+	"author": {
+		"name": "somoscuatro",
+		"email": "tech@somoscuatro.es",
+		"url": "https://somoscuatro.es"
+	},
+	"scripts": {
+		"setup:dev": "concurrently \"composer install\" \"pnpm run setup\" ",
+		"setup": "cd wp-content/themes/somoscuatro && concurrently \"composer install\" \"pnpm install\" ",
+		"lint": "pnpm run lint:php & pnpm run lint:js & pnpm run lint:css",
+		"lint:php": "composer lint",
+		"lint:js": "eslint wp-content/themes/somoscuatro/**/*.js",
+		"lint:css": "stylelint --quiet-deprecation-warnings wp-content/themes/somoscuatro/**/*.css",
+		"lint-fix": "pnpm run lint-fix:php & pnpm run lint-fix:js & pnpm run lint-fix:css & pnpm run lint-fix:twig",
+		"lint-fix:php": "composer lint:fix",
+		"lint-fix:twig": "prettier --write 'wp-content/themes/somoscuatro/**/*.twig'",
+		"lint-fix:js": "eslint wp-content/themes/somoscuatro/**/*.js --fix",
+		"lint-fix:css": "stylelint --quiet-deprecation-warnings --fix wp-content/themes/somoscuatro/**/*.css",
+		"sniff": "pnpm run sniff:php",
+		"sniff:php": "composer sniff",
+		"dev:theme": "cd wp-content/themes/somoscuatro && pnpm run dev",
+		"dev": "pnpm run dev:theme",
+		"build:theme": "cd wp-content/themes/somoscuatro && pnpm run build",
+		"build": "pnpm run build:theme",
+		"build-prod:theme": "cd wp-content/themes/somoscuatro && pnpm run build:prod",
+		"build-prod": "pnpm run build-prod:theme"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.6.5",
+		"@commitlint/config-conventional": "^17.6.5",
+		"@wordpress/eslint-plugin": "^14.8.0",
+		"@wordpress/stylelint-config": "^21.18.0",
+		"concurrently": "^8.0.1",
+		"eslint": "^8.42.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"prettier": "^2.8.8",
+		"prettier-plugin-tailwindcss": "^0.3.0",
+		"prettier-plugin-twig-melody": "^0.4.6",
+		"stylelint": "^15.7.0"
+	}
+}
