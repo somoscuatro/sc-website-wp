@@ -1,0 +1,15 @@
+{
+	"extends": "@wordpress/stylelint-config",
+	"ignoreFiles": ["**/dist/**"],
+	"rules": {
+		"selector-class-pattern": null,
+		"selector-id-pattern": null,
+		"no-invalid-position-at-import-rule": null,
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": ["tailwind"]
+			}
+		]
+	}
+}

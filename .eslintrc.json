@@ -1,0 +1,16 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"es2021": true
+	},
+	"extends": [
+		"plugin:@wordpress/eslint-plugin/custom",
+		"plugin:@wordpress/eslint-plugin/es5",
+		"plugin:@wordpress/eslint-plugin/esnext"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"ignorePatterns": ["**/dist/**", "**/vendor/**"]
+}
