@@ -1,0 +1,25 @@
+{
+	"name": "somoscuatro/sc-website",
+	"description": "Custom theme for somoscuatro WordPress website.",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Somoscuatro\\Theme\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "somoscuatro",
+			"email": "tech@somoscuatro.es"
+		}
+	],
+	"require": {
+		"timber/timber": "2.x-dev"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
+}
