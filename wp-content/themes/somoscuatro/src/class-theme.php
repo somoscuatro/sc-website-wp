@@ -28,7 +28,7 @@ class Theme {
 	/**
 	 * Initializes theme functionality after setup.
 	 */
-	public static function after_setup_theme() {
+	public static function after_setup_theme(): void {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 	}
