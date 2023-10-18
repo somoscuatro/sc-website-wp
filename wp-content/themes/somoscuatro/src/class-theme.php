@@ -56,9 +56,6 @@ class Theme {
 		if ( is_admin() ) {
 			return;
 		}
-
-		// Removes trailing non-alphanumeric characters from URL path.
-		add_action( 'template_redirect', __CLASS__ . '::cleanup_url' );
 	}
 
 	/**
@@ -115,39 +112,6 @@ class Theme {
 	 * Enqueues style for the login page.
 	 */
 	public static function login_enqueue_scripts(): void {}
-
-	/**
-	 * Removes trailing non-alphanumeric characters from URL path.
-	 */
-	public static function cleanup_url() {
-		global $wp;
-
-		$wp->parse_request();
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$url       = home_url( add_query_arg( array( $_GET ), $wp->request ) );
-		$url_parts = wp_parse_url( $url );
-
-		if ( empty( $url_parts['path'] ) || '/' === $url_parts['path'] ) {
-			return;
-		}
-
-		$url_path = preg_replace( '@[^a-zA-Z0-9]+$@', '', $url_parts['path'] );
-
-		if ( $url_parts['path'] === $url_path ) {
-			return;
-		}
-
-		$clean_url = sprintf(
-			'%s://%s%s%s%s',
-			$url_parts['scheme'],
-			$url_parts['host'],
-			$url_path,
-			isset( $url_parts['query'] ) ? '?' . $url_parts['query'] : '',
-			isset( $url_parts['fragment'] ) ? '#' . $url_parts['fragment'] : ''
-		);
-		wp_safe_redirect( $clean_url );
-		exit();
-	}
 
 	/**
 	 * Loads the theme translation domain.
