@@ -51,6 +51,8 @@ class Theme {
 		// Enqueues style for the login page.
 		add_action( 'login_enqueue_scripts', __CLASS__ . '::login_enqueue_scripts' );
 
+		Blocks::init();
+
 		if ( is_admin() ) {
 			return;
 		}
