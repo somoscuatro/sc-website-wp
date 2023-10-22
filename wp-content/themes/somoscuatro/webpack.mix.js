@@ -24,3 +24,10 @@ const discover = ( dirs, type, excludedDirs = [] ) => {
 
 	return files;
 };
+
+discover( [ 'assets/styles' ], '.css' ).forEach( ( file ) => {
+	mix.postCss( file, 'styles', [
+		require( 'tailwindcss/nesting' ),
+		require( 'tailwindcss' ),
+	] );
+} );
