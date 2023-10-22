@@ -52,6 +52,7 @@ class Timber {
 	 */
 	public static function add_to_global_context( array $context ): array {
 		$context['homepage_url'] = get_home_url();
+		$context['logo']         = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo.svg';
 
 		$context = self::get_menus( $context );
 

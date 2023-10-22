@@ -1,0 +1,15 @@
+<header class="container flex items-center justify-between py-4">
+	<a href="{{ homepage_url }}">
+		<img src="{{ logo }}" alt="somoscuatro" height="{{ height }}" width="{{ width }}" />
+	</a>
+	<nav class="flex gap-6">
+		{% for item in site_header_primary.get_items %}
+			{% include 'button.twig' with {
+				title: item.title,
+				url: item.url,
+				target: item.target,
+				type: item.meta('_menu-item-call-to-action') ? 'hollow' : 'link'
+			} %}
+		{% endfor %}
+	</nav>
+</header>

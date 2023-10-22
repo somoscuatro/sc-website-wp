@@ -31,6 +31,8 @@ class Theme {
 	public static function after_setup_theme(): void {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
+
+		Navigation::register();
 	}
 
 	/**
@@ -52,6 +54,7 @@ class Theme {
 		add_action( 'login_enqueue_scripts', __CLASS__ . '::login_enqueue_scripts' );
 
 		Blocks::init();
+		Navigation::init();
 
 		if ( is_admin() ) {
 			return;
@@ -106,7 +109,10 @@ class Theme {
 	/**
 	 * Enqueues frontend theme styles and scripts.
 	 */
-	public static function enqueue_assets(): void {}
+	public static function enqueue_assets(): void {
+		// Theme styles.
+		wp_enqueue_style( self::PREFIX, self::get_base_url() . '/dist/styles/main.css', false, self::get_version( 'styles/main.css' ) );
+	}
 
 	/**
 	 * Enqueues style for the login page.
