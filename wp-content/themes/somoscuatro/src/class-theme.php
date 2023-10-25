@@ -55,6 +55,7 @@ class Theme {
 
 		Blocks::init();
 		Navigation::init();
+		Services::init();
 
 		if ( is_admin() ) {
 			return;
