@@ -1,0 +1,19 @@
+<div class="container container-padding container-gap">
+	{% if heading %}
+		<h2 class="text-center">{{ heading }}</h2>
+	{% endif %}
+	<div class="grid grid-cols-3 gap-16">
+		{% for case_study in case_studies %}
+			<div class="flex flex-col gap-6">
+				<img src="{{ case_study.meta('cpt_case_studies_image').url }}" width="384" height="256">
+				<div class="flex flex-col gap-2">
+					<h3 class="body-bold">{{ case_study.title }}</h3>
+					<p>{{ case_study.meta('cpt_case_studies_short_excerpt') }}</p>
+				</div>
+				<a class="font-bold" href="/case-studies/{{case_study.slug}}">
+					{{ __('Read more →', 'somoscuatro-theme') }}
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>
