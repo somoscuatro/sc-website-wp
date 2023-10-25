@@ -55,7 +55,10 @@ class Theme {
 
 		Blocks::init();
 		Navigation::init();
+
+		// Custom Post Types.
 		Services::init();
+		Case_Studies::init();
 
 		if ( is_admin() ) {
 			return;
