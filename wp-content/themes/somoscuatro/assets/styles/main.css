@@ -8,4 +8,14 @@
 
 		@apply py-20;
 	}
+
+	.container-gap {
+
+		@apply flex flex-col gap-16;
+	}
+
+	h2 {
+
+		@apply text-4xl font-bold;
+	}
 }
