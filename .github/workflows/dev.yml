@@ -45,6 +45,6 @@ jobs:
         uses: somoscuatro/action-deploy-to-wpengine@main
         env:
           LOCAL_BRANCH: dev
-          WPENGINE_ENVIRONMENT_NAME: somoscuatrodev
+          WPENGINE_ENVIRONMENT_NAME: devsomoscuatro
           WPENGINE_SSH_PRIVATE_KEY: ${{ secrets.WPENGINE_SSH_PRIVATE_KEY }}
           WPENGINE_SSH_PUBLIC_KEY: ${{ secrets.WPENGINE_SSH_PUBLIC_KEY }}
