@@ -31,4 +31,20 @@
 
 		@apply text-lg font-semibold uppercase;
 	}
+
+	p,
+	.body {
+
+		@apply text-base normal-case;
+	}
+
+	.body-lg {
+
+		@apply text-lg normal-case;
+	}
+
+	.body-bold {
+
+		@apply text-base font-bold normal-case;
+	}
 }
