@@ -11,6 +11,10 @@ namespace Somoscuatro\Theme;
 
 use Somoscuatro\Theme\Helpers\Setup;
 
+use Somoscuatro\Theme\Cpt\Case_Studies;
+use Somoscuatro\Theme\Cpt\Services;
+use Somoscuatro\Theme\Cpt\Testimonials;
+
 /**
  * Main theme functionality.
  */
@@ -57,8 +61,9 @@ class Theme {
 		Navigation::init();
 
 		// Custom Post Types.
-		Services::init();
 		Case_Studies::init();
+		Services::init();
+		Testimonials::init();
 
 		if ( is_admin() ) {
 			return;

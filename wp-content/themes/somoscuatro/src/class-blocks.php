@@ -134,7 +134,6 @@ class Blocks {
 			'core/nextpage'                     => null,
 			'core/page-list-item'               => null,
 			'core/page-list'                    => null,
-			'core/paragraph'                    => null,
 			'core/pattern'                      => null,
 			'core/post-author-biography'        => null,
 			'core/post-author-name'             => null,
