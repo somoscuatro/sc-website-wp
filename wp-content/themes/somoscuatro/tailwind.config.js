@@ -1,3 +1,5 @@
+const defaultTheme = require( 'tailwindcss/defaultTheme' );
+
 module.exports = {
 	content: [ './src/**/*.{php,twig}', './templates/**/*.twig', './assets/**/*.js' ],
 	theme: {
@@ -11,6 +13,10 @@ module.exports = {
 			},
 		},
 		extend: {
+			fontFamily: {
+				sans: [ 'Jost', ...defaultTheme.fontFamily.sans ],
+				syne: [ 'Syne' ],
+			},
 			colors: {
 				folly: {
 					100: '#FFEBF1',

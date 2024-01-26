@@ -1,50 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./global/_fonts.css";
 
-@layer components {
+html {
 
-	.container-padding {
-
-		@apply py-20;
-	}
-
-	.container-gap-sm {
-
-		@apply flex flex-col gap-6;
-	}
-
-	.container-gap,
-	.container-gap-md {
-
-		@apply flex flex-col gap-16;
-	}
-
-	h2,
-	.h2 {
-
-		@apply text-4xl font-bold;
-	}
-
-	h3,
-	.h3 {
-
-		@apply text-lg font-semibold uppercase;
-	}
-
-	p,
-	.body {
-
-		@apply text-base normal-case;
-	}
-
-	.body-lg {
-
-		@apply text-lg normal-case;
-	}
-
-	.body-bold {
-
-		@apply text-base font-bold normal-case;
-	}
+	@apply text-anti-flash-white-900;
 }
