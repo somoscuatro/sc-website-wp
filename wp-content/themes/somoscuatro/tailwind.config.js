@@ -90,6 +90,7 @@ module.exports = {
 	plugins: [],
 	purge: {
 		safelist: [
+			'bg-anti-flash-white-200',
 			'bg-school-bus-yellow-600',
 		],
 	},

@@ -1,0 +1,23 @@
+{% extends "section.twig" %}
+
+{% set background = 'anti-flash-white-200' %}
+
+{% block section_content %}
+	<div class="flex flex-col gap-16">
+		<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
+		<div class="grid grid-cols-3 gap-20">
+			{% for service in services %}
+				<div class="flex flex-col gap-8 pb-4 border-b border-b-anti-flash-white-900">
+					<div class="flex flex-col h-full gap-2">
+						<h3 class="min-h-[7rem] text-3xl font-medium font-syne">{{ service.post_title }}</h3>
+						<p class="h-full">{{ service.post_excerpt }}</p>
+					</div>
+					<a href="{{ function('get_permalink', service.ID) }}" class="flex items-center gap-2">
+						{{ __('Know More', 'somoscuatro-theme') }}
+						{% include 'icons/arrow.twig' %}
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
