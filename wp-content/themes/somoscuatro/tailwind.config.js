@@ -88,4 +88,9 @@ module.exports = {
 		},
 	},
 	plugins: [],
+	purge: {
+		safelist: [
+			'bg-school-bus-yellow-600',
+		],
+	},
 };
