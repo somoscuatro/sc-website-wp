@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Somoscuatro\Theme;
+namespace Somoscuatro\Theme\Blocks;
 
 use WP_Block_Editor_Context;
 
 /**
  * Gutenberg custom functionality.
  */
-class Blocks {
+class Loader {
 
 	/**
 	 * Initializes Gutenberg custom functionality.
@@ -34,7 +34,7 @@ class Blocks {
 	 * Loads custom Gutenberg blocks.
 	 */
 	private static function load(): void {
-		foreach ( glob( __DIR__ . '/blocks/*' ) as $block_dir ) {
+		foreach ( glob( __DIR__ . '/*' ) as $block_dir ) {
 			if ( ! is_dir( $block_dir ) ) {
 				continue;
 			}
@@ -47,7 +47,7 @@ class Blocks {
 				)
 			);
 
-			$full_class_path = sprintf( __NAMESPACE__ . '\Blocks\%s\%s', $class, $class );
+			$full_class_path = sprintf( __NAMESPACE__ . '\%s\%s', $class, $class );
 
 			if ( is_callable( array( $full_class_path, 'init' ) ) ) {
 				$full_class_path::init();

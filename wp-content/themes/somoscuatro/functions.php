@@ -62,3 +62,7 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\Theme::after_setup_theme', 9 
 add_action( 'init', __NAMESPACE__ . '\Theme::init' );
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\Theme::load_text_domain' );
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	\WP_CLI::add_command( 'export-acf-blocks-fields', __NAMESPACE__ . '\Commands\Export_Acf_Blocks_Fields' );
+}

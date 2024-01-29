@@ -1,5 +1,6 @@
 # Dist folders
 wp-content/themes/somoscuatro/dist
+wp-content/themes/somoscuatro/src/blocks/**/fields.json
 
 # WordPress
 /wp-config.php

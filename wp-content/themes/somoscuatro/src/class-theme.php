@@ -57,7 +57,7 @@ class Theme {
 		// Enqueues style for the login page.
 		add_action( 'login_enqueue_scripts', __CLASS__ . '::login_enqueue_scripts' );
 
-		Blocks::init();
+		Blocks\Loader::init();
 		Navigation::init();
 
 		// Custom Post Types.

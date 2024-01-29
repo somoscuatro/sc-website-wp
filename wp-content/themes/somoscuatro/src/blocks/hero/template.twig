@@ -1,19 +1,23 @@
-<div class="bg-gray-300">
-	<div class="container flex items-center justify-between container-padding">
-		<div class="flex flex-col max-w-2xl gap-6">
-			<h1 class="text-6xl font-bold">{{ headline }}</h1>
-			<p class="text-lg">{{ text }}</p>
-			{% if button %}
-				{% include 'button.twig' with {
-					title: button.title,
-					url: button.url,
-					target: button.target,
-					type: 'hollow'
-				} %}
+{% extends "section.twig" %}
+
+{% block block_content %}
+	<div class="bg-gray-300">
+		<div class="container flex items-center justify-between container-padding">
+			<div class="flex flex-col max-w-2xl gap-6">
+				<h1 class="text-6xl font-bold">{{ headline }}</h1>
+				<p class="text-lg">{{ text }}</p>
+				{% if button %}
+					{% include 'button.twig' with {
+						title: button.title,
+						url: button.url,
+						target: button.target,
+						type: 'hollow'
+					} %}
+				{% endif %}
+			</div>
+			{% if image %}
+				<img src="{{ image.url }}" alt="{{ image.alt }}" width="482" height="417">
 			{% endif %}
 		</div>
-		{% if image %}
-			<img src="{{ image.url }}" alt="{{ image.alt }}" width="482" height="417">
-		{% endif %}
 	</div>
-</div>
+{% endblock %}
