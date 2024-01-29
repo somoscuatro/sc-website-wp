@@ -1,8 +1,9 @@
 {% set attrType = {
-	hollow: ' border border-black',
-	link: '',
+	primary: 'bg-anti-flash-white-900 text-anti-flash-white-100',
+	hollow: 'border border-black',
+	link: 'font-medium',
 } %}
 
-<a href="{{ url }}" target="{{ target }}" {{ target == '_blank' ? 'rel="noopener"' }} class="py-4 w-fit px-7{{ attrType[type] }}">
+<a href="{{ url }}" target="{{ target }}" {{ target == '_blank' ? 'rel="noopener"' }} class="py-2 px-7 w-fit {{ attrType[type] }}">
 	{{ title }}
 </a>
