@@ -1,15 +1,31 @@
 <header class="container flex items-center justify-between py-4">
 	<a href="{{ homepage_url }}">
-		<img src="{{ logo }}" alt="somoscuatro" height="{{ height }}" width="{{ width }}" />
+		<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
 	</a>
 	<nav class="flex gap-6">
 		{% for item in site_header_primary.get_items %}
-			{% include 'button.twig' with {
-				title: item.title,
-				url: item.url,
-				target: item.target,
-				type: item.meta('_menu-item-call-to-action') ? 'hollow' : 'link'
-			} %}
+			{% if not item.meta('_menu-item-call-to-action') %}
+				{% include 'button.twig' with {
+					title: item.title,
+					url: item.url,
+					target: item.target,
+					type: 'link'
+				} %}
+			{% endif %}
 		{% endfor %}
 	</nav>
+	<div class="flex gap-2">
+		{% set key = 0 %}
+		{% for item in site_header_primary.get_items %}
+			{% if item.meta('_menu-item-call-to-action') %}
+				{% include 'button.twig' with {
+					title: item.title,
+					url: item.url,
+					target: item.target,
+					type: key == 0 ? 'primary' : 'hollow'
+				} %}
+				{% set key = key + 1 %}
+			{% endif %}
+		{% endfor %}
+	</div>
 </header>
