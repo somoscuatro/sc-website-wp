@@ -1,0 +1,16 @@
+{
+	"name": "acf/content",
+	"title": "Content",
+	"description": "",
+	"category": "somoscuatro",
+	"icon": "",
+	"acf": {
+		"mode": "edit",
+		"renderCallback": "Somoscuatro\\Theme\\Blocks\\Content\\Content::render_callback"
+	},
+	"supports": {
+		"anchor": true,
+		"mode": false
+	},
+	"align": "full"
+}
