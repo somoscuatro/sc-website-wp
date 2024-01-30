@@ -1,11 +1,14 @@
 {% extends "section.twig" %}
 
+{% set background = get_color_name(bg_color) %}
+{% set foreground = get_foreground_color_name(background) %}
+
 {% block section_content %}
-	<div class="flex flex-col gap-16">
+	<div class="flex flex-col gap-16 text-{{ foreground }}">
 		<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
 		<div class="grid grid-cols-3 gap-8">
 			{% for case_study in case_studies %}
-				<div class="flex border border-anti-flash-white-900 {{ loop.index == 1 ? 'col-span-full' : 'flex-col' }}">
+				<div class="flex border border-{{ foreground }} {{ loop.index == 1 ? 'col-span-full' : 'flex-col' }}">
 					<div class="flex flex-col gap-2 py-6 px-9">
 						<h3 class="text-3xl font-medium font-syne">{{ case_study.post_title }}</h3>
 						<p>{{ case_study.post_excerpt }}</p>

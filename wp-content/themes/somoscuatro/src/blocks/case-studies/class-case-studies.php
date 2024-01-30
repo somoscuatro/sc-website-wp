@@ -31,8 +31,16 @@ class Case_Studies extends Block {
 	public static function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
-			'title'    => __( 'Block: Services', 'somoscuatro-theme' ),
+			'title'    => __( 'Block: Case Studies', 'somoscuatro-theme' ),
 			'fields'   => array(
+				array(
+					'key'           => 'field_' . self::$acf_block_prefix . '_bg_color',
+					'label'         => __( 'Background Color', 'somoscuatro-theme' ),
+					'name'          => self::$acf_block_prefix . '_bg_color',
+					'type'          => 'color_picker',
+					'required'      => 1,
+					'return_format' => 'string',
+				),
 				array(
 					'key'      => 'field_' . self::$acf_block_prefix . '_title',
 					'label'    => __( 'Title', 'somoscuatro-theme' ),
