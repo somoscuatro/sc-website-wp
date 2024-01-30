@@ -119,6 +119,18 @@ class Timber {
 			new TwigFunction( 'get_server_request_uri', __CLASS__ . '::get_server_request_uri' )
 		);
 
+		// @phpstan-ignore-next-line
+		$twig->addFunction(
+			// @phpstan-ignore-next-line
+			new TwigFunction( 'get_color_name', __CLASS__ . '::get_color_name' )
+		);
+
+		// @phpstan-ignore-next-line
+		$twig->addFunction(
+			// @phpstan-ignore-next-line
+			new TwigFunction( 'get_foreground_color_name', __CLASS__ . '::get_foreground_color_name' )
+		);
+
 		return $twig;
 	}
 
@@ -210,5 +222,29 @@ class Timber {
 	 */
 	public static function get_server_request_uri(): string {
 		return strtok( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ), '?' );
+	}
+
+	/**
+	 * Gets a color name given its HEX value.
+	 *
+	 * @param string $color_hex The color HEX value.
+	 *
+	 * @return string|int|false The color name if found.
+	 */
+	public static function get_color_name( string $color_hex ): string|int|false {
+		$color_palette = ACF::get_color_palette();
+		return array_search( strtoupper( $color_hex ), $color_palette, true );
+	}
+
+	/**
+	 * Gets the foreground color name given a background color name.
+	 *
+	 * @param string $background_color_name The background color name.
+	 *
+	 * @return string The foreground color name.
+	 */
+	public static function get_foreground_color_name( $background_color_name ): string {
+		$dark_colors = ACF::get_safe_bg_colors_names()['dark'];
+		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
 	}
 }

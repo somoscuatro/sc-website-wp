@@ -57,6 +57,7 @@ class Theme {
 		// Enqueues style for the login page.
 		add_action( 'login_enqueue_scripts', __CLASS__ . '::login_enqueue_scripts' );
 
+		ACF::init();
 		Blocks\Loader::init();
 		Navigation::init();
 
