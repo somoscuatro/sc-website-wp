@@ -1,0 +1,18 @@
+{% extends "section.twig" %}
+
+{% block section_content %}
+	<div class="flex flex-col gap-16">
+		<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
+		<div class="grid grid-cols-3 gap-8">
+			{% for case_study in case_studies %}
+				<div class="flex border border-anti-flash-white-900 {{ loop.index == 1 ? 'col-span-full' : 'flex-col' }}">
+					<div class="flex flex-col gap-2 py-6 px-9">
+						<h3 class="text-3xl font-medium font-syne">{{ case_study.post_title }}</h3>
+						<p>{{ case_study.post_excerpt }}</p>
+					</div>
+					<img class="object-contain h-auto max-w-full {{ loop.index == 1 ? 'order-last' : 'order-first' }}" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)).url }}" width="640">
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
