@@ -34,6 +34,14 @@ class Services extends Block {
 			'title'    => __( 'Block: Services', 'somoscuatro-theme' ),
 			'fields'   => array(
 				array(
+					'key'           => 'field_' . self::$acf_block_prefix . '_bg_color',
+					'label'         => __( 'Background Color', 'somoscuatro-theme' ),
+					'name'          => self::$acf_block_prefix . '_bg_color',
+					'type'          => 'color_picker',
+					'required'      => 1,
+					'return_format' => 'string',
+				),
+				array(
 					'key'      => 'field_' . self::$acf_block_prefix . '_title',
 					'label'    => __( 'Title', 'somoscuatro-theme' ),
 					'name'     => self::$acf_block_prefix . '_title',
@@ -56,7 +64,6 @@ class Services extends Block {
 					'filters'     => array(
 						0 => 'search',
 					),
-
 				),
 			),
 			'location' => array(
