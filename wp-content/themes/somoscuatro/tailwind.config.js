@@ -24,13 +24,11 @@ module.exports = {
 		},
 	},
 	plugins: [],
-	purge: {
-		safelist: [
-			...tailwindSafeBgColorPalette.colors,
-			'border-anti-flash-white-100',
-			'border-anti-flash-white-900',
-			'stroke-anti-flash-white-100',
-			'stroke-anti-flash-white-900',
-		],
-	},
+	safelist: [
+		...tailwindSafeBgColorPalette.colors,
+		'border-anti-flash-white-100',
+		'border-anti-flash-white-900',
+		'stroke-anti-flash-white-100',
+		'stroke-anti-flash-white-900',
+	],
 };
