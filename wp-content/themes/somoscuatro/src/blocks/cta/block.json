@@ -1,0 +1,16 @@
+{
+	"name": "acf/cta",
+	"title": "Call to Action",
+	"description": "",
+	"category": "somoscuatro",
+	"icon": "",
+	"acf": {
+		"mode": "edit",
+		"renderCallback": "Somoscuatro\\Theme\\Blocks\\CTA\\CTA::render_callback"
+	},
+	"supports": {
+		"anchor": true,
+		"mode": false
+	},
+	"align": "full"
+}

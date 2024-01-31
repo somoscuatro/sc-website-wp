@@ -1,0 +1,23 @@
+{% extends "section.twig" %}
+
+{% set background = get_color_name(bg_color) %}
+{% set foreground = get_foreground_color_name(background) %}
+
+{% set section_classes = 'relative z-10 overflow-hidden' %}
+
+{% block section_content %}
+	<div class="flex flex-col gap-6 text-{{ foreground }}">
+		<img class="absolute bottom-0 z-10 -right-4 stroke-anti-flash-white-100" src="{{ get_static_image('cta/rocket.svg') }}" width="1063" height="462">
+		<h2 class="text-6xl font-syne">{{ text }}</h2>
+		<div class="flex gap-4">
+			{% for item in buttons %}
+				{% include 'button.twig' with {
+					title: item.button.title,
+					url: item.button.url,
+					target: item.button.target,
+					type: loop.index == 1 ? 'secondary' : 'hollow_light'
+				} %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
