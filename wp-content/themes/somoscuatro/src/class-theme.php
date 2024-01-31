@@ -36,6 +36,11 @@ class Theme {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 
+		// Custom Post Types.
+		Case_Studies::init();
+		Services::init();
+		Testimonials::init();
+
 		Navigation::register();
 	}
 
@@ -58,13 +63,8 @@ class Theme {
 		add_action( 'login_enqueue_scripts', __CLASS__ . '::login_enqueue_scripts' );
 
 		ACF::init();
-		Blocks\Loader::init();
 		Navigation::init();
-
-		// Custom Post Types.
-		Case_Studies::init();
-		Services::init();
-		Testimonials::init();
+		Blocks\Loader::init();
 
 		if ( is_admin() ) {
 			return;
