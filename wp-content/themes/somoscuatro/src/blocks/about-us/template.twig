@@ -5,7 +5,9 @@
 
 {% block section_content %}
 	<div class="flex flex-col gap-20 text-{{ foreground }}">
-		<h2 class="max-w-3xl mx-auto text-4xl text-center font-syne">{{ text }}</h2>
+	 	{% if text %}
+			<h2 class="max-w-3xl mx-auto text-4xl text-center font-syne">{{ text }}</h2>
+		{% endif %}
 		<div class="flex flex-col gap-2">
 			<h3 class="text-lg font-bold uppercase">{{ __('Trusted By', 'somoscuatro-theme') }}</h3>
 			<div class="flex justify-between">
