@@ -1,7 +1,37 @@
-<footer class="bg-gray-400">
-	<div class="container container-padding">
-		<a href="{{ homepage_url }}">
-			<img src="{{ logo }}" alt="somoscuatro" height="{{ height }}" width="{{ width }}" />
-		</a>
+<footer class="py-20 bg-anti-flash-white-900 text-anti-flash-white-100">
+	<div class="container flex flex-col gap-20 container-padding">
+		<div class="flex">
+			<div class="flex flex-col w-1/3 gap-4">
+				<a chref="{{ homepage_url }}">
+					<img src="{{ logo_white }}" alt="somoscuatro" width="158" height="52" />
+				</a>
+				<p class="font-semibold">{{ site_footer_claim }}</p>
+				<a href="mailto:{{ site_footer_email }}">{{ site_footer_email }}</a>
+			</div>
+			<div class="grid w-2/3 grid-cols-3">
+				{% for item in site_footer_primary.items %}
+					<div class="flex flex-col gap-2">
+						{% if item.children %}
+							<p class="font-semibold">
+								{{ item.title }}
+							</p>
+							{% for child in item.children %}
+								<a href="{{ child.url }}">{{ child.title }}</a>
+							{% endfor %}
+						{% else %}
+							<a href="{{ item.url }}">{{ item.title }}</a>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="flex justify-between pt-6 text-sm border-t border-anti-flash-white-100">
+			<p>&copy; {{ now|date('Y') }} somoscuatro 2020 S.L.</p>
+			<div class="flex">
+				{% for item in site_footer_legals.items %}
+					<a class="px-2 {{ loop.index == 1 ? 'border-r border-anti-flash-white-100' : '' }}" href="{{ item.url }}">{{ item.title }}</a>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 </footer>

@@ -52,7 +52,12 @@ class Timber {
 	 */
 	public static function add_to_global_context( array $context ): array {
 		$context['homepage_url'] = get_home_url();
-		$context['logo']         = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo.png';
+
+		$context['logo']       = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo.png';
+		$context['logo_white'] = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo-white.png';
+
+		$context['site_footer_claim'] = get_theme_mod( 'site_footer_claim' );
+		$context['site_footer_email'] = get_theme_mod( 'site_footer_email' );
 
 		$context = self::get_menus( $context );
 

@@ -27,6 +27,8 @@ class Navigation {
 	 */
 	public static function register(): void {
 		register_nav_menu( 'site_header_primary', __( 'Site Header Primary', 'somoscuatro-theme' ) );
+		register_nav_menu( 'site_footer_primary', __( 'Site Footer Primary', 'somoscuatro-theme' ) );
+		register_nav_menu( 'site_footer_legals', __( 'Site Footer Legals', 'somoscuatro-theme' ) );
 	}
 
 	/**
