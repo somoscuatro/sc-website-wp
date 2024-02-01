@@ -62,5 +62,4 @@ class Custom_Post {
 
 		register_post_type( sanitize_title( $singular_name ), $args );
 	}
-
 }

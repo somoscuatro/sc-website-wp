@@ -79,7 +79,7 @@ class Export_Acf_Blocks_Fields extends \WP_CLI_Command {
 		$method = 'get_acf_fields';
 		$json   = wp_json_encode( $namespaced_block_class::$method() );
 
-		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents,WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 		file_put_contents( self::$blocks_base_path . $block . '/fields.json', $json );
 	}
 }

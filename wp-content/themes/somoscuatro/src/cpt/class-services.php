@@ -72,5 +72,4 @@ class Services {
 
 		return $html;
 	}
-
 }

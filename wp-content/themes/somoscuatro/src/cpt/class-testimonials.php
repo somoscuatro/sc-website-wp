@@ -119,5 +119,4 @@ class Testimonials {
 
 		return $html;
 	}
-
 }

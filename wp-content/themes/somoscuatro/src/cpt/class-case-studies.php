@@ -73,5 +73,4 @@ class Case_Studies {
 
 		return $html;
 	}
-
 }

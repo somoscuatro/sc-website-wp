@@ -65,5 +65,4 @@ class Custom_Taxonomy {
 			$args
 		);
 	}
-
 }

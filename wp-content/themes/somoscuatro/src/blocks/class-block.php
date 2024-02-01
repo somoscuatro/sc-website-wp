@@ -113,5 +113,4 @@ abstract class Block {
 
 		return array_merge( $context, $unprefixed_acf_fields );
 	}
-
 }
