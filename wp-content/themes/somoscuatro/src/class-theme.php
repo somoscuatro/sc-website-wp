@@ -12,6 +12,7 @@ namespace Somoscuatro\Theme;
 use Somoscuatro\Theme\Helpers\Setup;
 
 use Somoscuatro\Theme\Cpt\Case_Studies;
+use Somoscuatro\Theme\Cpt\FAQs;
 use Somoscuatro\Theme\Cpt\Services;
 use Somoscuatro\Theme\Cpt\Testimonials;
 
@@ -38,6 +39,7 @@ class Theme {
 
 		// Custom Post Types.
 		Case_Studies::init();
+		FAQs::init();
 		Services::init();
 		Testimonials::init();
 
