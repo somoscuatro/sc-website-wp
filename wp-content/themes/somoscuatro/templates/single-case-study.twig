@@ -1,0 +1,12 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main id="content">
+		<div class="max-w-6xl py-20 mx-auto">
+			<h1 class="text-6xl font-medium text-center font-syne">{{ post.title }}</h1>
+		</div>
+		{% if post.content is not empty %}
+			{{ post.content }}
+		{% endif %}
+	</main>
+{% endblock %}
