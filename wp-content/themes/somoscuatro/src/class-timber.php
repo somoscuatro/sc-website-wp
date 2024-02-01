@@ -136,6 +136,12 @@ class Timber {
 			new TwigFunction( 'get_foreground_color_name', __CLASS__ . '::get_foreground_color_name' )
 		);
 
+		// @phpstan-ignore-next-line
+		$twig->addFunction(
+			// @phpstan-ignore-next-line
+			new TwigFunction( 'get_latest_posts', __CLASS__ . '::get_latest_posts' )
+		);
+
 		return $twig;
 	}
 
@@ -251,5 +257,24 @@ class Timber {
 	public static function get_foreground_color_name( $background_color_name ): string {
 		$dark_colors = ACF::get_safe_bg_colors_names()['dark'];
 		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
+	}
+
+	/**
+	 * Gets the latest posts.
+	 *
+	 * @param ?int $posts_per_page The number of posts to retrieve.
+	 *
+	 * @return \Timber\PostCollectionInterface|null The latest posts.
+	 */
+	public static function get_latest_posts( ?int $posts_per_page = 3 ): \Timber\PostCollectionInterface|null {
+		return TimberLibrary::get_posts(
+			array(
+				'post_type'      => 'post',
+				'post_status'    => 'publish',
+				'posts_per_page' => $posts_per_page,
+				'order'          => 'DESC',
+				'orderby'        => 'ID',
+			)
+		);
 	}
 }
