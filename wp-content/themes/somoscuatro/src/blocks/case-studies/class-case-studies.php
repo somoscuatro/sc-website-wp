@@ -64,7 +64,6 @@ class Case_Studies extends Block {
 					'filters'     => array(
 						0 => 'search',
 					),
-
 				),
 			),
 			'location' => array(

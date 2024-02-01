@@ -10,7 +10,7 @@
 		{% endif %}
 		<div class="grid grid-cols-3 gap-8">
 			{% for case_study in case_studies %}
-				<div class="flex border border-{{ foreground }} {{ loop.index == 1 ? 'col-span-full' : 'flex-col' }}">
+				<div class="flex border border-{{ foreground }} {{ loop.index == 1 and loop.length > 3 ? 'col-span-full' : 'flex-col' }}">
 					<div class="flex flex-col h-full gap-8 py-6 px-9">
 						<div class="flex flex-col h-full gap-2">
 							<a href="{{ function('get_permalink', case_study.ID) }}">
@@ -23,7 +23,7 @@
 							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 						</a>
 					</div>
-					<img class="object-contain h-auto max-w-full {{ loop.index == 1 ? 'order-last' : 'order-first' }}" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)).url }}" width="640">
+					<img class="object-contain h-auto max-w-full {{ loop.index == 1 and loop.length > 3 ? 'order-last' : 'order-first' }}" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)).url }}" width="640">
 				</div>
 			{% endfor %}
 		</div>
