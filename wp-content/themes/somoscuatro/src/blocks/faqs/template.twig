@@ -1,0 +1,25 @@
+{% extends "section.twig" %}
+
+{% set background = get_color_name(bg_color) %}
+{% set foreground = get_foreground_color_name(background) %}
+
+{% block section_content %}
+	<div class="flex justify-between space-x-40 text-{{ foreground }}">
+		<div class="flex flex-col w-2/5 gap-5">
+			{% if title %}
+				<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
+			{% endif %}
+			{% if text %}
+				<p>{{ text }}</p>
+			{% endif %}
+		</div>
+		<div class="flex flex-col w-3/5 divide-y divide-anit-flash-white-400">
+			{% for faq in faqs %}
+				<div class="flex items-center justify-between py-4">
+					<p class="text-2xl font-medium">{{ faq.post_title }}</p>
+					<span class="stroke-{{foreground}}">{% include 'icons/plus.twig' %}</span>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
