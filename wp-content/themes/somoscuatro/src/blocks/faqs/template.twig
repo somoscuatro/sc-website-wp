@@ -15,11 +15,22 @@
 		</div>
 		<div class="flex flex-col w-3/5 divide-y divide-anit-flash-white-400">
 			{% for faq in faqs %}
-				<div class="flex items-center justify-between py-4">
-					<p class="text-2xl font-medium">{{ faq.post_title }}</p>
-					<span class="stroke-{{foreground}}">{% include 'icons/plus.twig' %}</span>
+				<div x-cloak x-data="{ open: false }">
+					<div @click="open = !open" class="flex items-center justify-between py-4 cursor-pointer">
+						<p class="text-2xl font-medium">{{ faq.post_title }}</p>
+						<span class="stroke-{{foreground}}">
+							<svg class="ml-8 shrink-0" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+								<rect y="7" width="16" height="1" rx="1" class="transition duration-200 ease-out origin-center transform" :class="{'!rotate-180': open}" />
+								<rect y="7" width="16" height="1" rx="1" class="transition duration-200 ease-out origin-center transform rotate-90" :class="{'!rotate-180': open}" />
+							</svg>
+						</span>
+					</div>
+					<div x-show.transition.in.duration.200ms="open" class="flex flex-col gap-4 pb-4" style="display: none">
+						{{ faq.post_content }}
+					</div>
 				</div>
 			{% endfor %}
 		</div>
 	</div>
+	{{ enqueue_script('alpine-defer') }}
 {% endblock %}
