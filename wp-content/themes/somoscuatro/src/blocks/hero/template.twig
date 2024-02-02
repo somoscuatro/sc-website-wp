@@ -9,7 +9,12 @@
 {% block section_content %}
 	<div class="text-{{ foreground }}">
 		<div class="container flex items-center justify-between container-padding">
-			<h1 class="text-6xl font-medium font-syne">{{ title }}</h1>
+			<div class="flex flex-col gap-4">
+				<h1 class="text-6xl font-medium font-syne">{{ title }}</h1>
+				{% if text %}
+					<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>
+				{% endif %}
+			</div>
 			{% if image %}
 				<div class="relative z-10 w-[584px] h-[640px]">
 					<img class="absolute right-0 -bottom-20 -z-10" src="{{ image.url }}" alt="{{ image.alt }}" width="584" height="640">
