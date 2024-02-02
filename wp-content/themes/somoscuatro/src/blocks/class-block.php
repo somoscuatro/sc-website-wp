@@ -37,6 +37,8 @@ abstract class Block {
 	 */
 	public static function init(): void {
 		static::register_acf_block();
+		static::register_assets();
+
 		static::$context = Timber::context();
 	}
 
@@ -59,6 +61,11 @@ abstract class Block {
 			acf_add_local_field_group( static::get_acf_fields() );
 		}
 	}
+
+	/**
+	 * Registers block assets.
+	 */
+	public static function register_assets(): void {}
 
 	/**
 	 * Renders block Twig template.
