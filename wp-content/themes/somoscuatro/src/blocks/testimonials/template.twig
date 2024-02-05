@@ -8,22 +8,33 @@
 		{% if title %}
 			<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
 		{% endif %}
-		<div class="flex gap-4">
-			{% for testimonial in testimonials %}
-				<div class="flex flex-col gap-6 px-8 py-6 border border-{{ foreground }}">
-					<div>
-						<img class="rounded-full fill-{{ foreground }}" src="{{ function('get_field', 'cpt_testimonials_company_logo', testimonial.ID).url }}" width="176" height="64">
-						<p>{{ testimonial.post_content }}</p>
-					</div>
-					<div class="flex items-center gap-4">
-						<img class="rounded-full" src="{{ function('get_field', 'cpt_testimonials_image', testimonial.ID).url }}" width="60" height="60">
+		<div class="glider-contain">
+			<div class="flex gap-4 mx-4 glider">
+				{% for testimonial in testimonials %}
+					<div class="h-fit flex flex-col gap-6 px-8 py-6 border border-{{ foreground }}">
 						<div>
-							<h3 class="font-bold">{{ testimonial.post_title }}</h3>
-							<p>{{ function('get_field', 'cpt_testimonials_role_company', testimonial.ID) }}</p>
+							<img class="rounded-full fill-{{ foreground }}" src="{{ function('get_field', 'cpt_testimonials_company_logo', testimonial.ID).url }}" width="176" height="64">
+							<p>{{ testimonial.post_content }}</p>
+						</div>
+						<div class="flex items-center gap-4">
+							<img class="rounded-full" src="{{ function('get_field', 'cpt_testimonials_image', testimonial.ID).url }}" width="60" height="60">
+							<div>
+								<h3 class="font-bold">{{ testimonial.post_title }}</h3>
+								<p>{{ function('get_field', 'cpt_testimonials_role_company', testimonial.ID) }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
+			{% if testimonials|length > 2 %}
+				<button aria-label="Previous" class="glider-arrows glider-prev">
+					<span class="stroke-{{foreground}}">{% include 'icons/chevron.twig' %}</span>
+				</button>
+				<button aria-label="Next" class="rotate-180 glider-arrows glider-next">
+					<span class="stroke-{{foreground}}">{% include 'icons/chevron.twig' %}</span>
+				</button>
+			{% endif %}
 		</div>
 	</div>
+	{{ enqueue_script('somoscuatro_theme-testimonials') }}
 {% endblock %}

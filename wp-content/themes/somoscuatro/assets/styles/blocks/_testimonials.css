@@ -1,0 +1,33 @@
+/**
+ * Style customizations for Testimonials block.
+ */
+
+.glider-slide {
+
+	@apply h-fit;
+}
+
+.glider-track {
+
+	@apply gap-4;
+}
+
+.glider-arrows {
+
+	@apply top-1/2 hover:text-anti-flash-white-900 focus:text-anti-flash-white-900 text-anti-flash-white-900;
+
+	&.disabled {
+
+		@apply text-anti-flash-white-600;
+	}
+}
+
+.glider-prev {
+
+	@apply -left-6;
+}
+
+.glider-next {
+
+	@apply -right-4;
+}

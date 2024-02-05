@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./global/_fonts.css";
+@import "./blocks/_testimonials.css";
 
 html {
 

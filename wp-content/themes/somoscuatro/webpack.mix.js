@@ -25,6 +25,14 @@ const discover = ( dirs, type, excludedDirs = [] ) => {
 	return files;
 };
 
+discover( [ 'assets/scripts/vendor' ], '.js' ).forEach( ( file ) => {
+	mix.copy( file, 'dist/scripts/vendor' );
+} );
+
+discover( [ 'src/blocks', 'assets/scripts' ], '.js', [ 'vendor' ] ).forEach( ( file ) => {
+	mix.js( file, 'scripts' );
+} );
+
 discover( [ 'assets/styles' ], '.css' ).forEach( ( file ) => {
 	mix.postCss( file, 'styles', [
 		require( 'tailwindcss/nesting' ),
