@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Blocks;
 
+use Somoscuatro\Theme\Theme;
 use Timber\Timber;
 
 /**
@@ -103,7 +104,7 @@ abstract class Block {
 
 		$context['is_preview'] = $is_preview;
 
-		return $context;
+		return apply_filters( Theme::PREFIX . '_block_context', $context, $block ) ?? $context;
 	}
 
 	/**
