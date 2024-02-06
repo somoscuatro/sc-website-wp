@@ -14,6 +14,7 @@ use Somoscuatro\Theme\Helpers\Setup;
 use Somoscuatro\Theme\Cpt\Case_Studies;
 use Somoscuatro\Theme\Cpt\FAQs;
 use Somoscuatro\Theme\Cpt\Services;
+use Somoscuatro\Theme\Cpt\Tech_Tools;
 use Somoscuatro\Theme\Cpt\Testimonials;
 
 /**
@@ -41,6 +42,7 @@ class Theme {
 		Case_Studies::init();
 		FAQs::init();
 		Services::init();
+		Tech_Tools::init();
 		Testimonials::init();
 
 		Navigation::register();
