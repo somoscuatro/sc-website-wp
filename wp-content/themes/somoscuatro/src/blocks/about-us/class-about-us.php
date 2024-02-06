@@ -50,17 +50,17 @@ class About_Us extends Block {
 				),
 				array(
 					'key'          => 'field_' . self::$acf_block_prefix . '_customers_logos',
-					'label'        => 'Customers Logos',
+					'label'        => __( 'Customers Logos', 'somoscuatro-theme' ),
 					'name'         => self::$acf_block_prefix . '_customers_logos',
 					'type'         => 'repeater',
 					'layout'       => 'row',
 					'min'          => 6,
 					'max'          => 6,
-					'button_label' => 'Add Customer Logo',
+					'button_label' => __( 'Add Customer Logo', 'somoscuatro-theme' ),
 					'sub_fields'   => array(
 						array(
 							'key'             => 'field_' . self::$acf_block_prefix . '_customer_logo',
-							'label'           => 'Customer Logo',
+							'label'           => __( 'Customer Logo', 'somoscuatro-theme' ),
 							'name'            => self::$acf_block_prefix . '_customer_logo',
 							'type'            => 'image',
 							'parent_repeater' => 'field_' . self::$acf_block_prefix . '_customers_logos',
