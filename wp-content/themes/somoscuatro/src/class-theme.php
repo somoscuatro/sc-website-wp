@@ -69,6 +69,7 @@ class Theme {
 		ACF::init();
 		Navigation::init();
 		Blocks\Loader::init();
+		SEO::init();
 
 		// Adds site footer controls to the customizer.
 		add_action( 'customize_register', __NAMESPACE__ . '\Customizer::add_customizer_footer_controls' );
