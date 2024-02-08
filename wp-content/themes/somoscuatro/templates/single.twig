@@ -1,0 +1,17 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main id="content">
+		<div>
+			<div class="flex flex-col max-w-5xl mx-auto">
+				<img class="object-cover w-full max-h-72" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)).url }}" widht="1024" height="288">
+				<div class="max-w-3xl pb-6 mx-auto -mt-20 bg-anti-flash-white-100 p-11">
+					<h1 class="text-4xl font-semibold font-syne">{{ post.title }}</h1>
+				</div>
+			</div>
+			{% if post.content is not empty %}
+				{{ post.content }}
+			{% endif %}
+		</div>
+	</main>
+{% endblock %}
