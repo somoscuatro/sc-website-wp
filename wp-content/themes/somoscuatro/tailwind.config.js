@@ -14,6 +14,10 @@ module.exports = {
 				lg: '1024px',
 				xl: '1280px',
 			},
+			padding: {
+				DEFAULT: '1rem',
+				md: '0',
+			},
 		},
 		extend: {
 			fontFamily: {

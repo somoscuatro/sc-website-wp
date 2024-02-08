@@ -4,17 +4,17 @@
 {% set foreground = get_foreground_color_name(background) %}
 
 {% block section_content %}
-	<div class="flex flex-col gap-16 text-{{ foreground }}">
+	<div class="flex flex-col gap-10 md:gap-16 text-{{ foreground }}">
 		{% if title %}
-			<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
+			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
 		{% endif %}
-		<div class="grid grid-cols-3 gap-8">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 			{% for case_study in case_studies %}
-				<div class="flex border border-{{ foreground }} {{ loop.index == 1 and loop.length > 3 ? 'col-span-full' : 'flex-col' }}">
+				<div class="flex flex-col border border-{{ foreground }} {{ loop.index == 1 and loop.length > 3 ? 'col-span-full md:flex-row' : '' }}">
 					<div class="flex flex-col h-full gap-8 py-6 px-9">
 						<div class="flex flex-col h-full gap-2">
 							<a href="{{ function('get_permalink', case_study.ID) }}">
-								<h3 class="text-3xl font-medium font-syne">{{ case_study.post_title }}</h3>
+								<h3 class="text-2xl font-medium md:text-3xl font-syne">{{ case_study.post_title }}</h3>
 							</a>
 							<p>{{ case_study.post_excerpt }}</p>
 						</div>
@@ -23,7 +23,7 @@
 							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 						</a>
 					</div>
-					<img class="object-contain h-auto max-w-full {{ loop.index == 1 and loop.length > 3 ? 'order-last' : 'order-first' }}" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)).url }}" width="640">
+					<img class="object-contain h-auto max-w-full {{ loop.index == 1 and loop.length > 3 ? 'order-first md:order-last' : 'order-first' }}" src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)).url }}" width="640">
 				</div>
 			{% endfor %}
 		</div>
