@@ -3,9 +3,6 @@
 {% set background = get_color_name(bg_color) %}
 {% set foreground = get_foreground_color_name(background) %}
 
-
-{% set section_classes = 'pt-0' %}
-
 {% block section_content %}
 	<div class="text-{{ foreground }}">
 		<div class="container flex items-center justify-between container-padding">
@@ -16,9 +13,7 @@
 				{% endif %}
 			</div>
 			{% if image %}
-				<div class="relative z-10 w-[584px] h-[640px]">
-					<img class="absolute right-0 -bottom-20 -z-10" src="{{ image.url }}" alt="{{ image.alt }}" width="584" height="640">
-				</div>
+				<img src="{{ image.url }}" alt="{{ image.alt }}" width="584" height="640">
 			{% endif %}
 		</div>
 	</div>
