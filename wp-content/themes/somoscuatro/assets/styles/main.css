@@ -7,17 +7,19 @@
  * @see https://tailwindcss.com/docs/functions-and-directives#config
  */
 @import "tailwindcss/base";
-@import "./global/_typo.css";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/** Import files */
+@import "./global/_typo.css";
+@import "./blocks/_testimonials.css";
 
 /** Import Tailwind CSS Config */
 /* stylelint-disable-next-line at-rule-no-unknown */
 @config "../../tailwind.config.js";
 
-/** Import files */
+/** Import custom fonts */
 @import "./global/_fonts.css";
-@import "./blocks/_testimonials.css";
 
 html {
 
