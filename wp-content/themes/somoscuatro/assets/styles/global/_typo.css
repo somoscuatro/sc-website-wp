@@ -6,7 +6,8 @@
 		@apply font-syne text-2xl font-medium;
 	}
 
-	.case-study-content {
+	.case-study-content,
+	.insight-content {
 
 		p {
 
