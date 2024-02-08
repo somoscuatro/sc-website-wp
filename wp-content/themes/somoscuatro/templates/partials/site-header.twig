@@ -22,7 +22,8 @@
 					title: item.title,
 					url: item.url,
 					target: item.target,
-					type: key == 0 ? 'primary' : 'hollow_dark'
+					type: key == 0 ? 'primary' : 'hollow_dark',
+					attrs: item.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet\'});return false;"' : ''
 				} %}
 				{% set key = key + 1 %}
 			{% endif %}

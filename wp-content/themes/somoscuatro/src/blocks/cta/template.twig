@@ -7,7 +7,7 @@
 
 {% block section_content %}
 	<div class="flex flex-col gap-6 text-{{ foreground }}">
-		<img class="absolute bottom-0 z-10 -right-4 stroke-anti-flash-white-100" src="{{ get_static_image('cta/rocket.svg') }}" width="1063" height="462">
+		<img class="absolute bottom-0 -z-10 -right-4 stroke-anti-flash-white-100" src="{{ get_static_image('cta/rocket.svg') }}" width="1063" height="462">
 		<h2 class="text-6xl font-syne">{{ text }}</h2>
 		<div class="flex gap-4">
 			{% for item in buttons %}
@@ -15,7 +15,8 @@
 					title: item.button.title,
 					url: item.button.url,
 					target: item.button.target,
-					type: loop.index == 1 ? 'secondary' : 'hollow_light'
+					type: loop.index == 1 ? 'secondary' : 'hollow_light',
+					attrs: item.button.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet\'});return false;"' : ''
 				} %}
 			{% endfor %}
 		</div>

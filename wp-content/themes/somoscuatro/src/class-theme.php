@@ -130,6 +130,20 @@ class Theme {
 	public static function enqueue_assets(): void {
 		// Theme styles.
 		wp_enqueue_style( self::PREFIX, self::get_base_url() . '/dist/styles/main.css', false, self::get_version( 'styles/main.css' ) );
+
+		// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
+		wp_enqueue_style( 'calendly', 'https://assets.calendly.com/assets/external/widget.css', false, false );
+		wp_enqueue_script(
+			'calendly',
+			'https://assets.calendly.com/assets/external/widget.js',
+			array(),
+			false,
+			array(
+				'footer'   => false,
+				'strategy' => 'async',
+			)
+		);
+		// @phpcs:enable WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 	}
 
 	/**
