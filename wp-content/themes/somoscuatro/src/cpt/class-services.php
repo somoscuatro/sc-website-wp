@@ -43,6 +43,7 @@ class Services {
 				),
 				'supports'     => array( 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
 				'show_in_rest' => true,
+				'has_archive'  => false,
 			)
 		);
 	}
