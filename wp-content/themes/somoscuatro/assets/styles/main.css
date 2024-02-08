@@ -11,15 +11,13 @@
 @import "tailwindcss/utilities";
 
 /** Import files */
+@import "./global/_fonts.css";
 @import "./global/_typo.css";
 @import "./blocks/_testimonials.css";
 
 /** Import Tailwind CSS Config */
 /* stylelint-disable-next-line at-rule-no-unknown */
 @config "../../tailwind.config.js";
-
-/** Import custom fonts */
-@import "./global/_fonts.css";
 
 html {
 
