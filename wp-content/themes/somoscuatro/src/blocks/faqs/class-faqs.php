@@ -89,6 +89,15 @@ class FAQs extends Block {
 	 * Register block assets.
 	 */
 	public static function register_assets(): void {
-		wp_register_script( 'alpine-defer', 'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js', array(), '3.5.0', false );
+		wp_register_script(
+			'alpine',
+			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',
+			array(),
+			'3.5.0',
+			array(
+				'footer'   => false,
+				'strategy' => 'defer',
+			)
+		);
 	}
 }
