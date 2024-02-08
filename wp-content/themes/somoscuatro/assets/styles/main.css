@@ -1,6 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * This file is the entry point for cosmetic changes.
+ *
+ * N.B. We are not using @tailwind directives to load base, components and
+ * utilities in order to make it work the @layer customizations in the imported
+ * filed (e.g. _typo.css).
+ * @see https://tailwindcss.com/docs/functions-and-directives#config
+ */
+@import "tailwindcss/base";
+@import "./global/_typo.css";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/** Import Tailwind CSS Config */
+/* stylelint-disable-next-line at-rule-no-unknown */
+@config "../../tailwind.config.js";
+
+/** Import files */
 @import "./global/_fonts.css";
 @import "./blocks/_testimonials.css";
 

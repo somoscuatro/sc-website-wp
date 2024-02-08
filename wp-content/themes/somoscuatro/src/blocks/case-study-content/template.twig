@@ -1,0 +1,27 @@
+{% extends "section.twig" %}
+
+{% block section_content %}
+	<div class="flex max-w-5xl mx-auto gap-36">
+		<div class="flex flex-col w-1/4 gap-8 text-lg">
+			<div class="flex flex-col gap-1">
+				<p class="font-medium">{{ __( 'Brand', 'somoscuatro-theme' ) }}</p>
+				<p>{{ brand }}</p>
+			</div>
+			<div class="flex flex-col gap-1">
+				<p class="font-medium">{{ __( 'Industry', 'somoscuatro-theme' ) }}</p>
+				<p>{{ industry }}</p>
+			</div>
+			<div class="flex flex-col gap-1">
+				<p class="font-medium">{{ __( 'Technologies', 'somoscuatro-theme' ) }}</p>
+				<p>{{ techs }}</p>
+			</div>
+			<div class="flex flex-col gap-1">
+				<p class="font-medium">{{ __( 'Release', 'somoscuatro-theme' ) }}</p>
+				<p>{{ release }}</p>
+			</div>
+		</div>
+		<div class="w-3/4 case-study-content">
+			{{ content }}
+		</div>
+	</div>
+{% endblock %}
