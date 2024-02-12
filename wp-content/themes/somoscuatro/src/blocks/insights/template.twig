@@ -10,10 +10,15 @@
 		{% if title %}
 			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
 		{% endif %}
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 			{% for post in posts %}
-				<div class="border border-{{ foreground }}">
-					<img src="{{ function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)).url }}">
+				<div class="border border-{{ foreground }} {{ loop.last ? 'xl:block hidden' }}">
+					<div>
+						{% include 'image.twig' with {
+							image: function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)),
+							allowed_sizes: ['md']
+						} %}
+					</div>
 					<div class="flex flex-col gap-4 py-6 px-9">
 						<p class="text-sm font-semibold uppercase text-folly-700">{{ post.terms('category') | join(', ') }}</p>
 						<div class="flex flex-col gap-8">

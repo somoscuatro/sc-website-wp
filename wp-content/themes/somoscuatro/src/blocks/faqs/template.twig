@@ -4,16 +4,16 @@
 {% set foreground = get_foreground_color_name(background) %}
 
 {% block section_content %}
-	<div class="flex justify-between space-x-40 text-{{ foreground }}">
-		<div class="flex flex-col w-2/5 gap-5">
+	<div class="flex flex-col lg:flex-row justify-between space-y-10 lg:space-y-0 lg:space-x-40 text-{{ foreground }}">
+		<div class="flex flex-col gap-5 lg:w-1/2 xl:w-2/5">
 			{% if title %}
-				<h2 class="text-6xl font-medium font-syne">{{ title }}</h2>
+				<h2 class="text-4xl font-medium xl:text-6xl font-syne">{{ title }}</h2>
 			{% endif %}
 			{% if text %}
 				<p class="text-lg">{{ text }}</p>
 			{% endif %}
 		</div>
-		<div class="flex flex-col w-3/5 divide-y divide-anit-flash-white-400">
+		<div class="flex flex-col w-full divide-y lg:w-1/2 xl:w-3/5 divide">
 			{% for faq in faqs %}
 				<div x-cloak x-data="{ open: false }">
 					<div @click="open = !open" class="flex items-center justify-between py-4 cursor-pointer">

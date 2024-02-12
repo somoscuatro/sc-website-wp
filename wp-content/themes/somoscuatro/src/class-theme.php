@@ -57,6 +57,11 @@ class Theme {
 		// Disables WordPress default image sizes.
 		add_filter( 'intermediate_image_sizes', __CLASS__ . '::disable_wp_default_image_sizes' );
 
+		// Registers custom images sizes.
+		self::register_image_sizes();
+		add_filter( 'wp_editor_set_quality', __CLASS__ . '::custom_png_compression_quality', 10, 2 );
+		add_filter( 'jpeg_quality', __CLASS__ . '::my_prefix_regenerate_thumbnail_quality' );
+
 		// Adds page slug to body class.
 		add_filter( 'body_class', __CLASS__ . '::body_class' );
 
@@ -96,6 +101,42 @@ class Theme {
 		}
 
 		return $sizes;
+	}
+
+	/**
+	 * Registers custom images sizes.
+	 */
+	public static function register_image_sizes(): void {
+		add_image_size( 'xs', 60 );
+		add_image_size( 'xs@2x', 120 );
+		add_image_size( 'xs@3x', 180 );
+
+		add_image_size( 'sm', 240 );
+		add_image_size( 'sm@2x', 480 );
+		add_image_size( 'sm@3x', 720 );
+
+		add_image_size( 'md', 420 );
+		add_image_size( 'md@2x', 840 );
+		add_image_size( 'md@3x', 1260 );
+
+		add_image_size( 'lg', 680 );
+		add_image_size( 'lg@2x', 1360 );
+		add_image_size( 'lg@3x', 2040 );
+
+		add_image_size( 'xl', 1024 );
+		add_image_size( 'xl@2x', 2048 );
+		add_image_size( 'xl@3x', 3072 );
+	}
+
+	public static function custom_png_compression_quality( $quality, $mime_type ) {
+
+			$quality = 100; // Set the compression level for PNGs (scale: 0-100).
+
+		return $quality;
+	}
+
+	public static function my_prefix_regenerate_thumbnail_quality() {
+		return 100;
 	}
 
 	/**

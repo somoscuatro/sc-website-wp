@@ -2,7 +2,7 @@
 	<a href="{{ homepage_url }}">
 		<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
 	</a>
-	<nav class="hidden gap-6 md:flex">
+	<nav class="hidden gap-6 xl:flex">
 		{% for item in site_header_primary.get_items %}
 			{% if not item.meta('_menu-item-call-to-action') %}
 				{% include 'button.twig' with {

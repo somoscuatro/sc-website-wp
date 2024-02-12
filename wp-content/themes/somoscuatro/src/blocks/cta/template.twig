@@ -7,7 +7,7 @@
 
 {% block section_content %}
 	<div class="flex flex-col gap-6 text-{{ foreground }}">
-		<img class="absolute bottom-0 hidden md:block -z-10 -right-4 stroke-anti-flash-white-100" src="{{ get_static_image('cta/rocket.svg') }}" width="1063" height="462">
+		<img class="absolute bottom-0 hidden xl:block -z-10 -right-4 stroke-anti-flash-white-100" src="{{ get_static_image('cta/rocket.svg') }}" width="1063" height="462">
 		<h2 class="text-4xl md:text-6xl font-syne">{{ text }}</h2>
 		<div class="flex gap-4">
 			{% for item in buttons %}

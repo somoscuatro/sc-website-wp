@@ -16,7 +16,7 @@ module.exports = {
 			},
 			padding: {
 				DEFAULT: '1rem',
-				md: '0',
+				'2xl': '0',
 			},
 		},
 		extend: {

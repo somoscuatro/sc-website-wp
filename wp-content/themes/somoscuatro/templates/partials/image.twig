@@ -1,0 +1,13 @@
+{% if media_type == 'image/svg+xml' %}
+	<img {{ class ? 'class="' ~ class ~ '"' : '' }} src="{{ image.url }}" alt="{{ image.alt }}" width="{{ width }}" height="{{ height }}" />
+{% else %}
+	<picture {{ class ? 'class="' ~ class ~ '"' : '' }}>
+		{% set sources = get_image_srcset(image.sizes|default([]), allowed_sizes|default([])) %}
+		{% for source in sources %}
+			{% set srcset = source.srcset ~	(source['srcset@2x'] ? ' 1x, ' ~ source['srcset@2x'] ~ ' 2x') ~ (source['srcset@3x'] ? ', ' ~ source['srcset@3x'] ~ ' 3x' : '') %}
+			<source media="{{ source.media }}" srcset="{{ srcset }}" />
+		{% endfor %}
+		{% set test = sources|last.srcset ~	(sources|last['srcset@2x'] ? ' 1x, ' ~ sources|last['srcset@2x'] ~ ' 2x') ~ (sources|last['srcset@3x'] ? ', ' ~ sources|last['srcset@3x'] ~ ' 3x' : '') %}
+		<img class="object-cover w-full h-auto min-h-full" srcset="{{ test }}" src="{{ sources|last.srcset }}" alt="{{ image.alt }}" width="{{ sources|last.width }}" height="{{ sources|last.height }}">
+	</picture>
+{% endif %}
