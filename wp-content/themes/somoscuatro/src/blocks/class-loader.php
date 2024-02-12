@@ -25,6 +25,7 @@ class Loader {
 
 		// Removes unwanted default WordPress Gutenberg block types.
 		add_filter( 'allowed_block_types_all', __CLASS__ . '::allowed_block_types', 10, 0 );
+		add_action( 'wp_enqueue_scripts', __CLASS__ . '::remove_default_blocks_assets' );
 
 		// Loads custom Gutenberg blocks.
 		self::load();
@@ -187,5 +188,13 @@ class Loader {
 		);
 
 		return array_keys( array_diff_key( $block_types, $blocks_to_remove ) );
+	}
+
+	/**
+	 * Removes default Gutenberg blocks assets.
+	 */
+	public static function remove_default_blocks_assets(): void {
+		wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_script( 'wp-block-library' );
 	}
 }
