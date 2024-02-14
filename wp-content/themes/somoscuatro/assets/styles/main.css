@@ -13,6 +13,7 @@
 /** Import files */
 @import "./global/_fonts.css";
 @import "./global/_typo.css";
+@import "./blocks/_contact.css";
 @import "./blocks/_testimonials.css";
 
 /** Import Tailwind CSS Config */

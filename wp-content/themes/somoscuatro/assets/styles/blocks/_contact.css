@@ -1,0 +1,55 @@
+#contact-form {
+
+	@apply flex flex-col gap-10;
+
+	.contact-info {
+
+		@apply grid grid-cols-2 gap-10;
+	}
+
+	label {
+
+		@apply block uppercase text-sm font-medium pb-2;
+	}
+
+	input,
+	textarea {
+
+		@apply bg-anti-flash-white-200 w-full p-2 font-normal;
+	}
+
+	[type="submit"] {
+
+		@apply border-anti-flash-white-900 bg-anti-flash-white-900 text-anti-flash-white-100 border font-medium py-2 px-7 block w-fit;
+	}
+
+	[type="checkbox"] {
+
+		@apply absolute w-full h-10 opacity-0 cursor-pointer;
+	}
+
+	.wpcf7-checkbox {
+
+		@apply flex flex-wrap gap-2;
+	}
+
+	.wpcf7-list-item {
+
+		@apply relative m-0 block h-fit w-fit;
+	}
+
+	.wpcf7-list-item-label {
+
+		@apply px-3 py-1 font-medium rounded-lg w-fit h-fit bg-anti-flash-white-200 block;
+	}
+
+	[type="checkbox"]:checked + .wpcf7-list-item-label {
+
+		@apply bg-crayola-200 ;
+	}
+
+	.wpcf7-spinner {
+
+		@apply hidden;
+	}
+}
