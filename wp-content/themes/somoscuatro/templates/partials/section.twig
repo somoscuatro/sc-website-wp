@@ -1,5 +1,5 @@
-<section class="{{ background ? 'bg-' ~ background : '' }}">
-	<div class="container py-10 md:py-20 {{ section_classes }}">
+<section class="{{ background ? 'bg-' ~ background : '' }} {{ section_classes }}">
+	<div class="section-container container py-10 md:py-20 {{ section_container_classes }}">
 		{% block section_content %}
 		{% endblock %}
 	</div>
