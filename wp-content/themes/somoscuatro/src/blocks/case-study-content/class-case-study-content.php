@@ -55,9 +55,9 @@ class Case_Study_Content extends Block {
 					'required' => true,
 				),
 				array(
-					'key'      => 'field_' . self::$acf_block_prefix . '_techs',
-					'label'    => __( 'Technologies', 'somoscuatro-theme' ),
-					'name'     => self::$acf_block_prefix . '_techs',
+					'key'      => 'field_' . self::$acf_block_prefix . '_services',
+					'label'    => __( 'Services', 'somoscuatro-theme' ),
+					'name'     => self::$acf_block_prefix . '_services',
 					'type'     => 'textarea',
 					'required' => true,
 				),
