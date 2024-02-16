@@ -11,7 +11,7 @@
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 			{% for case_study in case_studies %}
 				<div class="flex flex-col border border-{{ foreground }} {{ loop.index == 1 and loop.length > 3 ? 'xl:col-span-full xl:flex-row' : '' }}">
-					<div class="flex flex-col h-full gap-8 py-6 px-9 {{ loop.index == 1 and loop.length ? 'w-full xl:w-1/2' : '' }}">
+					<div class="flex flex-col h-full gap-8 py-6 px-9 {{ loop.index == 1 and loop.length > 3 ? 'w-full xl:w-1/2' : '' }}">
 						<div class="flex flex-col h-full gap-2">
 							<a href="{{ function('get_permalink', case_study.ID) }}">
 								<h3 class="text-2xl font-medium md:text-3xl font-syne">{{ case_study.post_title }}</h3>
@@ -23,7 +23,7 @@
 							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 						</a>
 					</div>
-					{% if loop.index == 1 %}
+					{% if loop.index == 1 and loop.length > 3 %}
 						{% include 'image.twig' with {
 							class: 'xl:w-1/2 w-full order-first xl:order-last',
 							image: function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)),
