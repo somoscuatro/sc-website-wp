@@ -42,6 +42,17 @@ class Hero extends Block {
 					'return_format' => 'string',
 				),
 				array(
+					'key'           => 'field_' . self::$acf_block_prefix . '_layout',
+					'label'         => __( 'Layout', 'somoscuatro-theme' ),
+					'name'          => self::$acf_block_prefix . '_layout',
+					'type'          => 'true_false',
+					'required'      => true,
+					'default_value' => 1,
+					'ui'            => 1,
+					'ui_on_text'    => __( 'Horizontal', 'somoscuatro-theme' ),
+					'ui_off_text'   => __( 'Vertical', 'somoscuatro-theme' ),
+				),
+				array(
 					'key'      => 'field_' . self::$acf_block_prefix . '_title',
 					'label'    => __( 'Title', 'somoscuatro-theme' ),
 					'name'     => self::$acf_block_prefix . '_title',

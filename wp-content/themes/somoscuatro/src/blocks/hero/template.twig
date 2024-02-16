@@ -5,17 +5,18 @@
 
 {% block section_content %}
 	<div class="text-{{ foreground }}">
-		<div class="container flex flex-col items-center justify-between gap-10 lg:gap-20 container-padding">
+		<div class="flex items-center justify-between gap-10 lg:gap-20 flex-col  {{ layout ? 'md:flex-row' : '' }}">
 			<div class="flex flex-col gap-4">
-				<h1 class="text-4xl font-medium text-center lg:text-6xl font-syne">{{ title }}</h1>
+				<h1 class="text-4xl font-medium lg:text-6xl font-syne {{ layout ? '' : 'text-center' }}">{{ title }}</h1>
 				{% if text %}
 					<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>
 				{% endif %}
 			</div>
 			{% if image %}
 				{% include 'image.twig' with {
+					class: layout ? 'max-w-sm lg:max-w-2xl' : '',
 					image: image,
-					allowed_sizes: ['lg', 'xl']
+					allowed_sizes: ['lg', 'xl'],
 				} %}
 			{% endif %}
 		</div>
