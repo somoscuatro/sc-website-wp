@@ -5,7 +5,7 @@
 
 {% block section_content %}
 	<div class="flex flex-col lg:flex-row justify-between space-y-10 lg:space-y-0 lg:space-x-40 text-{{ foreground }}">
-		<div class="flex flex-col gap-5 lg:w-1/2 xl:w-2/5">
+		<div class="flex flex-col w-full gap-5 lg:w-1/2">
 			{% if title %}
 				<h2 class="text-4xl font-medium xl:text-6xl font-syne">{{ title }}</h2>
 			{% endif %}
@@ -13,7 +13,7 @@
 				<p class="text-lg">{{ text }}</p>
 			{% endif %}
 		</div>
-		<div class="flex flex-col w-full divide-y lg:w-1/2 xl:w-3/5 divide">
+		<div class="flex flex-col w-full divide-y lg:w-1/2 divide">
 			{% for faq in faqs %}
 				<div x-cloak x-data="{ open: false }">
 					<div @click="open = !open" class="flex items-center justify-between py-4 cursor-pointer">
