@@ -1,0 +1,15 @@
+#login {
+
+	@apply pt-[15%];
+}
+
+#login h1 a {
+	background-image: url(/wp-content/themes/somoscuatro/assets/images/logo.png);
+
+	@apply h-16 w-auto bg-contain;
+}
+
+#loginform .forgetmenot {
+
+	@apply hidden;
+}

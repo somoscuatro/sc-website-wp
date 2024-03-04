@@ -190,7 +190,9 @@ class Theme {
 	/**
 	 * Enqueues style for the login page.
 	 */
-	public static function login_enqueue_scripts(): void {}
+	public static function login_enqueue_scripts(): void {
+		wp_enqueue_style( self::PREFIX . '-login', self::get_base_url() . '/dist/styles/login.css', false, self::get_version( 'styles/login.css' ) );
+	}
 
 	/**
 	 * Loads the theme translation domain.
