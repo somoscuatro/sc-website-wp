@@ -4,7 +4,7 @@
  *
  * @package    wp2fa
  * @subpackage user-utils
- * @copyright  %%YEAR%% Melapress
+ * @copyright  2024 Melapress
  * @license    https://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
  * @link       https://wordpress.org/plugins/wp-2fa/
  */
@@ -13,7 +13,9 @@ namespace WP2FA\Admin;
 
 use WP2FA\WP2FA;
 use WP2FA\Methods\TOTP;
+use WP2FA\Methods\Email;
 use WP2FA\Utils\User_Utils;
+use WP2FA\Extensions_Loader;
 use WP2FA\Methods\Backup_Codes;
 use WP2FA\Utils\Generate_Modal;
 use WP2FA\Utils\Settings_Utils;
@@ -26,7 +28,6 @@ use WP2FA\Admin\Helpers\User_Helper;
 use WP2FA\Admin\Controllers\Settings;
 use WP2FA\Authenticator\Authentication;
 use WP2FA\Extensions\OutOfBand\Out_Of_Band;
-use WP2FA\Methods\Email;
 
 /**
  * User_Profile class responsible for the profile page operations
@@ -49,10 +50,10 @@ if ( ! class_exists( '\WP2FA\Admin\User_Profile' ) ) {
 
 			if ( isset( $_GET['user_id'] ) ) { // phpcs:ignore
 				$user_id = (int) $_GET['user_id']; // phpcs:ignore
-				$user    = get_user_by( 'id', $user_id );
+				$user    = \get_user_by( 'id', $user_id );
 			} else {
 				// Get current user, we're going to need this regardless.
-				$user = wp_get_current_user();
+				$user = \wp_get_current_user();
 			}
 
 			if ( ! is_a( $user, '\WP_User' ) ) {
@@ -542,13 +543,13 @@ if ( ! class_exists( '\WP2FA\Admin\User_Profile' ) ) {
 
 			if ( isset( $_GET['user_id'] ) ) { // phpcs:ignore
 				$user_id = (int) $_GET['user_id']; // phpcs:ignore
-				$user    = get_user_by( 'id', $user_id );
+				$user    = \get_user_by( 'id', $user_id );
 			} else {
-				$user = wp_get_current_user();
+				$user = \wp_get_current_user();
 			}
 
 			// Get current user, we going to need this regardless.
-			$current_user = wp_get_current_user();
+			$current_user = \wp_get_current_user();
 
 			if ( \is_multisite() ) {
 				if ( '' === trim( (string) \WP2FA\Admin\Helpers\User_Helper::get_user_role( $user ) ) ) {

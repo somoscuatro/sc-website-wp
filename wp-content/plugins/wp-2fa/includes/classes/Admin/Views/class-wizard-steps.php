@@ -4,7 +4,7 @@
  *
  * @package    wp2fa
  * @subpackage views
- * @copyright  %%YEAR%% Melapress
+ * @copyright  2024 Melapress
  * @license    https://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
  * @link       https://wordpress.org/plugins/wp-2fa/
  */
@@ -12,7 +12,6 @@
 namespace WP2FA\Admin\Views;
 
 use WP2FA\WP2FA;
-use WP2FA\Methods\Email;
 use WP2FA\Utils\User_Utils;
 use WP2FA\Admin\Helpers\WP_Helper;
 use WP2FA\Admin\Helpers\User_Helper;
