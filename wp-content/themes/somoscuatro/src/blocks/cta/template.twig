@@ -16,7 +16,7 @@
 					url: item.button.url,
 					target: item.button.target,
 					type: loop.index == 1 ? 'primary' : 'hollow_light',
-					attrs: item.button.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet\'});return false;"' : ''
+					attrs: item.button.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet?hide_gdpr_banner=1\'});return false;"' : ''
 				} %}
 			{% endfor %}
 		</div>

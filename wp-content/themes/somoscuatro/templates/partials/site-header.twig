@@ -23,7 +23,7 @@
 					url: item.url,
 					target: item.target,
 					type: key == 0 ? 'primary' : 'hollow_dark',
-					attrs: item.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet\'});return false;"' : '',
+					attrs: item.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet?hide_gdpr_banner=1\'});return false;"' : '',
 					classes: key == 1 ? 'hidden md:block' : ''
 				} %}
 				{% set key = key + 1 %}
