@@ -65,6 +65,9 @@ class Theme {
 		// Adds page slug to body class.
 		add_filter( 'body_class', __CLASS__ . '::body_class' );
 
+		// Adds support for preloading stylesheets.
+		add_filter( 'style_loader_tag', __CLASS__ . '::preload_stylesheets', 10, 2 );
+
 		// Enqueues frontend theme styles and scripts.
 		add_action( 'wp_enqueue_scripts', __CLASS__ . '::enqueue_assets', 100 );
 
@@ -166,6 +169,21 @@ class Theme {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Adds support for preloading stylesheets.
+	 *
+	 * @param string $tag    The link tag for the enqueued style.
+	 * @param string $handle The style's registered handle.
+	 *
+	 * @return string The updated link tag.
+	 */
+	public static function preload_stylesheets( string $tag, string $handle ): string {
+		if ( str_contains( $handle, 'preload' ) ) {
+			$tag = str_replace( "rel='stylesheet'", 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"', $tag );
+		}
+		return $tag;
 	}
 
 	/**
