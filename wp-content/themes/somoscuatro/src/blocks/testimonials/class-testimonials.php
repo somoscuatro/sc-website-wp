@@ -88,8 +88,17 @@ class Testimonials extends Block {
 	 */
 	public static function register_assets(): void {
 		// Adds Glider assets.
-		wp_enqueue_script( 'glider-js', self::get_base_url() . '/dist/scripts/glider.min.js', array(), '1.7.8', true );
 		wp_enqueue_style( 'glider-css-preload', self::get_base_url() . '/dist/styles/glider.min.css', array(), '1.7.8' );
+		wp_enqueue_script(
+			'glider-js',
+			self::get_base_url() . '/dist/scripts/glider.min.js',
+			array(),
+			'1.7.8',
+			array(
+				'strategy' => 'defer',
+				'footer'   => true,
+			)
+		);
 
 		// Registers block script.
 		wp_register_script( Theme::PREFIX . '-testimonials', self::get_base_url() . '/dist/scripts/testimonials.js', array(), self::get_version( 'scripts/testimonials.js' ), true );
