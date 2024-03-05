@@ -19,5 +19,9 @@
 			@apply pb-2;
 		}
 	}
+}
 
+.error404 main a {
+
+	@apply underline;
 }

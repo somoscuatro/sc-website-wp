@@ -79,6 +79,9 @@ class Theme {
 		// Adds site footer controls to the customizer.
 		add_action( 'customize_register', __NAMESPACE__ . '\Customizer::add_customizer_footer_controls' );
 
+		// Adds 404 controls to the customizer.
+		add_action( 'customize_register', __NAMESPACE__ . '\Customizer::add_customizer_404_controls' );
+
 		if ( is_admin() ) {
 			return;
 		}

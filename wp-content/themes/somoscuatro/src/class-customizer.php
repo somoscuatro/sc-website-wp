@@ -72,4 +72,63 @@ class Customizer {
 			)
 		);
 	}
+
+	/**
+	 * Adds 404 controls to the customizer.
+	 *
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 */
+	public static function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ) {
+		// Section.
+		$wp_customize->add_section(
+			'404',
+			array(
+				'title'      => __( '404', 'somoscuatro-theme' ),
+				'priority'   => 45,
+				'capability' => 'edit_theme_options',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'404_image',
+			array(
+				'default'    => '',
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Media_Control(
+				$wp_customize,
+				'404_image',
+				array(
+					'label'     => __( 'Image', 'abacum-theme' ),
+					'section'   => '404',
+					'mime_type' => 'image',
+					'settings'  => '404_image',
+				),
+			),
+		);
+
+		$wp_customize->add_setting(
+			'404_text',
+			array(
+				'default'    => '',
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Control(
+				$wp_customize,
+				'404_text',
+				array(
+					'label'    => __( 'Text', 'somoscuatro-theme' ),
+					'section'  => '404',
+					'settings' => '404_text',
+					'type'     => 'textarea',
+				)
+			)
+		);
+	}
 }

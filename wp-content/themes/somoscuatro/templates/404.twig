@@ -1,0 +1,13 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<main id="content">
+		<div class="container flex flex-col items-center max-w-5xl gap-8 py-10 mx-auto lg:gap-20 section-container md:py-20">
+			{% include 'image.twig' with {
+				image: image,
+				allowed_sizes: ['md', 'lg', 'xl']
+			} %}
+			<p class="text-xl font-medium text-center max-w-prose lg:text-4xl font-syne">{{ text }}</p>
+		</div>
+	</main>
+{% endblock %}
