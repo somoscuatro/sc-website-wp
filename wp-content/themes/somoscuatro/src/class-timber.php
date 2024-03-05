@@ -109,7 +109,7 @@ class Timber {
 		// @phpstan-ignore-next-line
 		$twig->addFunction(
 			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_static_image', __CLASS__ . '::get_static_image' )
+			new TwigFunction( 'get_static_asset', __CLASS__ . '::get_static_asset' )
 		);
 
 		// @phpstan-ignore-next-line
@@ -155,14 +155,14 @@ class Timber {
 	}
 
 	/**
-	 * Get static image URL.
+	 * Get static asset URL.
 	 *
-	 * @param string $file_name The image name.
+	 * @param string $rel_file_path The asset file path relative to the theme dir.
 	 *
-	 * @return string The image URL.
+	 * @return string The asset URL.
 	 */
-	public static function get_static_image( string $file_name ): string {
-		return esc_url( get_stylesheet_directory_uri() ) . '/assets/images/' . $file_name;
+	public static function get_static_asset( string $rel_file_path ): string {
+		return esc_url( get_stylesheet_directory_uri() ) . "/$rel_file_path";
 	}
 
 	/**

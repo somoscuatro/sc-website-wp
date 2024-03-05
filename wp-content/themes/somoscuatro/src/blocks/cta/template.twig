@@ -7,7 +7,7 @@
 
 {% block section_content %}
 	<div class="flex flex-col gap-6 text-{{ foreground }}">
-		<img class="absolute bottom-0 hidden xl:block -z-10 right-10 2xl:left-1/2 stroke-anti-flash-white-100" src="{{ get_static_image('cta/image.svg') }}" width="600" height="482" alt="An astronaut with a WordPress flag in the hand">
+		<img class="absolute bottom-0 hidden xl:block -z-10 right-10 2xl:left-1/2 stroke-anti-flash-white-100" src="{{ get_static_asset('assets/images/cta/image.svg') }}" width="600" height="482" alt="An astronaut with a WordPress flag in the hand">
 		<h2 class="text-4xl md:text-6xl font-syne">{{ text }}</h2>
 		<div class="flex gap-4">
 			{% for item in buttons %}
