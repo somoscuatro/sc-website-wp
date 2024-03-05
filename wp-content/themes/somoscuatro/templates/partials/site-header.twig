@@ -1,33 +1,54 @@
-<header class="container flex items-center justify-between py-4">
-	<a href="{{ homepage_url }}">
-		<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
-	</a>
-	<nav class="hidden gap-6 xl:flex">
-		{% for item in site_header_primary.get_items %}
-			{% if not item.meta('_menu-item-call-to-action') %}
-				{% include 'button.twig' with {
-					title: item.title,
-					url: item.url,
-					target: item.target,
-					type: 'link'
-				} %}
-			{% endif %}
-		{% endfor %}
-	</nav>
-	<div class="flex gap-2">
-		{% set key = 0 %}
-		{% for item in site_header_primary.get_items %}
-			{% if item.meta('_menu-item-call-to-action') %}
-				{% include 'button.twig' with {
-					title: item.title,
-					url: item.url,
-					target: item.target,
-					type: key == 0 ? 'primary' : 'hollow_dark',
-					attrs: item.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet?hide_gdpr_banner=1\'});return false;"' : '',
-					classes: key == 1 ? 'hidden md:block' : ''
-				} %}
-				{% set key = key + 1 %}
-			{% endif %}
-		{% endfor %}
+<header class="sticky top-0 z-50 duration-300 ease-in site-header bg-anti-flash-white-100 border-anti-flash-white-400">
+	<div class="container relative flex items-center justify-between py-4">
+		<a href="{{ homepage_url }}">
+			<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
+		</a>
+		<nav class="hidden gap-none xl:gap-6 lg:flex">
+			{% for item in site_header_primary.get_items %}
+				{% if not item.meta('_menu-item-call-to-action') %}
+					{% include 'button.twig' with {
+						title: item.title,
+						url: item.url,
+						target: item.target,
+						type: 'link'
+					} %}
+				{% endif %}
+			{% endfor %}
+		</nav>
+		<nav id="nav-site-header-primary-mobile" class="absolute left-0 top-20 hidden w-full max-h-[calc(100vh_-_5rem)] overflow-y-scroll flex-col px-2 py-4 border-b border-anti-flash-white-400 bg-anti-flash-white-100">
+			{% for item in site_header_primary.get_items %}
+				{% if not item.meta('_menu-item-call-to-action') %}
+					{% include 'button.twig' with {
+						classes: 'w-full',
+						title: item.title,
+						url: item.url,
+						target: item.target,
+						type: 'link'
+					} %}
+				{% endif %}
+			{% endfor %}
+		</nav>
+		<div class="flex items-center gap-4 xl:gap-2">
+			{% set key = 0 %}
+			{% for item in site_header_primary.get_items %}
+				{% if item.meta('_menu-item-call-to-action') %}
+					{% include 'button.twig' with {
+						title: item.title,
+						url: item.url,
+						target: item.target,
+						type: key == 0 ? 'primary' : 'hollow_dark',
+						attrs: item.url == '#calendly' ? 'onclick="Calendly.initPopupWidget({url: \'https://calendly.com/luca-pipolo/let-s-meet?hide_gdpr_banner=1\'});return false;"' : '',
+						classes: key == 0 ? 'block' : 'hidden xl:block'
+					} %}
+					{% set key = key + 1 %}
+				{% endif %}
+			{% endfor %}
+			<div class="lg:hidden" id="mobile-nav-hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 	</div>
 </header>

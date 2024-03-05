@@ -175,6 +175,9 @@ class Theme {
 		// Theme styles.
 		wp_enqueue_style( self::PREFIX, self::get_base_url() . '/dist/styles/main.css', false, self::get_version( 'styles/main.css' ) );
 
+		// Theme script.
+		wp_enqueue_script( self::PREFIX, self::get_base_url() . '/dist/scripts/main.js', array(), self::get_version( 'scripts/main.js' ), true );
+
 		// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_enqueue_style( 'calendly', 'https://assets.calendly.com/assets/external/widget.css', false, false );
 		wp_enqueue_script(
