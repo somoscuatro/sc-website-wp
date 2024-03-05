@@ -12,12 +12,20 @@
 			<div class="flex gap-4 mx-4 glider">
 				{% for testimonial in testimonials %}
 					<div class="h-fit flex flex-col gap-6 px-8 py-6 border border-{{ foreground }}">
-						<div>
-							<img class="rounded-full fill-{{ foreground }}" src="{{ function('get_field', 'cpt_testimonials_company_logo', testimonial.ID).url }}" width="176" height="64">
+						<div class="flex flex-col">
+							{% include 'image.twig' with {
+								class: "max-w-[176px]",
+								image: function('get_field', 'cpt_testimonials_company_logo', testimonial.ID),
+								allowed_sizes: ['sm']
+							} %}
 							<p>{{ testimonial.post_content }}</p>
 						</div>
 						<div class="flex flex-col gap-4 md:items-center md:flex-row">
-							<img class="rounded-full" src="{{ function('get_field', 'cpt_testimonials_image', testimonial.ID).url }}" width="60" height="60">
+							{% include 'image.twig' with {
+								class: "rounded-full overflow-hidden w-16 h-16",
+								image: function('get_field', 'cpt_testimonials_image', testimonial.ID),
+								allowed_sizes: ['xs']
+							} %}
 							<div>
 								<h3 class="font-bold">{{ testimonial.post_title }}</h3>
 								<p>{{ function('get_field', 'cpt_testimonials_role_company', testimonial.ID) }}</p>
