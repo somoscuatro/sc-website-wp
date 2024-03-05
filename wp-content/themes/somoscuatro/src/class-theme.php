@@ -88,6 +88,8 @@ class Theme {
 		if ( is_admin() ) {
 			return;
 		}
+
+		GTM::init();
 	}
 
 	/**
