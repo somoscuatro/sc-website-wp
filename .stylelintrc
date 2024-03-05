@@ -1,6 +1,6 @@
 {
 	"extends": "@wordpress/stylelint-config",
-	"ignoreFiles": ["**/dist/**"],
+	"ignoreFiles": ["**/dist/**", "**/vendor/**"],
 	"rules": {
 		"selector-class-pattern": null,
 		"selector-id-pattern": null,

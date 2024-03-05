@@ -59,8 +59,8 @@ class Theme {
 
 		// Registers custom images sizes.
 		self::register_image_sizes();
-		add_filter( 'wp_editor_set_quality', __CLASS__ . '::custom_png_compression_quality', 10, 2 );
-		add_filter( 'jpeg_quality', __CLASS__ . '::my_prefix_regenerate_thumbnail_quality' );
+		add_filter( 'wp_editor_set_quality', __CLASS__ . '::image_compression_quality', 10, 0 );
+		add_filter( 'jpeg_quality', __CLASS__ . '::image_compression_quality', 10, 0 );
 
 		// Adds page slug to body class.
 		add_filter( 'body_class', __CLASS__ . '::body_class' );
@@ -134,14 +134,12 @@ class Theme {
 		add_image_size( 'xl@3x', 3072 );
 	}
 
-	public static function custom_png_compression_quality( $quality, $mime_type ) {
-
-			$quality = 100; // Set the compression level for PNGs (scale: 0-100).
-
-		return $quality;
-	}
-
-	public static function my_prefix_regenerate_thumbnail_quality() {
+	/**
+	 * Sets images compression quality.
+	 *
+	 * @return int The images compression quality.
+	 */
+	public static function image_compression_quality(): int {
 		return 100;
 	}
 
