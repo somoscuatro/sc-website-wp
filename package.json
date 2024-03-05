@@ -1,7 +1,7 @@
 {
 	"name": "@somoscuatro/sc-website",
 	"description": "The somoscuatro WordPress website.",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"author": {
 		"name": "somoscuatro",
 		"email": "tech@somoscuatro.es",
