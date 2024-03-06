@@ -153,7 +153,7 @@ class Theme {
 	 * @return array The modified body classes.
 	 */
 	public static function body_class( array $classes ): array {
-		if ( is_single() || is_page() && ! is_front_page() ) {
+		if ( is_single() || ( is_page() && ! is_front_page() ) ) {
 			if ( ! in_array( basename( get_permalink() ), $classes, true ) ) {
 				$classes[] = basename( get_permalink() );
 			}
