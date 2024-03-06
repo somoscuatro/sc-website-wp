@@ -29,12 +29,11 @@ class Timber {
 			throw new \Exception( 'Timber not found.' );
 		}
 
-		TimberLibrary::$dirname    = array(
+		TimberLibrary::$dirname = array(
 			'templates',
 			'templates/components',
 			'templates/partials',
 		);
-		TimberLibrary::$autoescape = false;
 
 		// Adds additional variables to global context.
 		add_filter( 'timber/context', __CLASS__ . '::add_to_global_context' );
