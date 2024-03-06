@@ -1,5 +1,3 @@
-const defaultTheme = require( 'tailwindcss/defaultTheme' );
-
 import * as tailwindColorPalette from './tailwind.colors.json';
 import * as tailwindSafeBgColorPalette from './tailwind.safe-bg-colors.json';
 
@@ -21,8 +19,8 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: [ 'Jost', ...defaultTheme.fontFamily.sans ],
-				syne: [ 'Syne' ],
+				sans: [ 'Jost', 'Helvetica Neue', 'Arial', 'sans-serif' ],
+				syne: [ 'Syne', 'Helvetica Neue', 'Arial', 'sans-serif' ],
 			},
 			colors: tailwindColorPalette,
 		},
