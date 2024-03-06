@@ -1653,12 +1653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "d15a466ccebdab65be87787b6ac4c1a142633a2f"
+                "reference": "8b1a52e046668b7dcea1c3c663c5521b4b1c2a9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/d15a466ccebdab65be87787b6ac4c1a142633a2f",
-                "reference": "d15a466ccebdab65be87787b6ac4c1a142633a2f",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/8b1a52e046668b7dcea1c3c663c5521b4b1c2a9a",
+                "reference": "8b1a52e046668b7dcea1c3c663c5521b4b1c2a9a",
                 "shasum": ""
             },
             "require": {
