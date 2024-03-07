@@ -191,7 +191,8 @@ class Theme {
 	 */
 	public static function enqueue_assets(): void {
 		// Theme styles.
-		wp_enqueue_style( self::PREFIX, self::get_base_url() . '/dist/styles/main.css', false, self::get_version( 'styles/main.css' ) );
+		wp_enqueue_style( self::PREFIX . '-fonts-preload', self::get_base_url() . '/dist/styles/fonts.css', false, self::get_version( 'styles/fonts.css' ) );
+		wp_enqueue_style( self::PREFIX, self::get_base_url() . '/dist/styles/main.css', array( self::PREFIX . '-fonts-preload' ), self::get_version( 'styles/main.css' ) );
 
 		// Theme script.
 		wp_enqueue_script( self::PREFIX, self::get_base_url() . '/dist/scripts/main.js', array(), self::get_version( 'scripts/main.js' ), true );

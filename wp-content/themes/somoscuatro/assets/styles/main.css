@@ -11,7 +11,6 @@
 @import "tailwindcss/utilities";
 
 /** Import files */
-@import "./global/_fonts.css";
 @import "./global/_typo.css";
 @import "./elements/_site-header.css";
 @import "./blocks/_contact.css";
