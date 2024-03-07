@@ -25,6 +25,10 @@ const discover = ( dirs, type, excludedDirs = [] ) => {
 	return files;
 };
 
+discover( [ 'assets/fonts' ], '.woff2' ).forEach( ( file ) => {
+	mix.copy( file, 'dist/fonts' );
+} );
+
 discover( [ 'assets/scripts/vendor' ], '.js' ).forEach( ( file ) => {
 	mix.copy( file, 'dist/scripts/vendor' );
 } );
