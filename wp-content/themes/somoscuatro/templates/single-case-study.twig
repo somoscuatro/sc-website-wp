@@ -2,8 +2,8 @@
 
 {% block content %}
 	<main id="content">
-		<div class="max-w-6xl py-20 mx-auto">
-			<h1 class="text-6xl font-medium text-center font-syne">{{ post.title }}</h1>
+		<div class="container max-w-6xl py-10 mx-auto md:py-20">
+			<h1 class="text-4xl font-medium md:text-center md:text-6xl font-syne">{{ post.title }}</h1>
 		</div>
 		{% if post.content is not empty %}
 			{{ post.content }}

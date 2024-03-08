@@ -1,8 +1,8 @@
 {% extends "section.twig" %}
 
 {% block section_content %}
-	<div class="flex max-w-5xl mx-auto gap-36">
-		<div class="flex flex-col w-1/4 gap-8 text-lg">
+	<div class="flex flex-col max-w-5xl gap-10 mx-auto md:flex-row md:gap-36">
+		<div class="flex flex-col gap-6 text-lg md:gap-8 md:w-1/4">
 			<div class="flex flex-col gap-1">
 				<p class="font-medium">{{ __( 'Brand', 'somoscuatro-theme' ) }}</p>
 				<p>{{ brand }}</p>
@@ -24,7 +24,7 @@
 				<p>{{ release }}</p>
 			</div>
 		</div>
-		<div class="w-3/4 case-study-content">
+		<div class="md:w-3/4 case-study-content">
 			{{ content }}
 		</div>
 	</div>
