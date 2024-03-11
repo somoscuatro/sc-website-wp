@@ -1,0 +1,88 @@
+.page-template-legal {
+
+	main {
+
+		a {
+
+			@apply underline;
+		}
+	}
+
+	h2 {
+
+		@apply text-2xl md:text-4xl font-syne pb-4;
+	}
+
+	h3 {
+
+		@apply text-2xl font-medium font-syne pb-4;
+	}
+
+	p {
+
+		@apply mb-4;
+	}
+
+	p,
+	ul,
+	ol {
+
+		& + h2 {
+
+			@apply mt-8;
+		}
+
+	}
+
+	ul,
+	ol {
+
+		@apply ml-8 mb-4;
+	}
+
+	ul {
+
+		@apply list-disc;
+	}
+
+	ol {
+
+		@apply list-decimal;
+	}
+
+	strong {
+
+		@apply font-semibold;
+	}
+
+	.wp-block-table {
+
+		@apply overflow-x-auto mb-6;
+	}
+
+	table {
+
+		@apply w-full text-sm text-left rtl:text-right text-gray-500;
+	}
+
+	thead {
+
+		@apply text-xs text-gray-700 uppercase bg-gray-50;
+	}
+
+	tbody tr {
+
+		@apply bg-white border-b;
+	}
+
+	td {
+
+		@apply px-6 py-4 font-medium text-gray-900;
+	}
+
+	th {
+
+		@apply px-6 py-3;
+	}
+}
+

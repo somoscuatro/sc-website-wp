@@ -227,6 +227,10 @@ class Theme {
 		// Theme script.
 		wp_enqueue_script( self::PREFIX, self::get_base_url() . '/dist/scripts/main.js', array(), self::get_version( 'scripts/main.js' ), true );
 
+		if ( is_page_template( 'legal.php' ) ) {
+			wp_enqueue_style( self::PREFIX . '-legal', self::get_base_url() . '/dist/styles/legal.css', array(), self::get_version( 'styles/legal.css' ) );
+		}
+
 		// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion
 		wp_enqueue_style( 'calendly', 'https://assets.calendly.com/assets/external/widget.css', false, false );
 		wp_enqueue_script(
