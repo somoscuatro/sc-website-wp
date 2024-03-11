@@ -1,0 +1,20 @@
+dialog [role="button"] {
+
+	@apply !rounded-none !py-2 !px-4;
+}
+
+
+dialog > div {
+
+	@apply !border-t !border-anti-flash-white-400 !shadow-none;
+}
+
+dialog [class$="-272"] {
+
+	@apply !pb-0;
+
+	&::after {
+
+		@apply !h-0;
+	}
+}

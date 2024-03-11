@@ -12,6 +12,7 @@
 
 /** Import files */
 @import "./global/_typo.css";
+@import "./elements/_cookie-banner.css";
 @import "./elements/_site-header.css";
 @import "./blocks/_contact.css";
 @import "./blocks/_testimonials.css";
