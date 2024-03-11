@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Real Cookie Banner - Color schemes\n"
+"POT-Creation-Date: 2023-03-18 12:26+0100\n"
+"PO-Revision-Date: 2023-03-18 12:27+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: real-cookie-banner-color-schemes.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: real-cookie-banner-color-schemes.php:76
+msgid ""
+"Thanks for using the Color schemes add on for Real Cookie Banner. Inside the "
+"Cookie Banner panel inside the customizer there is a new section now, called "
+"Color scheme. There you can change the colors of the cookie banner in one "
+"place."
+msgstr ""
+"Vielen Dank für die Verwendung des Farbschema-Add-Ons für Real Cookie "
+"Banner. Innerhalb des Cookie Banner Panels im Customizer gibt es jetzt einen "
+"neuen Abschnitt namens Farbschema. Da können alle Farben des Plugins in "
+"einer Sektion eingestellt werden."
+
+#: real-cookie-banner-color-schemes.php:84
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
+
+#: real-cookie-banner-color-schemes.php:125
+msgid "Error in Color schemes add on"
+msgstr "Fehler im Farbschema Add-on"
+
+#: real-cookie-banner-color-schemes.php:128
+msgid ""
+"Real Cookie Banner plugin is not installed. Color schemes is deactivated."
+"<br>Get the latest version of Real Cookie Banner Free <a href=\"https://de."
+"wordpress.org/plugins/real-cookie-banner/\" target=\"_blank\">here</a> or "
+"the pro version <a href=\"https://devowl.io/de/wordpress-real-cookie-banner/"
+"\" target=\"_blank\">here</a> or just search inside the plugin installation "
+"page for Real Cookie Banner from devowl.io."
+msgstr ""
+"Das Real Cookie Banner Plugin ist nicht installiert. Das Farbschema Add-On "
+"wird deaktiviert.<br>Hol dir <a href=\"https://de.wordpress.org/plugins/real-"
+"cookie-banner/\" target=\"_blank\">hier</a> die neueste Version von Real "
+"Cookie Banner Free oder <a href=\"https://devowl.io/de/wordpress-real-cookie-"
+"banner/\" target=\"_blank\">hier</a> die Pro Version oder suche einfach auf "
+"der Plugin-Installationsseite nach Real Cookie Banner von devowl.io."
+
+#: real-cookie-banner-color-schemes.php:188
+msgid "Color scheme"
+msgstr "Farbschema"
+
+#: real-cookie-banner-color-schemes.php:189
+msgid ""
+"Change colors for cookie banner in groups. You won't have to go trough all "
+"settings anymore, to change the colors. You can change single color settings "
+"afterwards anyway."
+msgstr ""
+"Ändere die Farben für das Cookie-Banner in Gruppen. Du musst nicht mehr alle "
+"Einstellungen durchgehen, um die Farben zu ändern. Du kannst einzelne "
+"Farbeinstellungen nachträglich trotzdem ändern."
+
+#: real-cookie-banner-color-schemes.php:212
+msgid "Primary color"
+msgstr "Primärfarbe"
+
+#: real-cookie-banner-color-schemes.php:236
+msgid "Primary color on mouse over"
+msgstr "Primärfarbe beim Mouseover"
+
+#: real-cookie-banner-color-schemes.php:257
+msgid "Secondary color like primary"
+msgstr "Sekundärfarbe wie primär"
+
+#: real-cookie-banner-color-schemes.php:281
+msgid "Secondary color"
+msgstr "Sekundärfarbe"
+
+#: real-cookie-banner-color-schemes.php:305
+msgid "Secondary color on mouse over"
+msgstr "Sekundärfarbe beim Mouseover"
+
+#: real-cookie-banner-color-schemes.php:329
+msgid "Banner background color"
+msgstr "Hintergrundfarbe des Banners"
+
+#: real-cookie-banner-color-schemes.php:353
+msgid "Primary font color"
+msgstr "Primäre Schriftfarbe"
+
+#: real-cookie-banner-color-schemes.php:377
+msgid "Secondary font color"
+msgstr "Sekundäre Schriftfarbe"
+
+#: real-cookie-banner-color-schemes.php:401
+msgid "Link color"
+msgstr "Linkfarbe"
+
+#: real-cookie-banner-color-schemes.php:425
+msgid "Link color on mouse over"
+msgstr "Linkfarbe beim Mouseover"
+
+#: real-cookie-banner-color-schemes.php:446
+msgid "Save button color like primary"
+msgstr "Speichern Button Farbe wie primär Button"
+
+#. Plugin Name of the plugin/theme
+msgid "Real Cookie Banner - Color schemes"
+msgstr "Real Cookie Banner - Farbschema"
+
+#. Plugin URI of the plugin/theme
+msgid "https://de.wordpress.org/plugins/real-cookie-banner-color-schemes/"
+msgstr "https://de.wordpress.org/plugins/real-cookie-banner-color-schemes/"
+
+#. Description of the plugin/theme
+msgid ""
+"With the Color schemes add on for Real Cookie Banner you can setup the "
+"colors for the single objects in Groups. You don't have to go through all "
+"sections anymore."
+msgstr ""
+"Mit dem Farbschema Add-On für Real Cookie Banner kannst du die Farben für "
+"die einzelnen Objekte in Gruppen verändern. Du musst nicht mehr alle "
+"Abschnitte durchlaufen."
+
+#. Author of the plugin/theme
+msgid "Holger \"der_wasi\" Wassenhoven"
+msgstr "Holger \"der_wasi\" Wassenhoven"
+
+#. Author URI of the plugin/theme
+msgid "https://wasiwarez.net/"
+msgstr "https://wasiwarez.net/"
