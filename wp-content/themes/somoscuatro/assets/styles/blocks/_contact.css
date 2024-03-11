@@ -20,7 +20,7 @@
 
 	[type="submit"] {
 
-		@apply border-anti-flash-white-900 bg-anti-flash-white-900 text-anti-flash-white-100 border font-medium py-2 px-7 block w-fit;
+		@apply border-anti-flash-white-900 bg-anti-flash-white-900 text-anti-flash-white-100 border font-medium py-2 px-7 block w-fit cursor-pointer;
 	}
 
 	[type="checkbox"] {
