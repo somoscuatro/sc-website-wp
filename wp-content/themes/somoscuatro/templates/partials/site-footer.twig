@@ -25,11 +25,11 @@
 				{% endfor %}
 			</div>
 		</div>
-		<div class="flex flex-wrap justify-between gap-2 pt-6 text-sm border-t md:gap-0 border-anti-flash-white-100">
+		<div class="flex flex-wrap justify-between gap-4 pt-6 text-sm border-t lg:gap-0 border-anti-flash-white-100">
 			<p>&copy; {{ now|date('Y') }} somoscuatro 2020 S.L.</p>
-			<div class="flex divide-x">
+			<div class="flex flex-wrap gap-4 gap-y-2 lg:gap-0 lg:divide-x">
 				{% for item in site_footer_legals.items %}
-					<a class="px-2" href="{{ item.url }}">{{ item.title }}</a>
+					<a class="lg:px-2" href="{{ item.url }}">{{ item.title }}</a>
 				{% endfor %}
 			</div>
 		</div>

@@ -6,83 +6,83 @@
 
 			@apply underline;
 		}
-	}
 
-	h2 {
+		h2 {
 
-		@apply text-2xl md:text-4xl font-syne pb-4;
-	}
-
-	h3 {
-
-		@apply text-2xl font-medium font-syne pb-4;
-	}
-
-	p {
-
-		@apply mb-4;
-	}
-
-	p,
-	ul,
-	ol {
-
-		& + h2 {
-
-			@apply mt-8;
+			@apply text-2xl md:text-4xl font-syne pb-4;
 		}
 
-	}
+		h3 {
 
-	ul,
-	ol {
+			@apply text-2xl font-medium font-syne pb-4;
+		}
 
-		@apply ml-8 mb-4;
-	}
+		p {
 
-	ul {
+			@apply mb-4;
+		}
 
-		@apply list-disc;
-	}
+		p,
+		ul,
+		ol {
 
-	ol {
+			& + h2 {
 
-		@apply list-decimal;
-	}
+				@apply mt-8;
+			}
 
-	strong {
+		}
 
-		@apply font-semibold;
-	}
+		ul,
+		ol {
 
-	.wp-block-table {
+			@apply ml-8 mb-4;
+		}
 
-		@apply overflow-x-auto mb-6;
-	}
+		ul {
 
-	table {
+			@apply list-disc;
+		}
 
-		@apply w-full text-sm text-left rtl:text-right text-gray-500;
-	}
+		ol {
 
-	thead {
+			@apply list-decimal;
+		}
 
-		@apply text-xs text-gray-700 uppercase bg-gray-50;
-	}
+		strong {
 
-	tbody tr {
+			@apply font-semibold;
+		}
 
-		@apply bg-white border-b;
-	}
+		.wp-block-table {
 
-	td {
+			@apply overflow-x-auto mb-6;
+		}
 
-		@apply px-6 py-4 font-medium text-gray-900;
-	}
+		table {
 
-	th {
+			@apply w-full text-sm text-left rtl:text-right text-gray-500;
+		}
 
-		@apply px-6 py-3;
+		thead {
+
+			@apply text-xs text-gray-700 uppercase bg-gray-50;
+		}
+
+		tbody tr {
+
+			@apply bg-white border-b;
+		}
+
+		td {
+
+			@apply px-6 py-4 font-medium text-gray-900;
+		}
+
+		th {
+
+			@apply px-6 py-3;
+		}
 	}
 }
 
