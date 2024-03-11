@@ -9,7 +9,7 @@
 			<h2 class="max-w-3xl mx-auto text-2xl md:text-center md:text-4xl font-syne">{{ text }}</h2>
 		{% endif %}
 		<div class="flex flex-col justify-center gap-2">
-			<h3 class="text-lg font-bold text-center uppercase">{{ __('Trusted By', 'somoscuatro-theme') }}</h3>
+			<p class="text-lg font-bold text-center uppercase">{{ __('Trusted By', 'somoscuatro-theme') }}</p>
 			<div class="flex flex-wrap justify-center lg:justify-between">
 				{% for item in customers_logos %}
 					{% include 'image.twig' with {
