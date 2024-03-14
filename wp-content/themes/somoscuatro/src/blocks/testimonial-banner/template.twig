@@ -8,7 +8,7 @@
 		{% for testimonial in testimonials %}
 			<div class="flex flex-col gap-8 md:flex-row md:gap-16 max-w">
 				{% include 'image.twig' with {
-					class: "rounded-full h-fit overflow-hidden !max-w-[180px] !min-w-[180px]",
+					class: "rounded-full overflow-hidden !min-w-[180px] !max-w-[180px] !h-[180px] object-cover",
 					image: function('get_field', 'cpt_testimonials_image', testimonial.ID),
 					allowed_sizes: ['sm', 'md']
 				} %}
