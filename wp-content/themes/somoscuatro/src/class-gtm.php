@@ -12,7 +12,7 @@ namespace Somoscuatro\Theme;
 /**
  * Google Tag Manager custom functionality.
  */
-class Gtm {
+class GTM {
 
 	/**
 	 * The Google Tag Manager ID.
