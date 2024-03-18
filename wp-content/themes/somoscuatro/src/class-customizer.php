@@ -142,7 +142,7 @@ class Customizer {
 				$wp_customize,
 				'404_image',
 				array(
-					'label'     => __( 'Image', 'abacum-theme' ),
+					'label'     => __( 'Image', 'somoscuatro-theme' ),
 					'section'   => '404',
 					'mime_type' => 'image',
 					'settings'  => '404_image',
