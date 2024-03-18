@@ -1,0 +1,6 @@
+@import "./global/_content-typo.css";
+
+.single-glossary-term {
+
+  @extend %content-typo;
+}

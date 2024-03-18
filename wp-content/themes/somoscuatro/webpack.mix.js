@@ -40,6 +40,7 @@ discover( [ 'src/blocks', 'assets/scripts' ], '.js', [ 'vendor' ] ).forEach( ( f
 discover( [ 'assets/styles' ], '.css' ).forEach( ( file ) => {
 	mix.postCss( file, 'styles', [
 		require( 'postcss-import' ),
+		require( 'postcss-extend' ),
 		require( 'tailwindcss/nesting' ),
 		require( 'tailwindcss' ),
 	] );

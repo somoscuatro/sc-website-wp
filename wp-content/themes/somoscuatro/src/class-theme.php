@@ -12,6 +12,7 @@ namespace Somoscuatro\Theme;
 use Somoscuatro\Theme\Helpers\Setup;
 
 use Somoscuatro\Theme\Cpt\Case_Studies;
+use Somoscuatro\Theme\Cpt\Glossary as GlossaryCPT;
 use Somoscuatro\Theme\Cpt\FAQs;
 use Somoscuatro\Theme\Cpt\Services;
 use Somoscuatro\Theme\Cpt\Tech_Tools;
@@ -41,6 +42,7 @@ class Theme {
 		// Custom Post Types.
 		Case_Studies::init();
 		FAQs::init();
+		GlossaryCPT::init();
 		Services::init();
 		Tech_Tools::init();
 		Testimonials::init();
@@ -79,6 +81,9 @@ class Theme {
 		Navigation::init();
 		Blocks\Loader::init();
 		SEO::init();
+
+		// Adds custom page controls to the customizer.
+		add_action( 'customize_register', __NAMESPACE__ . '\Customizer::add_customizer_custom_pages_controls' );
 
 		// Adds site footer controls to the customizer.
 		add_action( 'customize_register', __NAMESPACE__ . '\Customizer::add_customizer_footer_controls' );
@@ -227,8 +232,29 @@ class Theme {
 		// Theme script.
 		wp_enqueue_script( self::PREFIX, self::get_base_url() . '/dist/scripts/main.js', array(), self::get_version( 'scripts/main.js' ), true );
 
+		// Legal pages assets.
 		if ( is_page_template( 'legal.php' ) ) {
 			wp_enqueue_style( self::PREFIX . '-legal', self::get_base_url() . '/dist/styles/legal.css', array(), self::get_version( 'styles/legal.css' ) );
+		}
+
+		// Legal pages assets.
+		if ( is_singular( 'glossary-term' ) ) {
+			wp_enqueue_style( self::PREFIX . '-glossary', self::get_base_url() . '/dist/styles/glossary.css', array(), self::get_version( 'styles/glossary.css' ) );
+		}
+
+		// Glossary page assets.
+		if ( is_page( get_theme_mod( 'glossary_page' ) ) ) {
+			wp_enqueue_script( self::PREFIX . '-page-glossary', self::get_base_url() . '/dist/scripts/page-glossary.js', array(), self::get_version( 'scripts/page-glossary.js' ), true );
+
+			$glossary_terms = Glossary::get_terms();
+			wp_localize_script(
+				self::PREFIX . '-page-glossary',
+				'glossary',
+				array(
+					'terms'   => $glossary_terms,
+					'letters' => Glossary::get_letters( $glossary_terms ),
+				)
+			);
 		}
 
 		// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion

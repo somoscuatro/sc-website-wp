@@ -1,0 +1,61 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<main id="content">
+	<div class="container py-10 mx-auto max-w-7xl md:py-20">
+		<div x-data="manageGlossary()">
+			<div class="flex flex-col gap-12">
+				<div class="flex flex-col gap-8 md:text-center">
+					<h1 class="text-4xl font-medium md:text-6xl font-syne">{{ post.title }}</h1>
+					<div class="max-w-2xl md:mx-auto content">{{ post.content }}</div>
+				</div>
+				<div class="flex justify-center">
+					<input class="w-full h-10 px-4 py-1 border min-w-56 border-pale-sky md:w-fit" type="text" id="glossary-search" placeholder="Search" x-model="search" />
+					<div class="p-2 bg-anti-flash-white-900 stroke-anti-flash-white-100">
+						{% include 'icons/magnifying-glass.twig' %}
+					</div>
+				</div>
+			</div>
+			<ul class="flex flex-wrap gap-4 pb-4 mt-8 mb-4 border-b lg:gap-0 md:px-6 lg:justify-between glossary-index border-b-anti-flash-white-400 text-anti-flash-white-400">
+				{% for index_letter in index_letters %}
+					<li class="text-2xl">
+						<a
+							class="px-2 py-1 cursor-default"
+							x-on:click.prevent=""
+							x-on:click="availableLetters.includes('{{ index_letter|first|lower }}') ? activeLetter = '{{ index_letter|first|lower }}' : ''"
+							x-bind:class="{ 'text-anti-flash-white-900 !cursor-pointer' : availableLetters.includes('{{ index_letter|first|lower }}'), 'bg-anti-flash-white-200': activeLetter === '{{ index_letter|first|lower }}' }"
+							href="#"
+						>
+							{{ index_letter|first|upper }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+			<div class="flex flex-wrap justify-center gap-4">
+				<div class="flex flex-wrap justify-center w-full gap-2">
+					<template x-for="term in filteredTerms">
+						<a
+							class="flex items-center justify-between w-full px-3 py-2 glossary-term hover:bg-anti-flash-white-200 opacity-40 text-anti-flash-white-900 hover:opacity-100"
+							x-show="activeLetter === term.post_title[0].toLowerCase() || activeLetter === ''"
+							x-bind:href="term.permalink"
+						>
+							<span x-html="term.post_title"></span>
+							<div class="w-[19px] h-[19px] stroke-anti-flash-white-900">
+								{% include 'icons/arrow.twig' %}
+							</div>
+						</a>
+					</template>
+				</div>
+				{% include 'button.twig' with {
+					title: __('Show all terms', 'somoscuatro-theme'),
+					url: '#',
+					type: 'primary',
+					attrs: 'x-on:click.prevent="" x-on:click="showAllTerms" x-show="activeLetter || search"'
+				} %}
+			</div>
+		</div>
+	</div>
+</main>
+{{ enqueue_script('alpine') }}
+{% endblock %}
+

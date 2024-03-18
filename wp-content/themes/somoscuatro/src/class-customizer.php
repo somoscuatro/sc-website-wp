@@ -15,6 +15,46 @@ namespace Somoscuatro\Theme;
 class Customizer {
 
 	/**
+	 * Adds custom page controls to the customizer.
+	 *
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 */
+	public static function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ) {
+		$pages = self::get_pages();
+
+		// Section.
+		$wp_customize->add_section(
+			'custom_pages',
+			array(
+				'title'      => __( 'Custom Pages', 'somoscuatro-theme' ),
+				'priority'   => 35,
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_setting(
+			'glossary_page',
+			array(
+				'default'    => '',
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Control(
+				$wp_customize,
+				'glossary_page',
+				array(
+					'label'    => __( 'Glossary Page', 'somoscuatro-theme' ),
+					'section'  => 'custom_pages',
+					'settings' => 'glossary_page',
+					'type'     => 'select',
+					'choices'  => $pages,
+				),
+			),
+		);
+	}
+
+	/**
 	 * Adds site footer controls to the customizer.
 	 *
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
@@ -130,5 +170,23 @@ class Customizer {
 				)
 			)
 		);
+	}
+
+	/**
+	 * Retrieves all pages in site.
+	 *
+	 * @return array List of pages and their IDs.
+	 */
+	private static function get_pages(): array {
+		$pages = get_pages();
+		$pages = array_reduce(
+			$pages,
+			function ( $carry, $page ) {
+				$carry[ $page->ID ] = $page->post_title;
+				return $carry;
+			},
+			array()
+		);
+		return $pages;
 	}
 }
