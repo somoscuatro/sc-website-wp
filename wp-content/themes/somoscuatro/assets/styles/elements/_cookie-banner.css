@@ -9,7 +9,7 @@ dialog > div {
 	@apply !border-t !border-anti-flash-white-400 !shadow-none;
 }
 
-dialog [class$="-272"] {
+dialog [class$="-274"] {
 
 	@apply !pb-0;
 
