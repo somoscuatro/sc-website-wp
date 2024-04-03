@@ -7,6 +7,7 @@
 
 use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Asset;
+use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Timber;
 /**
  * List of classes with hooks
@@ -14,5 +15,6 @@ use Somoscuatro\Theme\Timber;
 return array(
 	ACF::class,
 	Asset::class,
+	Media::class,
 	Timber::class,
 );
