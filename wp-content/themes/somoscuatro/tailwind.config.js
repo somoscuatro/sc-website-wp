@@ -2,7 +2,11 @@ import * as tailwindColorPalette from './tailwind.colors.json';
 import * as tailwindSafeBgColorPalette from './tailwind.bg-colors-safelist.json';
 
 module.exports = {
-	content: [ './src/**/*.{php,twig}', './templates/**/*.twig', './assets/**/*.js' ],
+	content: [
+		'./src/**/*.{php,twig}',
+		'./templates/**/*.twig',
+		'./assets/**/*.js',
+	],
 	theme: {
 		container: {
 			center: true,
@@ -19,8 +23,8 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: [ 'Jost', 'Helvetica Neue', 'Arial', 'sans-serif' ],
-				syne: [ 'Syne', 'Helvetica Neue', 'Arial', 'sans-serif' ],
+				sans: ['Jost', 'Helvetica Neue', 'Arial', 'sans-serif'],
+				syne: ['Syne', 'Helvetica Neue', 'Arial', 'sans-serif'],
 			},
 			colors: tailwindColorPalette,
 		},
