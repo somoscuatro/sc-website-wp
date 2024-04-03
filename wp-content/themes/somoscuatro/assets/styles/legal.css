@@ -1,6 +1,6 @@
 @import "./global/_content-typo.css";
 
-.page-template-legal {
+.page-template-legal main {
 
 	@extend %content-typo;
 }

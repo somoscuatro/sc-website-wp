@@ -242,6 +242,11 @@ class Theme {
 			wp_enqueue_style( self::PREFIX . '-glossary', self::get_base_url() . '/dist/styles/glossary.css', array(), self::get_version( 'styles/glossary.css' ) );
 		}
 
+		// Single post assets.
+		if ( is_single() ) {
+			wp_enqueue_style( self::PREFIX . '-single-post', self::get_base_url() . '/dist/styles/single-post.css', array(), self::get_version( 'styles/single-post.css' ) );
+		}
+
 		// Glossary page assets.
 		if ( is_page( get_theme_mod( 'glossary_page' ) ) ) {
 			wp_enqueue_script( self::PREFIX . '-page-glossary', self::get_base_url() . '/dist/scripts/page-glossary.js', array(), self::get_version( 'scripts/page-glossary.js' ), true );
