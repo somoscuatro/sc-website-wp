@@ -37,8 +37,10 @@ class Glossary {
 
 	/**
 	 * Gets glossary letters.
+	 *
+	 * @param array $glossary_terms The Glossary terms.
 	 */
-	public static function get_letters( $glossary_terms ): array {
+	public static function get_letters( array $glossary_terms ): array {
 		$letters = array();
 
 		foreach ( $glossary_terms as $glossary_term ) {
