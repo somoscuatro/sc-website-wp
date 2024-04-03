@@ -9,39 +9,37 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
-use Somoscuatro\Theme\Helpers\Setup;
+use Somoscuatro\Theme\Attributes\Action;
+use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
  * ACF custom functionality.
  */
 class ACF {
 
-	use Setup;
+	use Filesystem;
 
 	/**
 	 * The ACF color palette.
 	 *
 	 * @var array
 	 */
-	public static $acf_color_palette = array();
+	private $acf_color_palette = array();
 
 	/**
 	 * The allowed colors palette for ACF Block background.
 	 *
 	 * @var array
 	 */
-	public static $acf_bg_color_palette = array();
+	private $acf_bg_color_palette = array();
 
 	/**
 	 * ACF custom functionality.
 	 */
-	public static function init(): void {
-		// Gets color palette from a JSON file.
-		self::$acf_color_palette    = self::get_color_palette();
-		self::$acf_bg_color_palette = self::get_bg_safe_color_palette( self::$acf_color_palette, self::get_safe_bg_colors_names()['colors'] );
-
-		// Restricts the ACF color picker palette.
-		add_action( 'acf/input/admin_footer', __CLASS__ . '::restrict_color_picker_palette' );
+	#[Action( 'init' )]
+	public function setup_color_palette(): void {
+		$this->acf_color_palette    = $this->get_color_palette();
+		$this->acf_bg_color_palette = $this->get_bg_safe_color_palette( $this->acf_color_palette, $this->get_safe_bg_colors_names()['colors'] );
 	}
 
 	/**
@@ -49,9 +47,13 @@ class ACF {
 	 *
 	 * @return array The color palette file content.
 	 */
-	public static function get_color_palette(): array {
+	public function get_color_palette(): array {
+		if ( ! file_exists( $this->get_base_path() . '/tailwind.colors.json' ) ) {
+			return array();
+		}
+
 		$tailwind_colors = wp_json_file_decode(
-			self::get_base_path() . '/tailwind.colors.json',
+			$this->get_base_path() . '/tailwind.colors.json',
 			array( 'associative' => true )
 		);
 
@@ -70,11 +72,19 @@ class ACF {
 	 *
 	 * @return array The safe background colors name.
 	 */
-	public static function get_safe_bg_colors_names(): array {
+	public function get_safe_bg_colors_names(): array {
+		if ( ! file_exists( $this->get_base_path() . '/tailwind.bg-colors-safelist.json' ) ) {
+			return array();
+		}
+
 		$safe_bg_colors = wp_json_file_decode(
-			self::get_base_path() . '/tailwind.safe-bg-colors.json',
+			$this->get_base_path() . '/tailwind.bg-colors-safelist.json',
 			array( 'associative' => true )
 		);
+
+		if ( ! isset( $safe_bg_colors ) ) {
+			return array();
+		}
 
 		return $safe_bg_colors;
 	}
@@ -87,7 +97,7 @@ class ACF {
 	 *
 	 * @return array The background safe color palette.
 	 */
-	public static function get_bg_safe_color_palette( array $color_palette, array $safe_bg_colors ): array {
+	private function get_bg_safe_color_palette( array $color_palette, array $safe_bg_colors ): array {
 		return array_filter(
 			$color_palette,
 			function ( $color ) use ( $safe_bg_colors ) {
@@ -100,8 +110,9 @@ class ACF {
 	/**
 	 * Restricts the ACF color picker palette.
 	 */
-	public static function restrict_color_picker_palette(): void {
-		$palette = implode( "','", array_values( self::$acf_bg_color_palette ) );
+	#[Action( 'acf/input/admin_footer' )]
+	public function restrict_color_picker_palette(): void {
+		$palette = implode( "','", array_values( $this->acf_bg_color_palette ) );
 		?>
 		<script type="text/javascript">
 			(function() {
