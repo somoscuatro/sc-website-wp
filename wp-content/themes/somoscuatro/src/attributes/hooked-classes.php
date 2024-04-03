@@ -9,6 +9,7 @@ use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Asset;
 use Somoscuatro\Theme\Customizer;
 use Somoscuatro\Theme\Media;
+use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Timber;
 /**
  * List of classes with hooks
@@ -18,5 +19,6 @@ return array(
 	Asset::class,
 	Customizer::class,
 	Media::class,
+	Navigation::class,
 	Timber::class,
 );

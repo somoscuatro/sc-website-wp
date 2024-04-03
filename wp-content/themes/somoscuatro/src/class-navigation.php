@@ -9,23 +9,18 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
+use Somoscuatro\Theme\Attributes\Action;
+
 /**
  * WordPress custom navigation functionality.
  */
 class Navigation {
 
 	/**
-	 * WordPress custom navigation functionality initialization.
-	 */
-	public static function init(): void {
-		add_action( 'wp_nav_menu_item_custom_fields', __CLASS__ . '::add_menu_item_custom_fields' );
-		add_action( 'wp_update_nav_menu_item', __CLASS__ . '::save_menu_item_custom_fields', 10, 2 );
-	}
-
-	/**
 	 * Register navigation menus.
 	 */
-	public static function register(): void {
+	#[Action( 'after_setup_theme' )]
+	public function register_nav_menus(): void {
 		register_nav_menu( 'site_header_primary', __( 'Site Header Primary', 'somoscuatro-theme' ) );
 		register_nav_menu( 'site_footer_primary', __( 'Site Footer Primary', 'somoscuatro-theme' ) );
 		register_nav_menu( 'site_footer_legals', __( 'Site Footer Legals', 'somoscuatro-theme' ) );
@@ -36,6 +31,7 @@ class Navigation {
 	 *
 	 * @param string $item_id   The menu item ID as a numeric string.
 	 */
+	#[Action( 'wp_nav_menu_item_custom_fields' )]
 	public static function add_menu_item_custom_fields( string $item_id ): void {
 		wp_nonce_field( 'call-to-action-menu-meta-nonce', 'call-to-action-menu-meta-nonce-name' );
 		$call_to_action = get_post_meta( $item_id, '_menu-item-call-to-action', true );
@@ -55,6 +51,7 @@ class Navigation {
 	 * @param integer $menu_id The ID of the updated menu.
 	 * @param integer $menu_item_db_id The ID of the updated menu item.
 	 */
+	#[Action( 'wp_update_nav_menu_item', accepted_args: 2 )]
 	public static function save_menu_item_custom_fields( int $menu_id, int $menu_item_db_id ): void {
 		if (
 			! isset( $_POST['call-to-action-menu-meta-nonce-name'] ) &&
