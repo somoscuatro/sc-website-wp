@@ -9,19 +9,12 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
+use Somoscuatro\Theme\Attributes\Filter;
+
 /**
  * SEO custom functionality.
  */
 class SEO {
-
-	/**
-	 * SEO custom functionality initialization.
-	 */
-	public static function init(): void {
-		add_filter( 'wpseo_sitemap_exclude_post_type', __CLASS__ . '::sitemap_exclude_post_type', 10, 2 );
-		add_filter( 'wpseo_sitemap_exclude_taxonomy', __CLASS__ . '::sitemap_exclude_taxonomy', 10, 2 );
-		add_filter( 'wpseo_sitemap_exclude_author', '__return_false' );
-	}
 
 	/**
 	 * Excludes post types from sitemap.
@@ -31,6 +24,7 @@ class SEO {
 	 *
 	 * @return bool True if the post type should be excluded.
 	 */
+	#[Filter( 'wpseo_sitemap_exclude_post_type', accepted_args: 2 )]
 	public static function sitemap_exclude_post_type( bool $excluded, string $post_type ): bool {
 		$excluded_post_types = array(
 			'faq',
@@ -49,6 +43,7 @@ class SEO {
 	 *
 	 * @return bool True if the taxonomy should be excluded.
 	 */
+	#[Filter( 'wpseo_sitemap_exclude_taxonomy', accepted_args: 2 )]
 	public static function sitemap_exclude_taxonomy( bool $excluded, string $taxonomy ): bool {
 		$excluded_taxonomies = array(
 			'category',
@@ -56,5 +51,15 @@ class SEO {
 		);
 
 		return in_array( $taxonomy, $excluded_taxonomies, true );
+	}
+
+	/**
+	 * Excludes authors from sitemap.
+	 *
+	 * @return boolean False.
+	 */
+	#[Filter( 'wpseo_sitemap_exclude_author', accepted_args: 0 )]
+	public function sitemap_exclude_author(): bool {
+		return false;
 	}
 }

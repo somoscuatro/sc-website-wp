@@ -12,6 +12,7 @@ use Somoscuatro\Theme\GTM;
 use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Performance;
+use Somoscuatro\Theme\SEO;
 use Somoscuatro\Theme\Timber;
 use Somoscuatro\Theme\Translation;
 /**
@@ -25,6 +26,7 @@ return array(
 	Media::class,
 	Navigation::class,
 	Performance::class,
+	SEO::class,
 	Timber::class,
 	Translation::class,
 );
