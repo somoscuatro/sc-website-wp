@@ -13,6 +13,7 @@ use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Performance;
 use Somoscuatro\Theme\Timber;
+use Somoscuatro\Theme\Translation;
 /**
  * List of classes with hooks
  */
@@ -25,4 +26,5 @@ return array(
 	Navigation::class,
 	Performance::class,
 	Timber::class,
+	Translation::class,
 );
