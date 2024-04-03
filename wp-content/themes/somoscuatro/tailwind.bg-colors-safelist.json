@@ -7,5 +7,9 @@
 		"bg-anti-flash-white-200"
 	],
 	"dark": ["bg-folly-700", "bg-crayola-600"],
-	"light": ["bg-school-bus-yellow-600", "bg-anti-flash-white-100", "bg-anti-flash-white-200"]
+	"light": [
+		"bg-school-bus-yellow-600",
+		"bg-anti-flash-white-100",
+		"bg-anti-flash-white-200"
+	]
 }

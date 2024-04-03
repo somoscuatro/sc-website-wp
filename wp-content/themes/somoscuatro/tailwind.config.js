@@ -1,5 +1,5 @@
 import * as tailwindColorPalette from './tailwind.colors.json';
-import * as tailwindSafeBgColorPalette from './tailwind.safe-bg-colors.json';
+import * as tailwindSafeBgColorPalette from './tailwind.bg-colors-safelist.json';
 
 module.exports = {
 	content: [ './src/**/*.{php,twig}', './templates/**/*.twig', './assets/**/*.js' ],
