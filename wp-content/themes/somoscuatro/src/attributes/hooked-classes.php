@@ -11,6 +11,7 @@ use Somoscuatro\Theme\Custom_Post_Types\Post_Types\Case_Studies;
 use Somoscuatro\Theme\Custom_Post_Types\Post_Types\Services;
 use Somoscuatro\Theme\Customizer;
 use Somoscuatro\Theme\GTM;
+use Somoscuatro\Theme\Gutenberg;
 use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Performance;
@@ -29,6 +30,7 @@ return array(
 	Asset::class,
 	Customizer::class,
 	GTM::class,
+	Gutenberg::class,
 	Media::class,
 	Navigation::class,
 	Performance::class,
