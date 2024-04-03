@@ -21,14 +21,14 @@ class Services extends Block {
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_services';
+	public static $acf_block_prefix = 'block_services';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: Services', 'somoscuatro-theme' ),

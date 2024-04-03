@@ -10,28 +10,28 @@ declare(strict_types=1);
 namespace Somoscuatro\Theme\Blocks\Values;
 
 use Somoscuatro\Theme\Blocks\Block;
-use Somoscuatro\Theme\Helpers\Setup;
+use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
  * Block main functionality.
  */
 class Values extends Block {
 
-	use Setup;
+	use Filesystem;
 
 	/**
 	 * The prefix used for ACF blocks.
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_values';
+	public static $acf_block_prefix = 'block_values';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: Values', 'somoscuatro-theme' ),

@@ -1,6 +1,6 @@
 /* global Glider */
-document.addEventListener( 'DOMContentLoaded', function() {
-	new Glider( document.querySelector( '.glider' ), {
+document.addEventListener('DOMContentLoaded', function () {
+	new Glider(document.querySelector('.glider'), {
 		slidesToShow: 1,
 		slideToScroll: 1,
 		draggable: true,
@@ -18,5 +18,5 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				},
 			},
 		],
-	} );
-} );
+	});
+});

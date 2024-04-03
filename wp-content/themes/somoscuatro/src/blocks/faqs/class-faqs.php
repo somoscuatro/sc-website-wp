@@ -21,14 +21,14 @@ class FAQs extends Block {
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_faqs';
+	public static $acf_block_prefix = 'block_faqs';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: CTA', 'somoscuatro-theme' ),
@@ -88,7 +88,7 @@ class FAQs extends Block {
 	/**
 	 * Register block assets.
 	 */
-	public static function register_assets(): void {
+	public function register_assets(): void {
 		wp_register_script(
 			'alpine',
 			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',

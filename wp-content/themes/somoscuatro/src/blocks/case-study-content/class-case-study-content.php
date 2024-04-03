@@ -21,14 +21,14 @@ class Case_Study_Content extends Block {
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_case_study_content';
+	public static $acf_block_prefix = 'block_case_study_content';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: Case Study Content', 'somoscuatro-theme' ),

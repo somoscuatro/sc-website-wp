@@ -9,37 +9,31 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Blocks\Tech_Tools;
 
+use Somoscuatro\Theme\Attributes\Filter;
+
 use Somoscuatro\Theme\Blocks\Block;
-use Somoscuatro\Theme\Helpers\Setup;
+use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
  * Block main functionality.
  */
 class Tech_Tools extends Block {
 
-	use Setup;
+	use Filesystem;
 
 	/**
 	 * The prefix used for ACF blocks.
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_tech_tools';
-
-	/**
-	 * Registers activation hook callback.
-	 */
-	public static function init(): void {
-		add_filter( 'somoscuatro_theme_block_context', __CLASS__ . '::set_custom_context', 10, 2 );
-		parent::init();
-	}
+	public static $acf_block_prefix = 'block_tech_tools';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: Tech Tools', 'somoscuatro-theme' ),
@@ -76,15 +70,10 @@ class Tech_Tools extends Block {
 	 * Sets a custom context for this specific block.
 	 *
 	 * @param array $context The Timber context.
-	 * @param array $block The Gutenberg block.
 	 *
 	 * @return array The modified Timber context.
 	 */
-	public static function set_custom_context( array $context, array $block ): array {
-		if ( 'acf/tech-tools' !== $block['name'] ) {
-			return $context;
-		}
-
+	public function set_custom_context( array $context ): array {
 		$tech_tools_logos = get_posts(
 			array(
 				'posts_per_page' => -1,
@@ -118,7 +107,7 @@ class Tech_Tools extends Block {
 	/**
 	 * Register block assets.
 	 */
-	public static function register_assets(): void {
+	public function register_assets(): void {
 		wp_register_script(
 			'alpine',
 			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',

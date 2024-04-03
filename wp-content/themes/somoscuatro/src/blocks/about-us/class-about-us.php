@@ -21,14 +21,14 @@ class About_Us extends Block {
 	 *
 	 * @var string
 	 */
-	protected static $acf_block_prefix = 'block_about_us';
+	public static $acf_block_prefix = 'block_about_us';
 
 	/**
 	 * Gets the ACF Block fields.
 	 *
 	 * @return array The ACF Block fields.
 	 */
-	public static function get_acf_fields(): array {
+	public function get_acf_fields(): array {
 		return array(
 			'key'      => 'group_' . self::$acf_block_prefix,
 			'title'    => __( 'Block: About Us', 'somoscuatro-theme' ),
