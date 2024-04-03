@@ -15,6 +15,8 @@ use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
 
 use Somoscuatro\Theme\Blocks\Loader as BlocksLoader;
+use Somoscuatro\Theme\Custom_Post_Types\Loader as CustomPostTypeLoader;
+use Somoscuatro\Theme\Custom_Taxonomies\Loader as CustomTaxonomyLoader;
 use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
 
 /**

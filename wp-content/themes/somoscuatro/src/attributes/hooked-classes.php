@@ -7,6 +7,8 @@
 
 use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Asset;
+use Somoscuatro\Theme\Custom_Post_Types\Post_Types\Case_Studies;
+use Somoscuatro\Theme\Custom_Post_Types\Post_Types\Services;
 use Somoscuatro\Theme\Customizer;
 use Somoscuatro\Theme\GTM;
 use Somoscuatro\Theme\Media;
@@ -33,4 +35,7 @@ return array(
 	SEO::class,
 	Timber::class,
 	Translation::class,
+
+	Case_Studies::class,
+	Services::class,
 );

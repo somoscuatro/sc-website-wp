@@ -1,0 +1,67 @@
+<?php
+/**
+ * Case Studies Custom Post Type functionality.
+ *
+ * @package somoscuatro-theme
+ */
+
+declare(strict_types=1);
+
+namespace Somoscuatro\Theme\Custom_Post_Types\Post_Types;
+
+use Somoscuatro\Theme\Attributes\Filter;
+use Somoscuatro\Theme\Custom_Post_Types\Custom_Post_Type;
+
+/**
+ * Case Studies Custom Post Type functionality.
+ */
+class Case_Studies extends Custom_Post_Type {
+
+	/**
+	 * Custom Post Type singular name.
+	 *
+	 * @var string
+	 */
+	protected string $singular_name = 'Case Study';
+
+	/**
+	 * Custom Post Type plural name.
+	 *
+	 * @var string
+	 */
+	protected string $plural_name = 'Case Studies';
+
+	/**
+	 * Class constructor.
+	 */
+	public function __construct() {
+		$args = array(
+			'rewrite'      => array( 'slug' => 'case-studies' ),
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+			'menu_icon'    => 'data:image/svg+xml;base64,' . base64_encode(
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"> <path fill-rule="evenodd" d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z" clip-rule="evenodd" /> </svg>'
+			),
+			'has_archive'  => false,
+			'supports'     => array( 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
+			'show_in_rest' => true,
+		);
+
+		$this->args = wp_parse_args( $this->args, $args );
+	}
+
+	/**
+	 * Removes post thumbnail from Case Studies CPT.
+	 *
+	 * @param string $html The Case Study thumbnail HTML.
+	 *
+	 * @return string The modified Case Study thumbnail HTML.
+	 */
+	#[Filter( 'post_thumbnail_html' )]
+	public static function remove_post_thumbnail( string $html ): string {
+		if ( is_singular( 'sercase_studyvice' ) ) {
+			return '';
+		}
+
+		return $html;
+	}
+}
