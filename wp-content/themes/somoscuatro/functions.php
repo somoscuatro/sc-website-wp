@@ -25,7 +25,7 @@ require_once __DIR__ . '/autoload.php';
 // Register dependencies.
 $dependencies = new Dependencies();
 $dependencies->add( 'Theme', fn ( $dependencies ) => new Theme( $dependencies ) );
-$dependencies->add( 'Timber', fn () => new Timber() );
+$dependencies->add( 'Timber', fn ( $dependencies ) => new Timber( $dependencies ) );
 $dependencies->add( 'ACF', fn() => new ACF() );
 
 // Register WordPress hooks.

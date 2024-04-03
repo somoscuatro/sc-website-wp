@@ -1,6 +1,6 @@
 <?php
 /**
- * Timber main functionality.
+ * Timber management class.
  *
  * @package somoscuatro-theme
  */
@@ -9,20 +9,42 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
+use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
+use Somoscuatro\Theme\Attributes\Action;
+use Somoscuatro\Theme\Attributes\Filter;
+
 use Timber\Timber as TimberLibrary;
 use Twig\TwigFunction;
+use Twig\Environment as TwigEnvironment;
 
 /**
- * Timber configuration.
+ * Timber management class.
  */
 class Timber {
+
+	/**
+	 * Dependencies container.
+	 *
+	 * @var Dependencies
+	 */
+	private $dependencies;
+
+	/**
+	 * Class constructor.
+	 *
+	 * @param Dependencies $dependencies Dependencies container.
+	 */
+	public function __construct( Dependencies $dependencies ) {
+		$this->dependencies = $dependencies;
+	}
 
 	/**
 	 * Timber initialization.
 	 *
 	 * @throws \Exception If Timber class does not exist.
 	 */
-	public static function init(): void {
+	#[Action( 'after_setup_theme', 9 )]
+	public function init(): void {
 		TimberLibrary::init();
 
 		if ( ! class_exists( 'Timber' ) ) {
@@ -32,14 +54,8 @@ class Timber {
 		TimberLibrary::$dirname = array(
 			'templates',
 			'templates/components',
-			'templates/partials',
+			'templates/parts',
 		);
-
-		// Adds additional variables to global context.
-		add_filter( 'timber/context', __CLASS__ . '::add_to_global_context' );
-
-		// Adds custom functions to Twig.
-		add_filter( 'timber/twig', __CLASS__ . '::extend_timber_functions' );
 	}
 
 	/**
@@ -49,8 +65,11 @@ class Timber {
 	 *
 	 * @return array Global context data.
 	 */
-	public static function add_to_global_context( array $context ): array {
+	#[Filter( 'timber/context' )]
+	public function add_to_global_context( array $context ): array {
 		$context['homepage_url'] = get_home_url();
+
+		$context = $this->get_menus( $context );
 
 		$context['logo']       = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo.png';
 		$context['logo_white'] = esc_url( get_stylesheet_directory_uri() ) . '/assets/images/logo-white.png';
@@ -58,9 +77,29 @@ class Timber {
 		$context['site_footer_claim'] = get_theme_mod( 'site_footer_claim' );
 		$context['site_footer_email'] = get_theme_mod( 'site_footer_email' );
 
-		$context = self::get_menus( $context );
-
 		return $context;
+	}
+
+	/**
+	 * Returns Timber context.
+	 *
+	 * @return array
+	 */
+	public function context(): array {
+		return TimberLibrary::context();
+	}
+
+	/**
+	 * Renders a given template.
+	 *
+	 * @param string $template Template path.
+	 * @param array  $context  Context data.
+	 */
+	public function render(
+		string $template,
+		array $context = array(),
+	): void {
+		TimberLibrary::render( $template, $context );
 	}
 
 	/**
@@ -77,7 +116,7 @@ class Timber {
 	 *
 	 * @return array The updated Timber global context.
 	 */
-	public static function get_menus( array $context ): array {
+	public function get_menus( array $context ): array {
 		foreach ( array_keys( get_registered_nav_menus() ) as $location ) {
 			if ( ! has_nav_menu( $location ) ) {
 				continue;
@@ -92,53 +131,38 @@ class Timber {
 	/**
 	 * Adds custom functions to Twig.
 	 *
-	 * @param \Twig\Environment $twig The Twig Environment.
+	 * @param TwigEnvironment $twig The Twig Environment.
 	 *
-	 * @return \Twig\Environment The modified Twig Environment.
-	 *
-	 * @phpstan-ignore-next-line
+	 * @return TwigEnvironment The modified Twig Environment.
 	 */
-	public static function extend_timber_functions( \Twig\Environment $twig ): \Twig\Environment {
-		// @phpstan-ignore-next-line
+	#[Filter( 'timber/twig' )]
+	public function extend_timber_functions( TwigEnvironment $twig ): TwigEnvironment {
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'enqueue_script', __CLASS__ . '::enqueue_script' )
+			new TwigFunction( 'enqueue_script', array( $this, 'enqueue_script' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_static_asset', __CLASS__ . '::get_static_asset' )
+			new TwigFunction( 'get_static_asset', array( $this, 'get_static_asset' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_image_srcset', __CLASS__ . '::get_image_srcset' )
+			new TwigFunction( 'get_image_srcset', array( $this, 'get_image_srcset' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_server_request_uri', __CLASS__ . '::get_server_request_uri' )
+			new TwigFunction( 'get_server_request_uri', array( $this, 'get_server_request_uri' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_color_name', __CLASS__ . '::get_color_name' )
+			new TwigFunction( 'get_color_name', array( $this, 'get_color_name' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_foreground_color_name', __CLASS__ . '::get_foreground_color_name' )
+			new TwigFunction( 'get_foreground_color_name', array( $this, 'get_foreground_color_name' ) )
 		);
 
-		// @phpstan-ignore-next-line
 		$twig->addFunction(
-			// @phpstan-ignore-next-line
-			new TwigFunction( 'get_latest_posts', __CLASS__ . '::get_latest_posts' )
+			new TwigFunction( 'get_latest_posts', array( $this, 'get_latest_posts' ) )
 		);
 
 		return $twig;
@@ -149,7 +173,7 @@ class Timber {
 	 *
 	 * @param string $handle The script handle.
 	 */
-	public static function enqueue_script( string $handle ): void {
+	public function enqueue_script( string $handle ): void {
 		wp_enqueue_script( $handle );
 	}
 
@@ -160,7 +184,7 @@ class Timber {
 	 *
 	 * @return string The asset URL.
 	 */
-	public static function get_static_asset( string $rel_file_path ): string {
+	public function get_static_asset( string $rel_file_path ): string {
 		return esc_url( get_stylesheet_directory_uri() ) . "/$rel_file_path";
 	}
 
@@ -172,62 +196,28 @@ class Timber {
 	 *
 	 * @return array The image source set.
 	 */
-	public static function get_image_srcset( array $sizes, array|string $allowed_sizes = array( 'xs', 'sm', 'md', 'lg', 'xl' ) ): array {
+	public function get_image_srcset( array $sizes, array|string $allowed_sizes = array( 'xs', 'sm', 'md', 'lg', 'xl' ) ): array {
 		$srcset = array();
 
-		if ( isset( $sizes['xl'] ) && in_array( 'xl', $allowed_sizes, true ) ) {
-			$srcset[] = array(
-				'srcset'    => $sizes['xl'],
-				'srcset@2x' => $sizes['xl@2x'],
-				'srcset@3x' => $sizes['xl@3x'],
-				'media'     => '(min-width: 1440px)',
-				'width'     => $sizes['xl-width'],
-				'height'    => $sizes['xl-height'],
-			);
-		}
+		$min_widths = array(
+			'xl' => '1440px',
+			'lg' => '1280px',
+			'md' => '1024px',
+			'sm' => '768px',
+			'xs' => '',
+		);
 
-		if ( isset( $sizes['lg'] ) && in_array( 'lg', $allowed_sizes, true ) ) {
-			$srcset[] = array(
-				'srcset'    => $sizes['lg'],
-				'srcset@2x' => $sizes['lg@2x'],
-				'srcset@3x' => $sizes['lg@3x'],
-				'media'     => '(min-width: 1280px)',
-				'width'     => $sizes['lg-width'],
-				'height'    => $sizes['lg-height'],
-			);
-		}
-
-		if ( isset( $sizes['md'] ) && in_array( 'md', $allowed_sizes, true ) ) {
-			$srcset[] = array(
-				'srcset'    => $sizes['md'],
-				'srcset@2x' => $sizes['md@2x'],
-				'srcset@3x' => $sizes['md@3x'],
-				'media'     => '(min-width: 1024px)',
-				'width'     => $sizes['md-width'],
-				'height'    => $sizes['md-height'],
-			);
-		}
-
-		if ( isset( $sizes['sm'] ) && in_array( 'sm', $allowed_sizes, true ) ) {
-			$srcset[] = array(
-				'srcset'    => $sizes['sm'],
-				'srcset@2x' => $sizes['sm@2x'],
-				'srcset@3x' => $sizes['sm@3x'],
-				'media'     => '(min-width: 768px)',
-				'width'     => $sizes['sm-width'],
-				'height'    => $sizes['sm-height'],
-			);
-		}
-
-		if ( isset( $sizes['xs'] ) && in_array( 'xs', $allowed_sizes, true ) ) {
-			$srcset[] = array(
-				'srcset'    => $sizes['xs'],
-				'srcset@2x' => $sizes['xs@2x'],
-				'srcset@3x' => $sizes['xs@3x'],
-				'media'     => '',
-				'width'     => $sizes['xs-width'],
-				'height'    => $sizes['xs-height'],
-			);
+		foreach ( $min_widths as $image_size => $min_width ) {
+			if ( isset( $sizes[ $image_size ] ) && in_array( $image_size, $allowed_sizes, true ) ) {
+				$srcset[] = array(
+					'srcset'    => $sizes[ $image_size ],
+					'srcset@2x' => $sizes[ $image_size . '@2x' ],
+					'srcset@3x' => $sizes[ $image_size . '@3x' ],
+					'media'     => '(min-width: ' . $min_width . ')',
+					'width'     => $sizes[ $image_size . '-width' ],
+					'height'    => $sizes[ $image_size . '-height' ],
+				);
+			}
 		}
 
 		return $srcset;
@@ -238,7 +228,7 @@ class Timber {
 	 *
 	 * @return string The server request URI.
 	 */
-	public static function get_server_request_uri(): string {
+	public function get_server_request_uri(): string {
 		return strtok( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ), '?' );
 	}
 
@@ -249,8 +239,10 @@ class Timber {
 	 *
 	 * @return string|int|false The color name if found.
 	 */
-	public static function get_color_name( string $color_hex ): string|int|false {
-		$color_palette = ACF::get_color_palette();
+	public function get_color_name( string $color_hex ): string|int|false {
+		$acf = $this->dependencies->get( 'ACF' );
+
+		$color_palette = $acf->get_color_palette();
 		return array_search( strtoupper( $color_hex ), $color_palette, true );
 	}
 
@@ -261,8 +253,10 @@ class Timber {
 	 *
 	 * @return string The foreground color name.
 	 */
-	public static function get_foreground_color_name( $background_color_name ): string {
-		$dark_colors = ACF::get_safe_bg_colors_names()['dark'];
+	public function get_foreground_color_name( $background_color_name ): string {
+		$acf = $this->dependencies->get( 'ACF' );
+
+		$dark_colors = $acf->get_safe_bg_colors_names()['dark'];
 		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
 	}
 
@@ -273,7 +267,7 @@ class Timber {
 	 *
 	 * @return \Timber\PostCollectionInterface|null The latest posts.
 	 */
-	public static function get_latest_posts( ?int $posts_per_page = 3 ): \Timber\PostCollectionInterface|null {
+	public function get_latest_posts( ?int $posts_per_page = 3 ): \Timber\PostCollectionInterface|null {
 		return TimberLibrary::get_posts(
 			array(
 				'post_type'      => 'post',
