@@ -2,7 +2,7 @@
 /**
  *  Plugin Name: Real Cookie Banner - Color schemes
  *  Description: With the Color schemes add on for Real Cookie Banner you can setup the colors for the single objects in Groups. You don't have to go through all sections anymore.
- *  Version: 1.5.1
+ *  Version: 1.5.3
  *  Author: Holger "der_wasi" Wassenhoven
  *  Author URI: https://wasiwarez.net/
  *  Plugin URI: https://de.wordpress.org/plugins/real-cookie-banner-color-schemes/

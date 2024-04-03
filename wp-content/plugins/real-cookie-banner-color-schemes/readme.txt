@@ -2,13 +2,13 @@
 Contributors: wasiwarez
 Tags: cookie,banner,real cookie banner,color,schemes
 Requires at least: 5.0.10
-Tested up to: 6.4.1
+Tested up to: 6.5
 Requires PHP: 7.2
-Stable tag: 1.5.1
+Stable tag: 1.5.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.de.html
 
-With the Color schemes add on for Real Cookie Banner you can setup the colors for the single objects in Groups. You don't have to go through all sections anymore.
+Set up the colors of Real Cookie Banner all in one place.
 
 == Description ==
 Color schemes is an add on for the Real Cookie Banner plugin, which I found the best cookie consent plugin, especially for the german market. Real Cookie Banner is quite complex with a lot of design options. If you want to assign a set of colors to the buttons and links you have to go through many sections with a lot settings. There is no option to change for example all button colors at once. This is what Color schemes does. It offers a single section only for the color settings. There you can setup a primary color, a secondary color, text colors and link colors. Color schemes changes the colors from the assigned objects. If you want to change a single color afterwards, you can easily do that inside the standard sections from Real Cookie Banner.
@@ -55,3 +55,9 @@ Tested with WordPress 6.3.1
 
 1.5.1
 Tested with WordPress 6.4.1
+
+1.5.2
+Tested with WordPress 6.5
+
+1.5.3
+Edited short description
