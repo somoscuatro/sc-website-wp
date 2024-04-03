@@ -7,6 +7,7 @@
 
 use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Asset;
+use Somoscuatro\Theme\Customizer;
 use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Timber;
 /**
@@ -15,6 +16,7 @@ use Somoscuatro\Theme\Timber;
 return array(
 	ACF::class,
 	Asset::class,
+	Customizer::class,
 	Media::class,
 	Timber::class,
 );

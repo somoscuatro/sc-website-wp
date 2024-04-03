@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
+use Somoscuatro\Theme\Attributes\Action;
+
 /**
  * WordPress Theme Customizer functionality.
  */
@@ -19,8 +21,9 @@ class Customizer {
 	 *
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
 	 */
-	public static function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ) {
-		$pages = self::get_pages();
+	#[Action( 'customize_register' )]
+	public function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ) {
+		$pages = $this->get_pages();
 
 		// Section.
 		$wp_customize->add_section(
@@ -59,7 +62,8 @@ class Customizer {
 	 *
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
 	 */
-	public static function add_customizer_footer_controls( \WP_Customize_Manager $wp_customize ) {
+	#[Action( 'customize_register' )]
+	public function add_customizer_footer_controls( \WP_Customize_Manager $wp_customize ) {
 		// Section.
 		$wp_customize->add_section(
 			'sitefooter',
@@ -118,7 +122,8 @@ class Customizer {
 	 *
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
 	 */
-	public static function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ) {
+	#[Action( 'customize_register' )]
+	public function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ) {
 		// Section.
 		$wp_customize->add_section(
 			'404',
@@ -177,7 +182,7 @@ class Customizer {
 	 *
 	 * @return array List of pages and their IDs.
 	 */
-	private static function get_pages(): array {
+	private function get_pages(): array {
 		$pages = get_pages();
 		$pages = array_reduce(
 			$pages,
