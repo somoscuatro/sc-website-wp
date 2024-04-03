@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Somoscuatro\Theme;
 
 use Somoscuatro\Theme\Attributes\Hook;
+use Somoscuatro\Theme\CLI\CLI;
 use Somoscuatro\Theme\Dependency_Injection\Container as Dependencies;
 use Somoscuatro\Theme\Theme;
 
@@ -31,6 +32,5 @@ $dependencies->add( 'ACF', fn() => new ACF() );
 // Register WordPress hooks.
 ( new Hook( $dependencies ) )->register_hooks();
 
-// if ( defined( 'WP_CLI' ) && WP_CLI ) {
-// \WP_CLI::add_command( 'export-acf-blocks-fields', __NAMESPACE__ . '\Commands\Export_Acf_Blocks_Fields' );
-// }
+// Register CLI commands.
+( new CLI() )->register_commands();
