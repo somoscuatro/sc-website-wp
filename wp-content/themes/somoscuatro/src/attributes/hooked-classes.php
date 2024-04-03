@@ -13,12 +13,16 @@ use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Performance;
 use Somoscuatro\Theme\SEO;
+use Somoscuatro\Theme\Theme;
 use Somoscuatro\Theme\Timber;
 use Somoscuatro\Theme\Translation;
+
 /**
  * List of classes with hooks
  */
 return array(
+	Theme::class,
+
 	ACF::class,
 	Asset::class,
 	Customizer::class,
