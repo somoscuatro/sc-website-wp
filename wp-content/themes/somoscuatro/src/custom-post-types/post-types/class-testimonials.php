@@ -34,6 +34,8 @@ class Testimonials extends Custom_Post_Type {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		$args = array(
 			'rewrite'      => array( 'slug' => 'testimonials' ),
 				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
@@ -44,7 +46,7 @@ class Testimonials extends Custom_Post_Type {
 			'show_in_rest' => true,
 		);
 
-		$this->args = wp_parse_args( $this->args, $args );
+		$this->args = wp_parse_args( $args, $this->args );
 		$this->register_acf_custom_fields();
 	}
 

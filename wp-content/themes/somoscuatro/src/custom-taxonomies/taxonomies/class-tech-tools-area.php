@@ -41,10 +41,12 @@ class Tech_Tools_Area extends Custom_Taxonomy {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		$args = array(
 			'hierarchical' => false,
 		);
 
-		$this->args = wp_parse_args( $this->args, $args );
+		$this->args = wp_parse_args( $args, $this->args );
 	}
 }

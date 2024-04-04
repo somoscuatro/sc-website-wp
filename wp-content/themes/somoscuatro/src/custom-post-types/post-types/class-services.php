@@ -35,6 +35,8 @@ class Services extends Custom_Post_Type {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		$args = array(
 			'rewrite'      => array( 'slug' => 'services' ),
 				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
@@ -46,7 +48,7 @@ class Services extends Custom_Post_Type {
 			'has_archive'  => false,
 		);
 
-		$this->args = wp_parse_args( $this->args, $args );
+		$this->args = wp_parse_args( $args, $this->args );
 	}
 
 	/**

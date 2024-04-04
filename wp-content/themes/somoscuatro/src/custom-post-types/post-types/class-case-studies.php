@@ -35,6 +35,8 @@ class Case_Studies extends Custom_Post_Type {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		$args = array(
 			'rewrite'      => array( 'slug' => 'case-studies' ),
 			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
@@ -46,7 +48,7 @@ class Case_Studies extends Custom_Post_Type {
 			'show_in_rest' => true,
 		);
 
-		$this->args = wp_parse_args( $this->args, $args );
+		$this->args = wp_parse_args( $args, $this->args );
 	}
 
 	/**
@@ -58,7 +60,7 @@ class Case_Studies extends Custom_Post_Type {
 	 */
 	#[Filter( 'post_thumbnail_html' )]
 	public static function remove_post_thumbnail( string $html ): string {
-		if ( is_singular( 'sercase_studyvice' ) ) {
+		if ( is_singular( 'case_study' ) ) {
 			return '';
 		}
 
