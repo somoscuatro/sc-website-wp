@@ -8,7 +8,6 @@
 namespace Somoscuatro\Theme;
 
 use Somoscuatro\Theme\Attributes\Action;
-use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
 
 use Somoscuatro\Theme\Helpers\Filesystem;
 
@@ -20,19 +19,19 @@ class Asset {
 	use Filesystem;
 
 	/**
-	 * Dependencies container.
+	 * The Theme class.
 	 *
-	 * @var Dependencies
+	 * @var Theme
 	 */
-	protected $dependencies;
+	protected $theme;
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param Dependencies $dependencies Dependencies container.
+	 * @param Theme $theme The Theme class.
 	 */
-	public function __construct( Dependencies $dependencies ) {
-		$this->dependencies = $dependencies;
+	public function __construct( Theme $theme ) {
+		$this->theme = $theme;
 	}
 
 	/**
@@ -40,8 +39,7 @@ class Asset {
 	 */
 	#[Action( 'wp_enqueue_scripts' )]
 	public function enqueue_assets(): void {
-		$theme        = $this->dependencies->get( 'Theme' );
-		$theme_prefix = $theme->get_prefix();
+		$theme_prefix = $this->theme->get_prefix();
 
 		// Theme styles.
 		wp_enqueue_style( $theme_prefix . '-fonts-preload', $this->get_base_url() . '/dist/styles/fonts.css', false, $this->get_filemtime( 'styles/fonts.css' ) );
@@ -107,8 +105,6 @@ class Asset {
 	 */
 	#[Action( 'login_enqueue_scripts' )]
 	public function enqueue_login_assets() {
-		$theme = $this->dependencies->get( 'Theme' );
-
-		wp_enqueue_style( $theme->get_prefix() . '-login', $this->get_base_url() . '/dist/styles/login.css', false, $this->get_filemtime( 'styles/login.css' ) );
+		wp_enqueue_style( $this->theme->get_prefix() . '-login', $this->get_base_url() . '/dist/styles/login.css', false, $this->get_filemtime( 'styles/login.css' ) );
 	}
 }

@@ -13,6 +13,8 @@ use Somoscuatro\Theme\Theme;
 use Somoscuatro\Theme\Blocks\Block;
 use Somoscuatro\Theme\Helpers\Filesystem;
 
+use DI\Container;
+
 /**
  * Block main functionality.
  */
@@ -21,11 +23,29 @@ class Testimonials extends Block {
 	use Filesystem;
 
 	/**
+	 * The Theme class.
+	 *
+	 * @var Theme
+	 */
+	private $theme;
+
+	/**
 	 * The prefix used for ACF blocks.
 	 *
 	 * @var string
 	 */
 	public static $acf_block_prefix = 'block_testimonials';
+
+	/**
+	 * Class constructor.
+	 *
+	 * @param Container $container The PHP DI Container.
+	 */
+	public function __construct( Container $container ) {
+		parent::__construct( $container );
+
+		$this->theme = $container->get( 'Somoscuatro\Theme\Theme' );
+	}
 
 	/**
 	 * Gets the ACF Block fields.
@@ -87,9 +107,6 @@ class Testimonials extends Block {
 	 * Register block assets.
 	 */
 	public function register_assets(): void {
-		$dependencies = static::$dependencies;
-		$theme        = $dependencies->get( 'Theme' );
-
 		// Adds Glider assets.
 		wp_enqueue_style( 'glider-css-preload', self::get_base_url() . '/dist/styles/glider.min.css', array(), '1.7.8' );
 		wp_enqueue_script(
@@ -104,6 +121,6 @@ class Testimonials extends Block {
 		);
 
 		// Registers block script.
-		wp_register_script( $theme->get_prefix() . '-testimonials', self::get_base_url() . '/dist/scripts/testimonials.js', array(), $this->get_filemtime( 'scripts/testimonials.js' ), true );
+		wp_register_script( $this->theme->get_prefix() . '-testimonials', self::get_base_url() . '/dist/scripts/testimonials.js', array(), $this->get_filemtime( 'scripts/testimonials.js' ), true );
 	}
 }

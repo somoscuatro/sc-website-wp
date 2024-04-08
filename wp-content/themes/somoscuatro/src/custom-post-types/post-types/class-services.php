@@ -50,20 +50,4 @@ class Services extends Custom_Post_Type {
 
 		$this->args = wp_parse_args( $args, $this->args );
 	}
-
-	/**
-	 * Removes post thumbnail from Services CPT.
-	 *
-	 * @param string $html The Service thumbnail HTML.
-	 *
-	 * @return string The modified Service thumbnail HTML.
-	 */
-	#[Filter( 'post_thumbnail_html' )]
-	public static function remove_post_thumbnail( string $html ): string {
-		if ( is_singular( 'service' ) ) {
-			return '';
-		}
-
-		return $html;
-	}
 }

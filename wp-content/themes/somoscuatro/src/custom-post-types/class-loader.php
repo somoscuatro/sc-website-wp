@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Custom_Post_Types;
 
-use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
+use DI\Container;
 
 /**
  * Custom Post Type Loader.
@@ -17,19 +17,19 @@ use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
 class Loader {
 
 	/**
-	 * Dependencies container.
+	 * The PHP DI container.
 	 *
-	 * @var Dependencies
+	 * @var Container
 	 */
-	protected $dependencies;
+	private $container;
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param Dependencies $dependencies Dependencies container.
+	 * @param Container $container The PHP DI Container.
 	 */
-	public function __construct( Dependencies $dependencies ) {
-		$this->dependencies = $dependencies;
+	public function __construct( Container $container ) {
+		$this->container = $container;
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Loader {
 			$full_class_path = sprintf( __NAMESPACE__ . '\Post_Types\%s', $class );
 
 			if ( method_exists( $full_class_path, 'init' ) ) {
-				( new $full_class_path() )->init( $this->dependencies );
+				( new $full_class_path() )->init( $this->container );
 			}
 		}
 	}

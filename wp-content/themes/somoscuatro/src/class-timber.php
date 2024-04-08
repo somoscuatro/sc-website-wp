@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
-use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
+use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
 
@@ -23,19 +23,19 @@ use Twig\Environment as TwigEnvironment;
 class Timber {
 
 	/**
-	 * Dependencies container.
+	 * The ACF class.
 	 *
-	 * @var Dependencies
+	 * @var ACF
 	 */
-	private $dependencies;
+	private $acf;
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param Dependencies $dependencies Dependencies container.
+	 * @param ACF $acf The ACF class.
 	 */
-	public function __construct( Dependencies $dependencies ) {
-		$this->dependencies = $dependencies;
+	public function __construct( ACF $acf ) {
+		$this->acf = $acf;
 	}
 
 	/**
@@ -240,10 +240,7 @@ class Timber {
 	 * @return string|int|false The color name if found.
 	 */
 	public function get_color_name( string $color_hex ): string|int|false {
-		$acf = $this->dependencies->get( 'ACF' );
-
-		$color_palette = $acf->get_color_palette();
-		return array_search( strtoupper( $color_hex ), $color_palette, true );
+		return array_search( strtoupper( $color_hex ), $this->acf->get_color_palette(), true );
 	}
 
 	/**
@@ -254,9 +251,7 @@ class Timber {
 	 * @return string The foreground color name.
 	 */
 	public function get_foreground_color_name( $background_color_name ): string {
-		$acf = $this->dependencies->get( 'ACF' );
-
-		$dark_colors = $acf->get_safe_bg_colors_names()['dark'];
+		$dark_colors = $this->acf->get_safe_bg_colors_names()['dark'];
 		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
 	}
 

@@ -11,8 +11,8 @@ namespace Somoscuatro\Theme;
 
 use Somoscuatro\Theme\Attributes\Hook;
 use Somoscuatro\Theme\CLI\CLI;
-use Somoscuatro\Theme\Dependency_Injection\Container as Dependencies;
-use Somoscuatro\Theme\Theme;
+
+use DI\Container;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -23,14 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Setup autoload.
 require_once __DIR__ . '/autoload.php';
 
-// Register dependencies.
-$dependencies = new Dependencies();
-$dependencies->add( 'Theme', fn ( $dependencies ) => new Theme( $dependencies ) );
-$dependencies->add( 'Timber', fn ( $dependencies ) => new Timber( $dependencies ) );
-$dependencies->add( 'ACF', fn() => new ACF() );
+// Setup dependencies.
+$container = new Container();
 
-// Register WordPress hooks.
-( new Hook( $dependencies ) )->register_hooks();
+( new Hook( $container ) )->register_hooks();
 
 // Register CLI commands.
-( new CLI() )->register_commands();
+( new CLI( $container ) )->register_commands();

@@ -50,20 +50,4 @@ class Case_Studies extends Custom_Post_Type {
 
 		$this->args = wp_parse_args( $args, $this->args );
 	}
-
-	/**
-	 * Removes post thumbnail from Case Studies CPT.
-	 *
-	 * @param string $html The Case Study thumbnail HTML.
-	 *
-	 * @return string The modified Case Study thumbnail HTML.
-	 */
-	#[Filter( 'post_thumbnail_html' )]
-	public static function remove_post_thumbnail( string $html ): string {
-		if ( is_singular( 'case_study' ) ) {
-			return '';
-		}
-
-		return $html;
-	}
 }

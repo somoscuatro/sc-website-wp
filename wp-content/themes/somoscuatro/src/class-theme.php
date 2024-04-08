@@ -15,9 +15,8 @@ use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
 
 use Somoscuatro\Theme\Blocks\Loader as BlocksLoader;
-use Somoscuatro\Theme\Custom_Post_Types\Loader as CustomPostTypeLoader;
-use Somoscuatro\Theme\Custom_Taxonomies\Loader as CustomTaxonomyLoader;
-use Somoscuatro\Theme\Dependency_Injection\Container_Interface as Dependencies;
+use Somoscuatro\Theme\Custom_Post_Types\Loader as CustomPostTypesLoader;
+use Somoscuatro\Theme\Custom_Taxonomies\Loader as CustomTaxonomiesLoader;
 
 /**
  * Main theme functionality.
@@ -27,6 +26,27 @@ class Theme {
 	use Filesystem;
 
 	/**
+	 * The Custom_Post_Types\Loader class.
+	 *
+	 * @var CustomPostTypesLoader
+	 */
+	private $custom_post_types_loader;
+
+	/**
+	 * The Custom_tax\Loader class.
+	 *
+	 * @var CustomTaxonomiesLoader
+	 */
+	private $custom_taxonomies_loader;
+
+	/**
+	 * The Blocks\Loader class.
+	 *
+	 * @var BlocksLoader
+	 */
+	private $blocks_loader;
+
+	/**
 	 * Theme naming prefix.
 	 *
 	 * @var string
@@ -34,19 +54,20 @@ class Theme {
 	private $prefix = 'somoscuatro_theme';
 
 	/**
-	 * Dependencies container.
-	 *
-	 * @var Dependencies
-	 */
-	private $dependencies;
-
-	/**
 	 * Class constructor.
 	 *
-	 * @param Dependencies $dependencies Dependencies container.
+	 * @param CustomPostTypesLoader  $custom_post_types_loader The Custom_Post_Types\Loader class.
+	 * @param CustomTaxonomiesLoader $custom_taxonomies_loader The Custom_Taxonomies\Loader class.
+	 * @param BlocksLoader           $blocks_loader The Blocks\Loader class.
 	 */
-	public function __construct( Dependencies $dependencies ) {
-		$this->dependencies = $dependencies;
+	public function __construct(
+		CustomPostTypesLoader $custom_post_types_loader,
+		CustomTaxonomiesLoader $custom_taxonomies_loader,
+		BlocksLoader $blocks_loader
+	) {
+		$this->custom_post_types_loader = $custom_post_types_loader;
+		$this->custom_taxonomies_loader = $custom_taxonomies_loader;
+		$this->blocks_loader            = $blocks_loader;
 	}
 
 	/**
@@ -54,7 +75,7 @@ class Theme {
 	 */
 	#[Action( 'init' )]
 	public function init(): void {
-		( new BlocksLoader( $this->dependencies ) )->load();
+		$this->blocks_loader->load();
 	}
 
 	/**
@@ -65,8 +86,8 @@ class Theme {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 
-		( new CustomPostTypeLoader( $this->dependencies ) )->load();
-		( new CustomTaxonomyLoader( $this->dependencies ) )->load();
+		$this->custom_post_types_loader->load();
+		$this->custom_taxonomies_loader->load();
 	}
 
 	/**
