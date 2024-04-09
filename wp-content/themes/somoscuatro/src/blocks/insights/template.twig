@@ -12,7 +12,7 @@
 		{% endif %}
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 			{% for post in posts %}
-				<div class="border border-{{ foreground }} {{ loop.last ? 'xl:block hidden' }}">
+				<div class="border border-{{ foreground }}">
 					<div>
 						{% include 'image.twig' with {
 							image: function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)),
