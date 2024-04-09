@@ -1,6 +1,6 @@
 <?php
 /**
- * The index template file.
+ * The Single Template File.
  *
  * @package somoscuatro-theme
  */

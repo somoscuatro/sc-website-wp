@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Filters management class.
+ * Contains Somoscuatro\Theme\Attributes\Filter Class.
  *
  * @package somoscuatro-theme
  */
@@ -10,17 +10,17 @@ namespace Somoscuatro\Theme\Attributes;
 use Attribute;
 
 /**
- * WordPress Filters management class.
+ * WordPress Filters Management Class.
  */
 #[Attribute( Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE )]
 class Filter {
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
-	 * @param string  $hook_name The hook name.
-	 * @param integer $priority The hook priority.
-	 * @param integer $accepted_args The number of arguments accepted.
+	 * @param string  $hook_name The Hook Name.
+	 * @param integer $priority The Hook Priority.
+	 * @param integer $accepted_args The Number of Arguments Accepted.
 	 */
 	public function __construct(
 		public string $hook_name,
@@ -29,9 +29,9 @@ class Filter {
 	) { }
 
 	/**
-	 * Register the Filter handler.
+	 * Register the Filter Handler.
 	 *
-	 * @param callable|array $method The Filter handler.
+	 * @param callable|array $method The Filter Handler.
 	 */
 	public function register( callable|array $method ): void {
 		add_filter(

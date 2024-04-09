@@ -1,6 +1,6 @@
 <?php
 /**
- * The index template file.
+ * The Archive Services Template File.
  *
  * @package somoscuatro-theme
  */

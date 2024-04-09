@@ -1,6 +1,6 @@
 <?php
 /**
- * Block's main functionality methods.
+ * Contains Somoscuatro\Theme\Blocks\Testimonials\Testimonials Class.
  *
  * @package somoscuatro-theme
  */
@@ -16,28 +16,28 @@ use Somoscuatro\Theme\Helpers\Filesystem;
 use DI\Container;
 
 /**
- * Block main functionality.
+ * Block Main Functionality.
  */
 class Testimonials extends Block {
 
 	use Filesystem;
 
 	/**
-	 * The Theme class.
+	 * The Theme Class.
 	 *
 	 * @var Theme
 	 */
 	private $theme;
 
 	/**
-	 * The prefix used for ACF blocks.
+	 * The Prefix Used for ACF Blocks.
 	 *
 	 * @var string
 	 */
 	public static $acf_block_prefix = 'block_testimonials';
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
 	 * @param Container $container The PHP DI Container.
 	 */
@@ -48,9 +48,9 @@ class Testimonials extends Block {
 	}
 
 	/**
-	 * Gets the ACF Block fields.
+	 * Gets the ACF Block Fields.
 	 *
-	 * @return array The ACF Block fields.
+	 * @return array The ACF Block Fields.
 	 */
 	public function get_acf_fields(): array {
 		return array(

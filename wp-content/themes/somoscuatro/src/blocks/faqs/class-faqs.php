@@ -1,6 +1,6 @@
 <?php
 /**
- * Block's main functionality methods.
+ * Contains Somoscuatro\Theme\Blocks\FAQs\FAQs Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,21 +12,21 @@ namespace Somoscuatro\Theme\Blocks\FAQs;
 use Somoscuatro\Theme\Blocks\Block;
 
 /**
- * Block main functionality.
+ * Block Main Functionality.
  */
 class FAQs extends Block {
 
 	/**
-	 * The prefix used for ACF blocks.
+	 * The Prefix Used for ACF Blocks.
 	 *
 	 * @var string
 	 */
 	public static $acf_block_prefix = 'block_faqs';
 
 	/**
-	 * Gets the ACF Block fields.
+	 * Gets the ACF Block Fields.
 	 *
-	 * @return array The ACF Block fields.
+	 * @return array The ACF Block Fields.
 	 */
 	public function get_acf_fields(): array {
 		return array(
@@ -86,7 +86,7 @@ class FAQs extends Block {
 	}
 
 	/**
-	 * Register block assets.
+	 * Register Block Assets.
 	 */
 	public function register_assets(): void {
 		wp_register_script(

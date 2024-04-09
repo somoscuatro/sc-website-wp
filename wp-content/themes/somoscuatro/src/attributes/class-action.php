@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Action management class.
+ * Contains Somoscuatro\Theme\Attributes\Action Class.
  *
  * @package somoscuatro-theme
  */
@@ -10,15 +10,15 @@ namespace Somoscuatro\Theme\Attributes;
 use Attribute;
 
 /**
- * WordPress Actions management class.
+ * WordPress Actions Management Class.
  */
 #[Attribute( Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE )]
 class Action extends Filter {
 
 	/**
-	 * Register the Action handler.
+	 * Register the Action Handler.
 	 *
-	 * @param callable|array $method The Action handler.
+	 * @param callable|array $method The Action Handler.
 	 */
 	public function register( callable|array $method ): void {
 		add_action(

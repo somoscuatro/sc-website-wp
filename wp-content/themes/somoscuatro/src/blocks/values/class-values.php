@@ -1,6 +1,6 @@
 <?php
 /**
- * Block's main functionality methods.
+ * Contains Somoscuatro\Theme\Blocks\Values\Values Class.
  *
  * @package somoscuatro-theme
  */
@@ -13,23 +13,23 @@ use Somoscuatro\Theme\Blocks\Block;
 use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
- * Block main functionality.
+ * Block Main Functionality.
  */
 class Values extends Block {
 
 	use Filesystem;
 
 	/**
-	 * The prefix used for ACF blocks.
+	 * The Prefix Used for ACF Blocks.
 	 *
 	 * @var string
 	 */
 	public static $acf_block_prefix = 'block_values';
 
 	/**
-	 * Gets the ACF Block fields.
+	 * Gets the ACF Block Fields.
 	 *
-	 * @return array The ACF Block fields.
+	 * @return array The ACF Block Fields.
 	 */
 	public function get_acf_fields(): array {
 		return array(

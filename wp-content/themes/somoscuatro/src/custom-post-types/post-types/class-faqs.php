@@ -1,6 +1,6 @@
 <?php
 /**
- * FAQs Custom Post Type functionality.
+ * Contains Somoscuatro\Theme\Custom_Post_Types\Post_Types\FAQs Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,26 +12,26 @@ namespace Somoscuatro\Theme\Custom_Post_Types\Post_Types;
 use Somoscuatro\Theme\Custom_Post_Types\Custom_Post_Type;
 
 /**
- * FAQs Custom Post Type functionality.
+ * FAQs Custom Post Type Functionality.
  */
 class FAQs extends Custom_Post_Type {
 
 	/**
-	 * Custom Post Type singular name.
+	 * Custom Post Type Singular Name.
 	 *
 	 * @var string
 	 */
 	protected string $singular_name = 'FAQ';
 
 	/**
-	 * Custom Post Type plural name.
+	 * Custom Post Type Plural Name.
 	 *
 	 * @var string
 	 */
 	protected string $plural_name = 'FAQs';
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 */
 	public function __construct() {
 		parent::__construct();

@@ -1,6 +1,6 @@
 <?php
 /**
- * Performance enhancements.
+ * Contains Somoscuatro\Theme\Performance Class.
  *
  * @package somoscuatro-theme
  */
@@ -13,12 +13,12 @@ use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
 
 /**
- * Performance enhancements.
+ * Performance Enhancements.
  */
 class Performance {
 
 	/**
-	 * Disables WordPress emojis.
+	 * Disables WordPress Emojis.
 	 */
 	#[Action( 'init' )]
 	public function disable_wp_emojis(): void {
@@ -33,7 +33,7 @@ class Performance {
 
 
 	/**
-	 * Cleanups WordPress default assets.
+	 * Cleanups WordPress Default Assets.
 	 */
 	#[Action( 'wp_enqueue_scripts' )]
 	public function cleanup_wp_default_assets(): void {
@@ -46,12 +46,12 @@ class Performance {
 	}
 
 	/**
-	 * Conditionally loads the contact-form-7 assets.
+	 * Conditionally Loads the contact-form-7 Assets.
 	 *
 	 * As a performance improvement, contact-form-7 styles and scripts are only
 	 * loaded in the contact page.
 	 *
-	 * @return bool True if the asset should be loaded.
+	 * @return bool True If the Asset Should Be Loaded.
 	 */
 	#[Filter( 'wpcf7_load_css' )]
 	#[Filter( 'wpcf7_load_js' )]
@@ -63,12 +63,12 @@ class Performance {
 	}
 
 	/**
-	 * Adds support for preloading stylesheets.
+	 * Adds Support for Preloading Stylesheets.
 	 *
-	 * @param string $tag    The link tag for the enqueued style.
-	 * @param string $handle The style's registered handle.
+	 * @param string $tag    The Link Tag for the Enqueued Style.
+	 * @param string $handle The Style's Registered Handle.
 	 *
-	 * @return string The updated link tag.
+	 * @return string The Updated Link Tag.
 	 */
 	#[Filter( 'style_loader_tag', accepted_args: 2 )]
 	public function preload_stylesheets( string $tag, string $handle ): string {

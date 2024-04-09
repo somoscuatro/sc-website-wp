@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom Taxonomy Loader.
+ * Contains Somoscuatro\Theme\Custom_Taxonomies\Loader Class.
  *
  * @package somoscuatro-theme
  */
@@ -17,14 +17,14 @@ use DI\Container;
 class Loader {
 
 	/**
-	 * The PHP DI container.
+	 * The PHP DI Container.
 	 *
 	 * @var Container
 	 */
 	private $container;
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
 	 * @param Container $container The PHP DI Container.
 	 */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Gutenberg Blocks loader.
+ * Contains Somoscuatro\Theme\Blocks\Loaders Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,19 +12,19 @@ namespace Somoscuatro\Theme\Blocks;
 use DI\Container;
 
 /**
- * Gutenberg Blocks loader.
+ * Gutenberg Blocks Loader.
  */
 class Loader {
 
 	/**
-	 * The PHP DI container.
+	 * The PHP DI Container.
 	 *
 	 * @var Container
 	 */
 	private $container;
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
 	 * @param Container $container The PHP DI Container.
 	 */
@@ -33,7 +33,7 @@ class Loader {
 	}
 
 	/**
-	 * Loads custom Gutenberg blocks.
+	 * Loads Custom Gutenberg Blocks.
 	 */
 	public function load(): void {
 		foreach ( glob( __DIR__ . '/*' ) as $block_dir ) {

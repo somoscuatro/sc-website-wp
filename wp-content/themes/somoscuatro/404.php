@@ -1,6 +1,6 @@
 <?php
 /**
- * The 404 template file.
+ * The 404 Template File.
  *
  * @package somoscuatro-theme
  */

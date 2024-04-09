@@ -1,6 +1,6 @@
 <?php
 /**
- * Interface for ACF Gutenberg Blocks.
+ * Contains Somoscuatro\Theme\Blocks\Block_Interface Interface.
  *
  * @package somoscuatro-theme
  */
@@ -23,9 +23,9 @@ use DI\Container;
 interface Block_Interface {
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
-	 * @param Container $container The PHP DI container.
+	 * @param Container $container The PHP DI Container.
 	 */
 	public function __construct( Container $container );
 }

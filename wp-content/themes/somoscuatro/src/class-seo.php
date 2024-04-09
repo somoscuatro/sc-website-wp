@@ -1,6 +1,6 @@
 <?php
 /**
- * SEO custom functionality.
+ * Contains Somoscuatro\Theme\SEO Class.
  *
  * @package somoscuatro-theme
  */
@@ -17,12 +17,12 @@ use Somoscuatro\Theme\Attributes\Filter;
 class SEO {
 
 	/**
-	 * Excludes post types from sitemap.
+	 * Excludes Post Types from Sitemap.
 	 *
-	 * @param bool   $excluded True if the post type is excluded by default.
-	 * @param string $post_type The post type.
+	 * @param bool   $excluded True If the Post Type Is Excluded by Default.
+	 * @param string $post_type The Post Type.
 	 *
-	 * @return bool True if the post type should be excluded.
+	 * @return bool True If the Post Type Should Be Excluded.
 	 */
 	#[Filter( 'wpseo_sitemap_exclude_post_type', accepted_args: 2 )]
 	public static function sitemap_exclude_post_type( bool $excluded, string $post_type ): bool {
@@ -36,12 +36,12 @@ class SEO {
 	}
 
 	/**
-	 * Excludes taxonomies from sitemap.
+	 * Excludes Taxonomies from Sitemap.
 	 *
-	 * @param bool   $excluded True if the taxonomy is excluded by default.
-	 * @param string $taxonomy The taxonomy.
+	 * @param bool   $excluded True If the Taxonomy Is Excluded by Default.
+	 * @param string $taxonomy The Taxonomy.
 	 *
-	 * @return bool True if the taxonomy should be excluded.
+	 * @return bool True If the Taxonomy Should Be Excluded.
 	 */
 	#[Filter( 'wpseo_sitemap_exclude_taxonomy', accepted_args: 2 )]
 	public static function sitemap_exclude_taxonomy( bool $excluded, string $taxonomy ): bool {
@@ -54,7 +54,7 @@ class SEO {
 	}
 
 	/**
-	 * Excludes authors from sitemap.
+	 * Excludes Authors from Sitemap.
 	 *
 	 * @return boolean False.
 	 */

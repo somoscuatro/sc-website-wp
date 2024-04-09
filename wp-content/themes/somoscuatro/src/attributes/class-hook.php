@@ -1,6 +1,6 @@
 <?php
 /**
- * Hooks management class.
+ * Contains Somoscuatro\Theme\Attributes\Hook Class.
  *
  * @package somoscuatro-theme
  */
@@ -13,12 +13,12 @@ use ReflectionClass;
 use DI\Container;
 
 /**
- * Hooks management class.
+ * Hooks Management Class.
  */
 class Hook {
 
 	/**
-	 * The PHP DI container.
+	 * The PHP DI Container.
 	 *
 	 * @var Container
 	 */
@@ -32,7 +32,7 @@ class Hook {
 	private array $hooked_classes = array();
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
 	 * @param Container $container The PHP DI Container.
 	 */

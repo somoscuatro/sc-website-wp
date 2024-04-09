@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Theme Customizer functionality.
+ * Contains Somoscuatro\Theme\Customizer Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,14 +12,14 @@ namespace Somoscuatro\Theme;
 use Somoscuatro\Theme\Attributes\Action;
 
 /**
- * WordPress Theme Customizer functionality.
+ * WordPress Theme Customizer Functionality.
  */
 class Customizer {
 
 	/**
-	 * Adds custom page controls to the customizer.
+	 * Adds Custom Page Controls to the Customizer.
 	 *
-	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
 	public function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ) {
@@ -58,9 +58,9 @@ class Customizer {
 	}
 
 	/**
-	 * Adds site footer controls to the customizer.
+	 * Adds Site Footer Controls to the Customizer.
 	 *
-	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
 	public function add_customizer_footer_controls( \WP_Customize_Manager $wp_customize ) {
@@ -118,9 +118,9 @@ class Customizer {
 	}
 
 	/**
-	 * Adds 404 controls to the customizer.
+	 * Adds 404 Controls to the Customizer.
 	 *
-	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
 	public function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ) {
@@ -178,9 +178,9 @@ class Customizer {
 	}
 
 	/**
-	 * Adds Google Tag Manager controls to the customizer.
+	 * Adds Google Tag Manager Controls to the Customizer.
 	 *
-	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager instance.
+	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
 	public function add_customizer_gtm_controls( \WP_Customize_Manager $wp_customize ) {
@@ -216,9 +216,9 @@ class Customizer {
 	}
 
 	/**
-	 * Retrieves all pages in site.
+	 * Retrieves All Pages in Site.
 	 *
-	 * @return array List of pages and their IDs.
+	 * @return array List of Pages and Their IDs.
 	 */
 	private function get_pages(): array {
 		$pages = get_pages();

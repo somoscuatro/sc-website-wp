@@ -1,6 +1,6 @@
 <?php
 /**
- * WP CLI Command to export ACF Fields Blocks to JSON file.
+ * Contains Somoscuatro\Theme\CLI\Commands\Export_ACF_Blocks_Fields Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,21 +12,21 @@ use Somoscuatro\Theme\CLI\CLI_Command;
 use DI\Container;
 
 /**
- * WP CLI Command to export ACF Fields Blocks to JSON file.
+ * WP CLI Command to Export ACF Fields Blocks to JSON File.
  */
-class Export_Acf_Blocks_Fields extends CLI_Command {
+class Export_ACF_Blocks_Fields extends CLI_Command {
 
 	/**
-	 * The PHP DI container.
+	 * The PHP DI Container.
 	 *
 	 * @var Container
 	 */
 	private $container;
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
-	 * @param Container $container The PHP DI container.
+	 * @param Container $container The PHP DI Container.
 	 */
 	public function __construct( Container $container ) {
 		$this->container = $container;
@@ -51,8 +51,8 @@ class Export_Acf_Blocks_Fields extends CLI_Command {
 	 *     wp export-acf-blocks-fields hero,cta
 	 *     wp export-acf-blocks-fields --all
 	 *
-	 * @param array $args The CLI Command arguments.
-	 * @param array $options The CLI Command options.
+	 * @param array $args The CLI Command Arguments.
+	 * @param array $options The CLI Command Options.
 	 */
 	public function __invoke( array $args, array $options ): void {
 		$this->blocks_base_path = $this->get_base_path() . '/src/blocks/';
@@ -73,9 +73,9 @@ class Export_Acf_Blocks_Fields extends CLI_Command {
 	}
 
 	/**
-	 * Exports the ACF Fields for the specified Gutenberg Block to JSON format.
+	 * Exports the ACF Fields for the Specified Gutenberg Block to JSON Format.
 	 *
-	 * @param string $block The Gutenberg Block name.
+	 * @param string $block The Gutenberg Block Name.
 	 */
 	public function export_acf_fields( string $block ): void {
 		$block_class            = str_replace( '-', '_', ucfirst( $block ) );

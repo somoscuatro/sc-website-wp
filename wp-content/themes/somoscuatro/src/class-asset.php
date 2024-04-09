@@ -1,6 +1,6 @@
 <?php
 /**
- * Assets management class.
+ * Contains Somoscuatro\Theme\Asset Class.
  *
  * @package somoscuatro-theme
  */
@@ -8,62 +8,61 @@
 namespace Somoscuatro\Theme;
 
 use Somoscuatro\Theme\Attributes\Action;
-
 use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
- * Assets management class.
+ * Assets Management Class.
  */
 class Asset {
 
 	use Filesystem;
 
 	/**
-	 * The Theme class.
+	 * The Theme Class.
 	 *
 	 * @var Theme
 	 */
 	protected $theme;
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
-	 * @param Theme $theme The Theme class.
+	 * @param Theme $theme The Theme Class.
 	 */
 	public function __construct( Theme $theme ) {
 		$this->theme = $theme;
 	}
 
 	/**
-	 * Enqueues frontend theme styles and scripts.
+	 * Enqueues Frontend Theme Styles and Scripts.
 	 */
 	#[Action( 'wp_enqueue_scripts' )]
 	public function enqueue_assets(): void {
 		$theme_prefix = $this->theme->get_prefix();
 
-		// Theme styles.
+		// Theme Styles.
 		wp_enqueue_style( $theme_prefix . '-fonts-preload', $this->get_base_url() . '/dist/styles/fonts.css', false, $this->get_filemtime( 'styles/fonts.css' ) );
 		wp_enqueue_style( $theme_prefix, $this->get_base_url() . '/dist/styles/main.css', array( $theme_prefix . '-fonts-preload' ), $this->get_filemtime( 'styles/main.css' ) );
 
-		// Theme script.
+		// Theme Script.
 		wp_enqueue_script( $theme_prefix, $this->get_base_url() . '/dist/scripts/main.js', array(), $this->get_filemtime( 'scripts/main.js' ), true );
 
-		// Legal pages assets.
+		// Legal Pages Assets.
 		if ( is_page_template( 'legal.php' ) ) {
 			wp_enqueue_style( $theme_prefix . '-legal', $this->get_base_url() . '/dist/styles/legal.css', array(), $this->get_filemtime( 'styles/legal.css' ) );
 		}
 
-		// Legal pages assets.
+		// Legal Pages Assets.
 		if ( is_singular( 'glossary-term' ) ) {
 			wp_enqueue_style( $theme_prefix . '-glossary', $this->get_base_url() . '/dist/styles/glossary.css', array(), $this->get_filemtime( 'styles/glossary.css' ) );
 		}
 
-		// Single post assets.
+		// Single Post Assets.
 		if ( is_single() ) {
 			wp_enqueue_style( $theme_prefix . '-single-post', $this->get_base_url() . '/dist/styles/single-post.css', array(), $this->get_filemtime( 'styles/single-post.css' ) );
 		}
 
-		// Glossary page assets.
+		// Glossary Page Assets.
 		if ( is_page( get_theme_mod( 'glossary_page' ) ) ) {
 			wp_enqueue_script( $theme_prefix . '-page-glossary', $this->get_base_url() . '/dist/scripts/page-glossary.js', array(), $this->get_filemtime( 'scripts/page-glossary.js' ), true );
 
@@ -94,14 +93,14 @@ class Asset {
 	}
 
 	/**
-	 * Enqueues editor theme styles and scripts.
+	 * Enqueues Editor Theme Styles and Scripts.
 	 */
 	#[Action( 'admin_enqueue_scripts' )]
 	public function enqueue_admin_assets() {
 	}
 
 	/**
-	 * Enqueues wp-login theme styles and scripts.
+	 * Enqueues /wp-login Theme Styles and Scripts.
 	 */
 	#[Action( 'login_enqueue_scripts' )]
 	public function enqueue_login_assets() {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme's main functionality methods.
+ * Contains Somoscuatro\Theme\Theme Class.
  *
  * @package somoscuatro-theme
  */
@@ -9,56 +9,54 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
-use Somoscuatro\Theme\Helpers\Filesystem;
-
 use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
-
 use Somoscuatro\Theme\Blocks\Loader as BlocksLoader;
 use Somoscuatro\Theme\Custom_Post_Types\Loader as CustomPostTypesLoader;
 use Somoscuatro\Theme\Custom_Taxonomies\Loader as CustomTaxonomiesLoader;
+use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
- * Main theme functionality.
+ * Main Theme Functionality.
  */
 class Theme {
 
 	use Filesystem;
 
 	/**
-	 * The Custom_Post_Types\Loader class.
+	 * The Custom_Post_Types\Loader Class.
 	 *
 	 * @var CustomPostTypesLoader
 	 */
 	private $custom_post_types_loader;
 
 	/**
-	 * The Custom_tax\Loader class.
+	 * The Custom_Taxonomies\Loader Class.
 	 *
 	 * @var CustomTaxonomiesLoader
 	 */
 	private $custom_taxonomies_loader;
 
 	/**
-	 * The Blocks\Loader class.
+	 * The Blocks\Loader Class.
 	 *
 	 * @var BlocksLoader
 	 */
 	private $blocks_loader;
 
 	/**
-	 * Theme naming prefix.
+	 * Theme Naming Prefix.
 	 *
 	 * @var string
 	 */
 	private $prefix = 'somoscuatro_theme';
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 *
-	 * @param CustomPostTypesLoader  $custom_post_types_loader The Custom_Post_Types\Loader class.
-	 * @param CustomTaxonomiesLoader $custom_taxonomies_loader The Custom_Taxonomies\Loader class.
-	 * @param BlocksLoader           $blocks_loader The Blocks\Loader class.
+	 * @param CustomPostTypesLoader  $custom_post_types_loader The Custom_Post_Types\Loader Class.
+	 * @param CustomTaxonomiesLoader $custom_taxonomies_loader The Custom_Taxonomies\Loader Class.
+	 * @param BlocksLoader           $blocks_loader The Blocks\Loader Class.
 	 */
 	public function __construct(
 		CustomPostTypesLoader $custom_post_types_loader,
@@ -71,7 +69,7 @@ class Theme {
 	}
 
 	/**
-	 * Initialization method.
+	 * Initialization Method.
 	 */
 	#[Action( 'init' )]
 	public function init(): void {
@@ -79,7 +77,7 @@ class Theme {
 	}
 
 	/**
-	 * Registers theme support for additional features.
+	 * Registers Theme Support for Additional Features.
 	 */
 	#[Action( 'after_setup_theme' )]
 	public function theme_support(): void {
@@ -91,7 +89,7 @@ class Theme {
 	}
 
 	/**
-	 * Displays missing plugins warning.
+	 * Displays Missing Plugins Warning.
 	 */
 	#[Action( 'admin_notices' )]
 	public function display_missing_plugins_warning(): void {
@@ -115,11 +113,11 @@ class Theme {
 	}
 
 	/**
-	 * Adds page slug to body classes.
+	 * Adds Page Slug to Body Classes.
 	 *
-	 * @param array $classes The body classes.
+	 * @param array $classes The Body Classes.
 	 *
-	 * @return array The modified body classes.
+	 * @return array The Modified Body Classes.
 	 */
 	#[Filter( 'body_class' )]
 	public function body_class( array $classes ): array {
@@ -142,9 +140,9 @@ class Theme {
 	}
 
 	/**
-	 * Returns the theme prefix.
+	 * Returns the Theme Prefix.
 	 *
-	 * @return string Theme the prefix.
+	 * @return string The Theme Prefix.
 	 */
 	public function get_prefix(): string {
 		return $this->prefix;

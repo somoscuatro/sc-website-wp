@@ -1,6 +1,6 @@
 <?php
 /**
- * Filesystem helpers class.
+ * Contains Somoscuatro\Theme\Helpers\Filesystem Class.
  *
  * @package somoscuatro-theme
  */
@@ -10,21 +10,21 @@ declare(strict_types=1);
 namespace Somoscuatro\Theme\Helpers;
 
 /**
- * Filesystem helpers class.
+ * Filesystem Helpers Class.
  */
 trait Filesystem {
 
 	/**
-	 * Base for asset URLs.
+	 * Base for Asset URLs.
 	 *
 	 * @var string
 	 */
 	protected static string $base_url = '';
 
 	/**
-	 * Returns the base URL of this theme.
+	 * Returns the Base URL of This Theme.
 	 *
-	 * @return string Return theme URI.
+	 * @return string Return Theme URI.
 	 */
 	protected function get_base_url(): string {
 		if ( ! self::$base_url ) {
@@ -34,20 +34,20 @@ trait Filesystem {
 	}
 
 	/**
-	 * The absolute filesystem base path of this theme.
+	 * The Absolute Filesystem Base Path of This Theme.
 	 *
-	 * @return string Return base path URI.
+	 * @return string Return Base Path URI.
 	 */
 	protected function get_base_path(): string {
 		return dirname( __DIR__, 2 );
 	}
 
 	/**
-	 * Returns file last modified time.
+	 * Returns File Last Modified Time.
 	 *
-	 * @param string $file_path The file path relative to dist folder.
+	 * @param string $file_path The File Path Relative to Dist Folder.
 	 *
-	 * @return int File last modified time.
+	 * @return int File Last Modified Time.
 	 */
 	protected function get_filemtime( string $file_path = '' ): int {
 		$version = $file_path

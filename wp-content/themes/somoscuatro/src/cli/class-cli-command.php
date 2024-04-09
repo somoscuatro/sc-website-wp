@@ -1,6 +1,6 @@
 <?php
 /**
- * WP CLI Command base class.
+ * Contains Somoscuatro\Theme\CLI\CLI_Command Class.
  *
  * @package somoscuatro-theme
  */
@@ -10,23 +10,23 @@ namespace Somoscuatro\Theme\CLI;
 use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
- * WP CLI Command base class.
+ * WP CLI Command Base Class.
  */
 abstract class CLI_Command extends \WP_CLI_Command {
 
 	use Filesystem;
 
 	/**
-	 * The Gutenberg Blocks base path.
+	 * The Gutenberg Blocks Base Path.
 	 *
 	 * @var string
 	 */
 	protected $blocks_base_path;
 
 	/**
-	 * Gets the root namespace.
+	 * Gets the Root Namespace.
 	 *
-	 * @return string The root namespace.
+	 * @return string The Root Namespace.
 	 */
 	protected function get_base_namespace(): string {
 		$namespace = explode( '\\', __NAMESPACE__ );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Tech Tools Area custom Taxonomy.
+ * Contains Somoscuatro\Theme\Custom_Taxonomies\Tech_Tools_Area Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,33 +12,33 @@ namespace Somoscuatro\Theme\Custom_Taxonomies\Taxonomies;
 use Somoscuatro\Theme\Custom_Taxonomies\Custom_Taxonomy;
 
 /**
- * Tech Tools Area custom Taxonomy.
+ * Tech Tools Area Custom Taxonomy.
  */
 class Tech_Tools_Area extends Custom_Taxonomy {
 
 	/**
-	 * Taxonomy singular name.
+	 * Taxonomy Singular Name.
 	 *
 	 * @var string
 	 */
 	protected string $singular_name = 'Tech Tools Area';
 
 	/**
-	 * Taxonomy plural name.
+	 * Taxonomy Plural Name.
 	 *
 	 * @var string
 	 */
 	protected string $plural_name = 'Tech Tools Areas';
 
 	/**
-	 * Custom Post Types using this taxonomy.
+	 * Custom Post Types Using This Taxonomy.
 	 *
 	 * @var array
 	 */
 	protected array $post_types = array( 'tech-tool' );
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 */
 	public function __construct() {
 		parent::__construct();

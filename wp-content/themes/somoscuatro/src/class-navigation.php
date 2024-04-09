@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress custom navigation functionality.
+ * Contains Somoscuatro\Theme\Navigation Class.
  *
  * @package somoscuatro-theme
  */
@@ -12,12 +12,12 @@ namespace Somoscuatro\Theme;
 use Somoscuatro\Theme\Attributes\Action;
 
 /**
- * WordPress custom navigation functionality.
+ * WordPress Custom Navigation Functionality.
  */
 class Navigation {
 
 	/**
-	 * Register navigation menus.
+	 * Registers Navigation Menus.
 	 */
 	#[Action( 'after_setup_theme' )]
 	public function register_nav_menus(): void {
@@ -27,9 +27,9 @@ class Navigation {
 	}
 
 	/**
-	 * Adds custom fields to the menu item edit screen.
+	 * Adds Custom Fields to the Menu Item Edit Screen.
 	 *
-	 * @param string $item_id   The menu item ID as a numeric string.
+	 * @param string $item_id The Menu Item ID as a Numeric String.
 	 */
 	#[Action( 'wp_nav_menu_item_custom_fields' )]
 	public static function add_menu_item_custom_fields( string $item_id ): void {
@@ -46,10 +46,10 @@ class Navigation {
 	}
 
 	/**
-	 * Saves menu item custom fields.
+	 * Saves Menu Item Custom Fields.
 	 *
-	 * @param integer $menu_id The ID of the updated menu.
-	 * @param integer $menu_item_db_id The ID of the updated menu item.
+	 * @param integer $menu_id         The ID of the Updated Menu.
+	 * @param integer $menu_item_db_id The ID of the Updated Menu Item.
 	 */
 	#[Action( 'wp_update_nav_menu_item', accepted_args: 2 )]
 	public static function save_menu_item_custom_fields( int $menu_id, int $menu_item_db_id ): void {

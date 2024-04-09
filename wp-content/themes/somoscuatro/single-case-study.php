@@ -1,6 +1,6 @@
 <?php
 /**
- * The index template file.
+ * The Single Case Study Template File.
  *
  * @package somoscuatro-theme
  */

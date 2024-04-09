@@ -1,6 +1,6 @@
 <?php
 /**
- * The single glossary template file.
+ * The Single Glossary Term Template File.
  *
  * @package somoscuatro-theme
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Block's main functionality methods.
+ * Contains Somoscuatro\Theme\Blocks\Tech_Tools\Tech_Tools Class.
  *
  * @package somoscuatro-theme
  */
@@ -15,23 +15,23 @@ use Somoscuatro\Theme\Blocks\Block;
 use Somoscuatro\Theme\Helpers\Filesystem;
 
 /**
- * Block main functionality.
+ * Block Main Functionality.
  */
 class Tech_Tools extends Block {
 
 	use Filesystem;
 
 	/**
-	 * The prefix used for ACF blocks.
+	 * The Prefix Used for ACF Blocks.
 	 *
 	 * @var string
 	 */
 	public static $acf_block_prefix = 'block_tech_tools';
 
 	/**
-	 * Gets the ACF Block fields.
+	 * Gets the ACF Block Fields.
 	 *
-	 * @return array The ACF Block fields.
+	 * @return array The ACF Block Fields.
 	 */
 	public function get_acf_fields(): array {
 		return array(
@@ -67,11 +67,11 @@ class Tech_Tools extends Block {
 	}
 
 	/**
-	 * Sets a custom context for this specific block.
+	 * Sets a Custom Context for This Specific Block.
 	 *
-	 * @param array $context The Timber context.
+	 * @param array $context The Timber Context.
 	 *
-	 * @return array The modified Timber context.
+	 * @return array The Modified Timber Context.
 	 */
 	public function set_custom_context( array $context ): array {
 		$tech_tools_logos = get_posts(
@@ -105,7 +105,7 @@ class Tech_Tools extends Block {
 	}
 
 	/**
-	 * Register block assets.
+	 * Register Block Assets.
 	 */
 	public function register_assets(): void {
 		wp_register_script(

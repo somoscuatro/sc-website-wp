@@ -1,6 +1,6 @@
 <?php
 /**
- * Case Studies Custom Post Type functionality.
+ * Contains Somoscuatro\Theme\Custom_Post_Types\Post_Types\Case_Studies Class.
  *
  * @package somoscuatro-theme
  */
@@ -13,26 +13,26 @@ use Somoscuatro\Theme\Attributes\Filter;
 use Somoscuatro\Theme\Custom_Post_Types\Custom_Post_Type;
 
 /**
- * Case Studies Custom Post Type functionality.
+ * Case Studies Custom Post Type Functionality.
  */
 class Case_Studies extends Custom_Post_Type {
 
 	/**
-	 * Custom Post Type singular name.
+	 * Custom Post Type Singular Name.
 	 *
 	 * @var string
 	 */
 	protected string $singular_name = 'Case Study';
 
 	/**
-	 * Custom Post Type plural name.
+	 * Custom Post Type Plural Name.
 	 *
 	 * @var string
 	 */
 	protected string $plural_name = 'Case Studies';
 
 	/**
-	 * Class constructor.
+	 * Class Constructor.
 	 */
 	public function __construct() {
 		parent::__construct();

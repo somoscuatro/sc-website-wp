@@ -1,6 +1,6 @@
 <?php
 /**
- * Glossary related functionality.
+ * Contains Somoscuatro\Theme\Glossary Class.
  *
  * @package somoscuatro-theme
  */
@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace Somoscuatro\Theme;
 
 /**
- * Glossary related functionality.
+ * Glossary Related Functionality.
  */
 class Glossary {
 
 	/**
-	 * Gets all glossary terms.
+	 * Gets All Glossary Terms.
 	 */
 	public static function get_terms(): array {
 		return array_map(
@@ -36,9 +36,9 @@ class Glossary {
 	}
 
 	/**
-	 * Gets glossary letters.
+	 * Gets Glossary Letters.
 	 *
-	 * @param array $glossary_terms The Glossary terms.
+	 * @param array $glossary_terms The Glossary Terms.
 	 */
 	public static function get_letters( array $glossary_terms ): array {
 		$letters = array();
