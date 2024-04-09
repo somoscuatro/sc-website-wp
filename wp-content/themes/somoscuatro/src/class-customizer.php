@@ -22,7 +22,7 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
-	public function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ) {
+	public function add_customizer_custom_pages_controls( \WP_Customize_Manager $wp_customize ): void {
 		$pages = $this->get_pages();
 
 		// Section.
@@ -63,7 +63,7 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
-	public function add_customizer_footer_controls( \WP_Customize_Manager $wp_customize ) {
+	public function add_customizer_footer_controls( \WP_Customize_Manager $wp_customize ): void {
 		// Section.
 		$wp_customize->add_section(
 			'sitefooter',
@@ -123,7 +123,7 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
-	public function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ) {
+	public function add_customizer_404_controls( \WP_Customize_Manager $wp_customize ): void {
 		// Section.
 		$wp_customize->add_section(
 			'404',
@@ -183,7 +183,7 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize WP_Customize_Manager Instance.
 	 */
 	#[Action( 'customize_register' )]
-	public function add_customizer_gtm_controls( \WP_Customize_Manager $wp_customize ) {
+	public function add_customizer_gtm_controls( \WP_Customize_Manager $wp_customize ): void {
 		// Section.
 		$wp_customize->add_section(
 			'gtm',

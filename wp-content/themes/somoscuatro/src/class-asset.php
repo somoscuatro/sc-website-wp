@@ -96,14 +96,14 @@ class Asset {
 	 * Enqueues Editor Theme Styles and Scripts.
 	 */
 	#[Action( 'admin_enqueue_scripts' )]
-	public function enqueue_admin_assets() {
+	public function enqueue_admin_assets(): void {
 	}
 
 	/**
 	 * Enqueues /wp-login Theme Styles and Scripts.
 	 */
 	#[Action( 'login_enqueue_scripts' )]
-	public function enqueue_login_assets() {
+	public function enqueue_login_assets(): void {
 		wp_enqueue_style( $this->theme->get_prefix() . '-login', $this->get_base_url() . '/dist/styles/login.css', false, $this->get_filemtime( 'styles/login.css' ) );
 	}
 }
