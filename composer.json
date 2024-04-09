@@ -13,7 +13,9 @@
 		"php-stubs/acf-pro-stubs": "^6.2",
 		"php-stubs/wp-cli-stubs": "^2.10",
 		"php-stubs/generator": "^0.8.4",
-		"composer/composer": "^2.7"
+		"composer/composer": "^2.7",
+		"php-di/php-di": "^7.0",
+		"timber/timber": "^2.0"
 	},
 	"scripts": {
 		"lint": "vendor/bin/phpcs --standard=phpcs.xml wp-content/themes/somoscuatro",
