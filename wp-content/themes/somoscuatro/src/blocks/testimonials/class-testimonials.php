@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Blocks\Testimonials;
 
-use Somoscuatro\Theme\Theme;
 use Somoscuatro\Theme\Blocks\Block;
 use Somoscuatro\Theme\Helpers\Filesystem;
+use Somoscuatro\Theme\Theme;
 
 use DI\Container;
 

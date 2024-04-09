@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Blocks\Tech_Tools;
 
-use Somoscuatro\Theme\Attributes\Filter;
-
 use Somoscuatro\Theme\Blocks\Block;
 use Somoscuatro\Theme\Helpers\Filesystem;
 

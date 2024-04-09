@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme\Custom_Post_Types\Post_Types;
 
-use Somoscuatro\Theme\Attributes\Filter;
 use Somoscuatro\Theme\Custom_Post_Types\Custom_Post_Type;
 
 /**

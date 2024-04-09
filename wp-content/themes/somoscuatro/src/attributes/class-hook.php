@@ -7,10 +7,10 @@
 
 namespace Somoscuatro\Theme\Attributes;
 
+use DI\Container;
+
 use ReflectionAttribute;
 use ReflectionClass;
-
-use DI\Container;
 
 /**
  * Hooks Management Class.
