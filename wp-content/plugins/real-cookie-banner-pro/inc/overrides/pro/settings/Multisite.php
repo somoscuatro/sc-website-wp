@@ -140,10 +140,15 @@ trait Multisite
                 $addThis = \false;
             }
             if ($addThis) {
-                $restUrl = Core::getInstance()->getAssets()->getAsciiUrl(Service::getUrl(Core::getInstance(), null, RestForwarding::ENDPOINT_CONSENT_FORWARD));
-                // Add `blog` query argument so we can identify the query at option-update runtime (see Multisite::update_option_forward_to)
-                $restUrl = \add_query_arg(SettingsMultisite::FORWARDING_QUERY_BLOG_ID, $blogId, $restUrl);
-                $siteEndpoints[$restUrl] = \get_bloginfo('name');
+                $restUrl = Service::getUrl(Core::getInstance(), null, RestForwarding::ENDPOINT_CONSENT_FORWARD);
+                // E.g. when using https://wordpress.org/plugins/ns-cloner-site-copier/ the `rest_url()` function
+                // could potentially return `null` and leads to an error.
+                if (!empty($restUrl)) {
+                    $restUrl = Core::getInstance()->getAssets()->getAsciiUrl($restUrl);
+                    // Add `blog` query argument so we can identify the query at option-update runtime (see Multisite::update_option_forward_to)
+                    $restUrl = \add_query_arg(SettingsMultisite::FORWARDING_QUERY_BLOG_ID, $blogId, $restUrl);
+                    $siteEndpoints[$restUrl] = \get_bloginfo('name');
+                }
             }
             /**
              * (Pro only) Get all available and predefined endpoints. E. g. if your are running within a mulitisite,

@@ -52,14 +52,6 @@ class Banner
      */
     const HTML_ATTRIBUTE_UNIQUE_WRITE_NAME = 'unique-write-name';
     /**
-     * For "Code on page load" we need to ensure no other plugin is lazy loading it. E.g.
-     * WP Rocket transforms inline scripts to `rocketlazyloadscript`.
-     *
-     * `js-extra` is a common string which does caching plugins or lazy loading plugins ignore
-     * as it is similar to the `wp_localize_script` output tag.
-     */
-    const HTML_ATTRIBUTE_SKIP_LAZY_LOADING_PLUGINS = 'data-skip-lazy-load="js-extra"';
-    /**
      * The customize handler
      *
      * @var BannerCustomize
@@ -146,8 +138,7 @@ class Banner
      */
     public function wp_head()
     {
-        $cacheExcludeAttributes = CacheInvalidator::getInstance()->getExcludeHtmlAttributesString();
-        $additionalTags = \sprintf('%s %s', self::HTML_ATTRIBUTE_SKIP_LAZY_LOADING_PLUGINS, $cacheExcludeAttributes);
+        $additionalTags = CacheInvalidator::getInstance()->getExcludeHtmlAttributesString();
         $frontend = Core::getInstance()->getCookieConsentManagement()->getFrontend();
         $output = $frontend->generateCodeOnPageLoad(function ($html, $service) use($additionalTags) {
             return AttributesHelper::skipHtmlTagsInContentBlocker($html, $additionalTags);
@@ -203,7 +194,7 @@ class Banner
                 $overlayBgAlpha = $customize->getSetting(BasicLayout::SETTING_OVERLAY_BG_ALPHA);
                 $bgStyle = \sprintf('background-color: %s;', Utils::calculateOverlay($overlayBg, $overlayBgAlpha));
             }
-            echo \sprintf('<div id="%s" class="%s" data-bg="%s" style="%s %s position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;pointer-events:%s;display:none;filter:none;max-width:100vw;max-height:100vh;transform:translateZ(0);" %s></div>', Core::getInstance()->getPageRequestUuid4(), $antiAdBlocker ? '' : \sprintf('rcb-banner rcb-banner-%s %s', $type, empty($bgStyle) ? 'overlay-deactivated' : ''), $bgStyle, $bgStyle, $showOverlay && $this->isPro() ? \join('', \array_map(function ($prefix) use($overlayBlur) {
+            echo \sprintf('<div id="%s" %s="%s" class="%s" data-bg="%s" style="%s %s position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;pointer-events:%s;display:none;filter:none;max-width:100vw;max-height:100vh;transform:translateZ(0);" %s></div>', Core::getInstance()->getPageRequestUuid4(), Constants::HTML_ATTRIBUTE_CONSENT_SKIP_BLOCKER, Constants::HTML_ATTRIBUTE_CONSENT_SKIP_BLOCKER_VALUE, $antiAdBlocker ? '' : \sprintf('rcb-banner rcb-banner-%s %s', $type, empty($bgStyle) ? 'overlay-deactivated' : ''), $bgStyle, $bgStyle, $showOverlay && $this->isPro() ? \join('', \array_map(function ($prefix) use($overlayBlur) {
                 return \sprintf('%sbackdrop-filter:blur(%spx);', $prefix, $overlayBlur);
             }, ['-moz-', '-o-', '-webkit-', ''])) : '', empty($bgStyle) ? 'none' : 'all', Core::getInstance()->getCompLanguage()->getSkipHTMLForTag());
         }

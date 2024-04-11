@@ -15,6 +15,7 @@ use DevOwl\RealCookieBanner\lite\view\customize\banner\TcfTexts;
 use DevOwl\RealCookieBanner\settings\GoogleConsentMode;
 use DevOwl\RealCookieBanner\settings\TCF as SettingsTCF;
 use DevOwl\RealCookieBanner\view\BannerCustomize;
+use DevOwl\RealCookieBanner\view\customize\banner\StickyLinks;
 // @codeCoverageIgnoreStart
 \defined('ABSPATH') or die('No script kiddies please!');
 // Avoid direct file request
@@ -41,6 +42,8 @@ trait Core
     public function overrideRegisterSettings()
     {
         Affiliate::getInstance()->register();
+        // Make this customize option also available in REST API
+        \register_setting('options', StickyLinks::SETTING_ENABLED, ['type' => 'boolean', 'show_in_rest' => \true]);
     }
     // Documented in IOverrideCore
     public function overrideRegisterPostTypes()
