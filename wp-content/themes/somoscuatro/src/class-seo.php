@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace Somoscuatro\Theme;
 
+use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
+
+use WP_Post;
 
 /**
  * SEO custom functionality.
@@ -61,5 +64,32 @@ class SEO {
 	#[Filter( 'wpseo_sitemap_exclude_author', accepted_args: 0 )]
 	public function sitemap_exclude_author(): bool {
 		return false;
+	}
+
+	/**
+	 * Adds a Rewrite Rule for Blog Posts.
+	 */
+	#[Action( 'init', accepted_args: 0 )]
+	public function rewrite_rules(): void {
+		add_rewrite_rule(
+			'^insights/([^/]+)/?$',
+			'index.php?post_type=post&name=$matches[1]',
+			'top'
+		);
+	}
+
+	/**
+	 * Changes Blog Posts Permalink Structure.
+	 *
+	 * @param string  $permalink The Post Permalink.
+	 * @param WP_Post $post The Post Object.
+	 */
+	#[Filter( 'post_link', priority: 1, accepted_args: 2 )]
+	public function change_permalink_structure( string $permalink, WP_Post $post ) {
+		if ( is_object( $post ) && 'post' === $post->post_type ) {
+			$permalink = home_url( '/insights/' . $post->post_name . '/' );
+		}
+
+		return $permalink;
 	}
 }
