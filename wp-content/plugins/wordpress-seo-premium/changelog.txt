@@ -1,8 +1,10 @@
 *** Yoast SEO premium Changelog ***
 
 
-2024-03-15 - version 22.3
-* add -  Introducing the option to generate titles and descriptions for category and tag pages on your website (taxonomies). Optimize your site for higher click-through-rates at the touch of a button.
-* update -  Bumps the minimum required version of Yoast SEO to 22.3.
-* update -  Sets the WordPress tested up to version to 6.5.
+2024-04-16 - version 22.5
+* fix -  Fixes a bug where the _Yoast Table of Contents_ block would throw a validation error when changing its title's heading level.
+* fix -  Fixes a bug where the `Add custom fields to page analysis` setting would sometimes be wiped out after being saved.
+* fix -  Fixes a bug where some feedback strings in the content analysis would no longer be translated.
+* update -  Renames all Twitter references to X.
+* update -  Bumps the minimum required version of Yoast SEO to 22.5.
 
