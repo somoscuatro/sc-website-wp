@@ -10,19 +10,15 @@ return array(
     ),
     'jetpack-assets' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-assets',
-      'ver' => '2.1.8',
+      'ver' => '2.1.12',
     ),
     'jetpack-config' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-config',
-      'ver' => '2.0.1',
+      'ver' => '2.0.3',
     ),
     'jetpack-connection' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-connection',
-      'ver' => '2.7.5',
-    ),
-    'jetpack-idc' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-identity-crisis',
-      'ver' => '0.18.5',
+      'ver' => '2.10.1',
     ),
     'jetpack-ip' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-ip',
@@ -36,13 +32,9 @@ return array(
       'path' => 'jetpack_vendor/automattic/jetpack-plugin-deactivation',
       'ver' => '0.2.1',
     ),
-    'jetpack-plugins-installer' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-plugins-installer',
-      'ver' => '0.3.4',
-    ),
     'jetpack-sync' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-sync',
-      'ver' => '2.15.0',
+      'ver' => '3.1.0',
     ),
   ),
 );

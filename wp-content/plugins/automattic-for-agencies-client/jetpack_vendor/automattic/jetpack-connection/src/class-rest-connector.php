@@ -7,6 +7,7 @@
 
 namespace Automattic\Jetpack\Connection;
 
+use Automattic\Jetpack\Connection\Webhooks\Authorize_Redirect;
 use Automattic\Jetpack\Constants;
 use Automattic\Jetpack\Redirect;
 use Automattic\Jetpack\Status;
@@ -443,7 +444,7 @@ class REST_Connector {
 
 		$connection_status = array(
 			'isActive'          => $connection->has_connected_owner(), // TODO deprecate this.
-			'isStaging'         => $status->is_staging_site(),
+			'isStaging'         => $status->in_safe_mode(), // TODO deprecate this.
 			'isRegistered'      => $connection->is_connected(),
 			'isUserConnected'   => $connection->is_user_connected(),
 			'hasConnectedOwner' => $connection->has_connected_owner(),
@@ -814,11 +815,7 @@ class REST_Connector {
 
 		$redirect_uri = $request->get_param( 'redirect_uri' ) ? admin_url( $request->get_param( 'redirect_uri' ) ) : null;
 
-		if ( class_exists( 'Jetpack' ) ) {
-			$authorize_url = \Jetpack::build_authorize_url( $redirect_uri );
-		} else {
-			$authorize_url = $this->connection->get_authorization_url( null, $redirect_uri );
-		}
+		$authorize_url = ( new Authorize_Redirect( $this->connection ) )->build_authorize_url( $redirect_uri );
 
 		/**
 		 * Filters the response of jetpack/v4/connection/register endpoint
