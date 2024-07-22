@@ -13,32 +13,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8.6.2
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
+      - name: Install Bun
         run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          curl -fsSL https://bun.sh/install | bash
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Cache Bun dependencies
+        uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-bun-
 
       - name: Install dependencies
         run: |
-          pnpm install && \
-          pnpm run setup
+          bun install
 
       - name: Build assets
-        run: pnpm run build-prod
+        run: bun run build-prod
 
       - name: Deploy
         uses: somoscuatro/action-deploy-to-wpengine@main
