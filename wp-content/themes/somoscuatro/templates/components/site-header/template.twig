@@ -91,6 +91,7 @@
 			{% endfor %}
 		</nav>
 		<div class="flex items-center gap-4 xl:gap-2">
+			<div class="hidden px-4 py-2 md:block">{% include 'language-switcher.twig' %}</div>
 			{% set key = 0 %}
 			{% for item in site_header_primary.get_items %}
 				{% if item.meta('_menu-item-call-to-action') %}

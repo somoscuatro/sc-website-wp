@@ -173,6 +173,14 @@ class Timber {
 		);
 
 		$twig->addFunction(
+			new TwigFunction( 'get_current_language', array( $this, 'get_current_language' ) )
+		);
+
+		$twig->addFunction(
+			new TwigFunction( 'get_active_languages', array( $this, 'get_active_languages' ) )
+		);
+
+		$twig->addFunction(
 			new TwigFunction( 'get_breadcrumbs', array( $this, 'get_breadcrumbs' ) )
 		);
 
@@ -290,6 +298,27 @@ class Timber {
 	public function get_foreground_color_name( $background_color_name ): string {
 		$dark_colors = $this->acf->get_safe_bg_colors_names()['dark'];
 		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
+	}
+
+	/**
+	 * Gets the WPML current language .
+	 *
+	 * @return array The WPML current language .
+	 */
+	public function get_current_language(): array {
+		if ( ! function_exists( 'icl_get_languages' ) ) {
+			return array();
+		}
+
+		return apply_filters( 'wpml_post_language_details', null, get_the_ID() );
+	}
+
+	public function get_active_languages(): array {
+		if ( ! function_exists( 'icl_get_languages' ) ) {
+			return array();
+		}
+
+		return apply_filters( 'wpml_active_languages', array() );
 	}
 
 	/**

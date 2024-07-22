@@ -7,6 +7,7 @@
 				</a>
 				<p class="font-semibold">{{ site_footer_claim }}</p>
 				<a href="mailto:{{ site_footer_email }}">{{ site_footer_email }}</a>
+				{% include 'language-switcher.twig' %}
 			</div>
 			<div class="grid w-full grid-cols-2 gap-10 md:w-2/3 md:grid-cols-3 lg:gap-24">
 				{% for item in site_footer_primary.items %}
