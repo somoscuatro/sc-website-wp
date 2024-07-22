@@ -17,7 +17,7 @@ files_to_update=("composer.json" "package.json" "wp-content/themes/somoscuatro/s
 # Loop through the files and update the version
 for file in "${files_to_update[@]}"; do
   if [[ -f "$file" ]]; then
-    if [[ "$file" == "style.css" ]]; then
+    if [[ "$file" == "wp-content/themes/somoscuatro/style.css" ]]; then
       sed -i '' -E "s/(Version: )[0-9]+\.[0-9]+\.[0-9]+/\1$new_version/" "$file"
     else
       sed -i '' -E "s/(\"version\": \")[0-9]+\.[0-9]+\.[0-9]+\"/\1$new_version\"/" "$file"
