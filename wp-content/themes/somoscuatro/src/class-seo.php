@@ -105,13 +105,6 @@ class SEO {
 			return array();
 		}
 
-		if ( is_single() ) {
-			$parent = array(
-				'url'  => get_permalink( get_option( 'page_for_posts' ) ),
-				'text' => __( 'Insights', 'somoscuatro-theme' ),
-			);
-		}
-
 		if ( is_singular( 'service' ) ) {
 			$parent = array(
 				'url'  => get_permalink( get_theme_mod( 'services_page' ) ),
