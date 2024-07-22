@@ -25,7 +25,8 @@
 		"lint-fix:css": "stylelint --quiet-deprecation-warnings --fix wp-content/themes/somoscuatro/**/*.css",
 		"lint-fix:js": "eslint wp-content/themes/somoscuatro/**/*.js --fix",
 		"sniff": "pnpm run sniff:php",
-		"sniff:php": "composer sniff"
+		"sniff:php": "composer sniff",
+		"deploy": "bash .github/scripts/bump-version.sh && git push origin main && git push origin --tags && bash .github/scripts/create-release-notes.sh && gh release create \"$(<.github/.version)\" --title \"$(<.github/.version)\" --notes \"$(<.github/.release-notes)\""
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.3.0",
