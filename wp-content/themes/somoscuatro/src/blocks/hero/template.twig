@@ -9,9 +9,20 @@
 			<div class="flex flex-col gap-4">
 				{{ get_breadcrumbs() }}
 				<h1 class="text-4xl font-medium lg:text-6xl font-syne {{ layout ? '' : 'text-center' }}">{{ title }}</h1>
-				{% if text %}
-					<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>
-				{% endif %}
+				<div class="flex flex-col gap-6">
+					{% if text %}
+						<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>
+					{% endif %}
+					{% if cta %}
+						{% include 'button.twig' with {
+							id: 'gtm-conversion-contact-hero',
+							title: cta.title,
+							url: cta.url,
+							target: cta.target,
+							type: 'primary',
+						} %}
+					{% endif %}
+				</div>
 			</div>
 			{% if image %}
 				{% include 'image.twig' with {

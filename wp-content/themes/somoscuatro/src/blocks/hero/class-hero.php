@@ -69,6 +69,12 @@ class Hero extends Block {
 					'name'  => self::$acf_block_prefix . '_image',
 					'type'  => 'image',
 				),
+				array(
+					'key'   => 'field_' . self::$acf_block_prefix . '_cta',
+					'label' => __( 'CTA', 'somoscuatro-theme' ),
+					'name'  => self::$acf_block_prefix . '_cta',
+					'type'  => 'button',
+				),
 			),
 			'location' => array(
 				array(
