@@ -7,6 +7,7 @@
 	<div class="text-{{ foreground }}">
 		<div class="flex items-center justify-between gap-10 lg:gap-20 flex-col  {{ layout ? 'md:flex-row' : '' }}">
 			<div class="flex flex-col gap-4">
+				{{ get_breadcrumbs() }}
 				<h1 class="text-4xl font-medium lg:text-6xl font-syne {{ layout ? '' : 'text-center' }}">{{ title }}</h1>
 				{% if text %}
 					<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>

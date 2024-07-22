@@ -5,6 +5,7 @@
 		<div class="bg-anti-flash-white-200">
 			<div class="mx-auto max-w-7xl py-[3.75rem] flex flex-col gap-4 text-center">
 				<div class="text-sm text-anti-flash-white-700">
+					{{ get_breadcrumbs() }}
 					{% for breadcrumb in breadcrumbs %}
 						<a href="{{ breadcrumb.url }}">
 							{{ breadcrumb.title }}

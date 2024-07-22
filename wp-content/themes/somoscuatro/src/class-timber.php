@@ -162,6 +162,10 @@ class Timber {
 		);
 
 		$twig->addFunction(
+			new TwigFunction( 'get_breadcrumbs', array( $this, 'get_breadcrumbs' ) )
+		);
+
+		$twig->addFunction(
 			new TwigFunction( 'get_latest_posts', array( $this, 'get_latest_posts' ) )
 		);
 
@@ -253,6 +257,16 @@ class Timber {
 	public function get_foreground_color_name( $background_color_name ): string {
 		$dark_colors = $this->acf->get_safe_bg_colors_names()['dark'];
 		return in_array( 'bg-' . $background_color_name, $dark_colors, true ) ? 'anti-flash-white-100' : 'anti-flash-white-900';
+	}
+
+	/**
+	 * Gets Yoast Breadcrumbs.
+	 *
+	 * @return string The Yoast Breadcrumbs.
+	 */
+	public function get_breadcrumbs(): string {
+		// @phpstan-ignore-next-line
+		return yoast_breadcrumb( '', '', false );
 	}
 
 	/**

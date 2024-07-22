@@ -92,4 +92,59 @@ class SEO {
 
 		return $permalink;
 	}
+
+	/**
+	 * Customize Breadcrumbs Links.
+	 *
+	 * @param array $links The Breadcrumb Links.
+	 * @return array The modified Breadcrumb Links.
+	 */
+	#[Filter( 'wpseo_breadcrumb_links' )]
+	public function my_custom_breadcrumb_links( array $links ): array {
+		if ( is_front_page() ) {
+			return array();
+		}
+
+		if ( is_single() ) {
+			$parent = array(
+				'url'  => get_permalink( get_option( 'page_for_posts' ) ),
+				'text' => __( 'Insights', 'somoscuatro-theme' ),
+			);
+		}
+
+		if ( is_singular( 'service' ) ) {
+			$parent = array(
+				'url'  => get_permalink( get_theme_mod( 'services_page' ) ),
+				'text' => __( 'Services', 'somoscuatro-theme' ),
+			);
+		}
+
+		if ( is_singular( 'case-study' ) ) {
+			$parent = array(
+				'url'  => get_permalink( get_theme_mod( 'case_studies_page' ) ),
+				'text' => __( 'Case Studies', 'somoscuatro-theme' ),
+			);
+		}
+
+		if ( is_singular( 'glossary-term' ) ) {
+			$parent = array(
+				'url'  => get_permalink( get_theme_mod( 'glossary_page' ) ),
+				'text' => __( 'Glossary', 'somoscuatro-theme' ),
+			);
+		}
+
+		if ( ! empty( $parent ) ) {
+			array_splice( $links, 1, 0, array( $parent ) );
+		}
+
+		foreach ( $links as $index => &$link ) {
+			if ( $index < count( $links ) - 1 ) {
+				$link['text'] = '<a class="text-sm hover:underline" href="' . esc_url( $link['url'] ) . '">' . $link['text'] . '</a>';
+			} else {
+				$link['text'] = '<span class="text-sm">' . $link['text'] . '</span>';
+			}
+		}
+
+		return $links;
+	}
 }

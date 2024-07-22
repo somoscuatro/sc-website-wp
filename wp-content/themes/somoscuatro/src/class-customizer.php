@@ -35,6 +35,48 @@ class Customizer {
 			)
 		);
 		$wp_customize->add_setting(
+			'services_page',
+			array(
+				'default'    => '',
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Control(
+				$wp_customize,
+				'services_page',
+				array(
+					'label'    => __( 'Services Page', 'somoscuatro-theme' ),
+					'section'  => 'custom_pages',
+					'settings' => 'services_page',
+					'type'     => 'select',
+					'choices'  => $pages,
+				),
+			),
+		);
+		$wp_customize->add_setting(
+			'case_studies_page',
+			array(
+				'default'    => '',
+				'type'       => 'theme_mod',
+				'capability' => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Control(
+				$wp_customize,
+				'case_studies_page',
+				array(
+					'label'    => __( 'Case Studies Page', 'somoscuatro-theme' ),
+					'section'  => 'custom_pages',
+					'settings' => 'case_studies_page',
+					'type'     => 'select',
+					'choices'  => $pages,
+				),
+			),
+		);
+		$wp_customize->add_setting(
 			'glossary_page',
 			array(
 				'default'    => '',
