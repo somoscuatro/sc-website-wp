@@ -52,11 +52,6 @@ class Asset {
 			wp_enqueue_style( $theme_prefix . '-legal', $this->get_base_url() . '/dist/styles/legal.css', array(), $this->get_filemtime( 'styles/legal.css' ) );
 		}
 
-		// Legal Pages Assets.
-		if ( is_singular( 'glossary-term' ) ) {
-			wp_enqueue_style( $theme_prefix . '-glossary', $this->get_base_url() . '/dist/styles/glossary.css', array(), $this->get_filemtime( 'styles/glossary.css' ) );
-		}
-
 		// Single Post Assets.
 		if ( is_single() ) {
 			wp_enqueue_style( $theme_prefix . '-single-post', $this->get_base_url() . '/dist/styles/single-post.css', array(), $this->get_filemtime( 'styles/single-post.css' ) );

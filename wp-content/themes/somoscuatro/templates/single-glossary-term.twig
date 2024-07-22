@@ -4,15 +4,7 @@
 	<main id="content">
 		<div class="bg-anti-flash-white-200">
 			<div class="mx-auto max-w-7xl py-[3.75rem] flex flex-col gap-4 text-center">
-				<div class="text-sm text-anti-flash-white-700">
-					{{ get_breadcrumbs() }}
-					{% for breadcrumb in breadcrumbs %}
-						<a href="{{ breadcrumb.url }}">
-							{{ breadcrumb.title }}
-						</a>
-						{% if not loop.last %} / {% endif %}
-					{% endfor %}
-				</div>
+				{{ get_breadcrumbs() }}
 				<h1 class="text-4xl font-medium text-center lg:text-6xl font-syne">
 					{{ post.title }}
 				</h1>
