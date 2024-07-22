@@ -38,7 +38,6 @@ class Hero extends Block {
 					'label'         => __( 'Background Color', 'somoscuatro-theme' ),
 					'name'          => self::$acf_block_prefix . '_bg_color',
 					'type'          => 'color_picker',
-					'required'      => 1,
 					'return_format' => 'string',
 				),
 				array(
@@ -46,7 +45,6 @@ class Hero extends Block {
 					'label'         => __( 'Layout', 'somoscuatro-theme' ),
 					'name'          => self::$acf_block_prefix . '_layout',
 					'type'          => 'true_false',
-					'required'      => true,
 					'default_value' => 1,
 					'ui'            => 1,
 					'ui_on_text'    => __( 'Horizontal', 'somoscuatro-theme' ),

@@ -62,7 +62,6 @@ class Insights extends Block {
 					'label'       => __( 'Posts', 'somoscuatro-theme' ),
 					'name'        => self::$acf_block_prefix . '_posts',
 					'type'        => 'relationship',
-					'required'    => true,
 					'post_type'   => array(
 						0 => 'post',
 					),

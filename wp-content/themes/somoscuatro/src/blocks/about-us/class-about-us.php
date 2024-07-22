@@ -42,11 +42,10 @@ class About_Us extends Block {
 					'return_format' => 'string',
 				),
 				array(
-					'key'      => 'field_' . self::$acf_block_prefix . '_text',
-					'label'    => __( 'Text', 'somoscuatro-theme' ),
-					'name'     => self::$acf_block_prefix . '_text',
-					'type'     => 'textarea',
-					'required' => true,
+					'key'   => 'field_' . self::$acf_block_prefix . '_text',
+					'label' => __( 'Text', 'somoscuatro-theme' ),
+					'name'  => self::$acf_block_prefix . '_text',
+					'type'  => 'textarea',
 				),
 				array(
 					'key'          => 'field_' . self::$acf_block_prefix . '_customers_logos',
