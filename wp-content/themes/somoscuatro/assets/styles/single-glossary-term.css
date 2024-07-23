@@ -1,0 +1,7 @@
+@import "./global/_content-typo.css";
+
+.single-glossary-term main .glossary-term-content {
+
+  @extend %content-typo;
+  @apply py-4 md:py-8;
+}

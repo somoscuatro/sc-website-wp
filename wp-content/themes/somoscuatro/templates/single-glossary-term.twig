@@ -2,16 +2,16 @@
 
 {% block content %}
 	<main id="content">
-		<div class="bg-anti-flash-white-200">
-			<div class="mx-auto max-w-7xl py-[3.75rem] flex flex-col gap-4 text-center">
+		<div class="bg-anti-flash-white-200 px-11">
+			<div class="mx-auto max-w-7xl py-[3.75rem] flex flex-col gap-4 md:text-center">
 				{{ get_breadcrumbs() }}
-				<h1 class="text-4xl font-medium text-center lg:text-6xl font-syne">
+				<h1 class="text-4xl font-medium lg:text-6xl font-syne md:text-center">
 					{{ post.title }}
 				</h1>
 			</div>
 		</div>
-		<div class="container max-w-3xl py-10 mx-auto md:py-20">
+		{% if post.content is not empty %}
 			{{ post.content }}
-		</div>
+		{% endif %}
 	</main>
 {% endblock %}

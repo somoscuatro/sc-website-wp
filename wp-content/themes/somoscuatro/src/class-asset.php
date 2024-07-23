@@ -57,6 +57,11 @@ class Asset {
 			wp_enqueue_style( $theme_prefix . '-single-post', $this->get_base_url() . '/dist/styles/single-post.css', array(), $this->get_filemtime( 'styles/single-post.css' ) );
 		}
 
+		// Single Glossary Term Assets.
+		if ( is_singular( 'glossary-term' ) ) {
+			wp_enqueue_style( $theme_prefix . '-single-glossary-term', $this->get_base_url() . '/dist/styles/single-glossary-term.css', array(), $this->get_filemtime( 'styles/single-glossary-term.css' ) );
+		}
+
 		// Glossary Page Assets.
 		if ( is_page( get_theme_mod( 'glossary_page' ) ) ) {
 			wp_enqueue_script( $theme_prefix . '-page-glossary', $this->get_base_url() . '/dist/scripts/page-glossary.js', array(), $this->get_filemtime( 'scripts/page-glossary.js' ), true );
