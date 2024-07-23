@@ -1,0 +1,30 @@
+{% extends "section.twig" %}
+
+{% set background = get_color_name(bg_color) %}
+{% set foreground = get_foreground_color_name(background) %}
+
+{% block section_content %}
+	<div class="flex flex-col gap-10 md:gap-16 text-{{ foreground }}">
+		{% if title %}
+			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
+		{% endif %}
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+			{% for content in related_content %}
+				<div class="flex flex-col border border-{{ foreground }} {{ loop.index == 1 and loop.length > 3 ? 'xl:col-span-full xl:flex-row' : '' }}">
+					<div class="flex flex-col h-full gap-8 py-6 px-9 {{ loop.index == 1 and loop.length > 3 ? 'w-full xl:w-1/2' : '' }}">
+						<div class="flex flex-col h-full gap-2">
+							<p class="text-sm font-semibold uppercase text-folly-700">{{ content.post_type|replace({'-': ' '})|title }}</p>
+							<a href="{{ function('get_permalink', content.ID) }}">
+								<h3 class="text-2xl font-medium md:text-3xl font-syne">{{ content.post_title }}</h3>
+							</a>
+						</div>
+						<a href="{{ function('get_permalink', content.ID) }}" class="flex items-center gap-2">
+							{{ __('Know More', 'somoscuatro-theme') }}
+							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
