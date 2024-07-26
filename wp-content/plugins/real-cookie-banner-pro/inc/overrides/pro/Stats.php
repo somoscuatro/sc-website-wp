@@ -83,7 +83,7 @@ trait Stats
         $where = [];
         $where[] = $context === null ? '1 = 1' : $wpdb->prepare('context = %s', $context);
         // phpcs:disable WordPress.DB
-        $sql = $wpdb->prepare("SELECT button_clicked, SUM(`count`) as cnt\n            FROM {$table_name}\n            WHERE `day` BETWEEN %s AND %s\n                AND button_clicked <> 'none'\n                AND " . \join(' AND ', $where) . ' GROUP BY 1', $from, $to);
+        $sql = $wpdb->prepare("SELECT button_clicked, SUM(`count`) as cnt\n            FROM {$table_name}\n            WHERE `day` BETWEEN %s AND %s\n                AND button_clicked NOT IN ('none', 'implicit_all', 'implicit_essential')\n                AND " . \join(' AND ', $where) . ' GROUP BY 1', $from, $to);
         $rows = $wpdb->get_results($sql, ARRAY_A);
         // phpcs:enable WordPress.DB
         foreach ($rows as $row) {

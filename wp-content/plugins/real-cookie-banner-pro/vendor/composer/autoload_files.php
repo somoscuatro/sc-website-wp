@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '7aed44d824e149ce152c0fb82af9379a' => $vendorDir . '/colinodell/json5/src/global.php',
-    '45a16669595eb3c0a9e2994e57fc3188' => $vendorDir . '/yahnis-elsts/plugin-update-checker/load-v5p3.php',
+    'd05ecc14ff93fd612a81ec7e8ab4c2c9' => $vendorDir . '/yahnis-elsts/plugin-update-checker/load-v5p4.php',
     'd1134878ba3c805c6276ac2468dfe45f' => $vendorDir . '/devowl-wp/multilingual/src/autoload.php',
     'cd48e99dc39649f6529395d65373ee16' => $vendorDir . '/devowl-wp/real-product-manager-wp-client/src/autoload.php',
     '3b53485dc9f3bb8dad60976677e215b5' => $vendorDir . '/devowl-wp/real-queue/src/autoload.php',

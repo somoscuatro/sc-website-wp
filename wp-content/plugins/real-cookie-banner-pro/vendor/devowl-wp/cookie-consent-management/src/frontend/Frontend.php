@@ -2,9 +2,10 @@
 
 namespace DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\frontend;
 
+use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\consent\PersistedTransaction;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\CookieConsentManagement;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\settings\AbstractCountryBypass;
-use DevOwl\RealCookieBanner\Vendor\DevOwl\Multilingual\Iso3166OneAlpha2;
+use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\Utils;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\ServiceCloudConsumer\middlewares\services\ManagerMiddleware;
 /**
  * Functions for the frontend (e.g. generating "Code on page load" HTML output).
@@ -84,6 +85,36 @@ class Frontend
         return $output;
     }
     /**
+     * Create a JSON object for the frontend so it can be shown as history. In general, we do not want to expose
+     * all data. And perhaps we need to modify some data before sending to the client. See also `BannerHistoryEntry`
+     * in `@devowl-wp/react-cookie-banner`.
+     *
+     * @param PersistedTransaction $transaction
+     */
+    public function persistedTransactionToJsonForHistoryViewer($transaction)
+    {
+        $obj = ['id' => $transaction->id, 'uuid' => $transaction->uuid, 'isDoNotTrack' => $transaction->markAsDoNotTrack, 'isUnblock' => $transaction->blocker > 0, 'isForwarded' => $transaction->forwarded > 0, 'created' => $transaction->created, 'context' => [
+            'buttonClicked' => $transaction->buttonClicked,
+            'groups' => $transaction->revision['groups'],
+            'consent' => $transaction->decision,
+            'gcmConsent' => $transaction->gcmConsent,
+            // TCF compatibility
+            'tcf' => isset($transaction->revision['tcf']) ? [
+                'tcf' => $transaction->revision['tcf'],
+                // Keep `tcfMeta` for backwards-compatibility
+                'tcfMetadata' => $transaction->revisionIndependent['tcfMetadata'] ?? $transaction->revisionIndependent['tcfMeta'],
+                'tcfString' => $transaction->tcfString,
+            ] : null,
+        ]];
+        $lazyLoaded = $this->prepareLazyData($obj['context']['tcf']);
+        $obj['context']['lazyLoadedDataForSecondView'] = $lazyLoaded;
+        // Backwards-compatibility for older records using Geo-restriction bypass
+        if ($transaction->revision['options']['isCountryBypass'] && $transaction->customBypass === AbstractCountryBypass::CUSTOM_BYPASS && !Utils::startsWith($transaction->buttonClicked, 'implicit_')) {
+            $obj['context']['buttonClicked'] = $transaction->revision['options']['countryBypassType'] === AbstractCountryBypass::TYPE_ALL ? 'implicit_all' : 'implicit_essential';
+        }
+        return $obj;
+    }
+    /**
      * The `toJson` method prepares the data for the complete data of the frontend. Use this function
      * to outsource lazy-loadable data for the second view in your cookie banner.
      *
@@ -141,7 +172,7 @@ class Frontend
                 }
             }
         }
-        $gcmOutput = $this->generateGoogleConsentModeCodeOnPageLoad($uniqueNames);
+        $gcmOutput = $this->generateGoogleConsentModeCodeOnPageLoad();
         if (!empty($gcmOutput)) {
             $output[] = \is_callable($outputModifier) ? $outputModifier($gcmOutput, null) : $gcmOutput;
         }
@@ -149,30 +180,15 @@ class Frontend
     }
     /**
      * Generate the code on page load for Google Consent Mode.
-     *
-     * @param string[] $uniqueNames Additional unique names which should be sent to Google beside e.g. `ad_storage`
      */
-    protected function generateGoogleConsentModeCodeOnPageLoad($uniqueNames = [])
+    protected function generateGoogleConsentModeCodeOnPageLoad()
     {
         $settings = $this->getCookieConsentManagement()->getSettings();
-        $setCookiesViaManager = $settings->getGeneral()->getSetCookiesViaManager();
-        $countryBypass = $settings->getCountryBypass();
         $gcm = $settings->getGoogleConsentMode();
         $output = '';
         if ($gcm->isEnabled()) {
-            $denied = 'denied';
-            $granted = 'granted';
-            $consentTypes = \array_merge(['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage', 'functionality_storage', 'personalization_storage', 'security_storage'], $setCookiesViaManager === ManagerMiddleware::SET_COOKIES_AFTER_CONSENT_VIA_GOOGLE_TAG_MANAGER_WITH_GCM ? $uniqueNames : []);
-            $defaults = \array_fill_keys($consentTypes, $denied);
-            // Implicit consent for users from third countries which automatically accept all cookies
-            $regionGtag = '';
-            if ($countryBypass->isActive() && $countryBypass->getType() === AbstractCountryBypass::TYPE_ALL) {
-                $regionGtag = \sprintf("\ngtag('consent', 'default', %s );", \json_encode(\array_merge(\array_fill_keys($consentTypes, $granted), ['wait_for_update' => 1000, 'region' => \array_values(
-                    // TODO: extract from external package
-                    \array_diff(\array_keys(Iso3166OneAlpha2::getCodes()), $countryBypass->getCountries())
-                )])));
-            }
-            $output = \sprintf("<script>window.gtag && (()=>{gtag('set', 'url_passthrough', %s);\ngtag('set', 'ads_data_redaction', %s);%s\ngtag('consent', 'default', %s);})()</script>", $gcm->isCollectAdditionalDataViaUrlParameters() ? 'true' : 'false', $gcm->isRedactAdsDataWithoutConsent() ? 'true' : 'false', $regionGtag, \json_encode(\array_merge($defaults, ['wait_for_update' => 1000])));
+            $consentModes = $gcm->getConsentModes();
+            $output = \sprintf("<script>window.gtag && (()=>{gtag('set', 'url_passthrough', %s);\ngtag('set', 'ads_data_redaction', %s);\nfor (const d of %s) {\n\tgtag('consent', 'default', d);\n}})()</script>", $gcm->isCollectAdditionalDataViaUrlParameters() ? 'true' : 'false', $gcm->isRedactAdsDataWithoutConsent() ? 'true' : 'false', \json_encode($consentModes));
         }
         return $output;
     }
