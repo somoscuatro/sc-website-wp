@@ -25,7 +25,7 @@
 								{% endif %}
 							</li>
 							{% if item.children %}
-								<ul class="absolute z-10 flex flex-col bg-white border shadow-lg py-4 top-[61px] border-anti-flash-white-900" x-show="open" x-cloak>
+								<ul class="absolute z-10 flex flex-col bg-white border min-w-60 shadow-lg py-4 top-[61px] border-anti-flash-white-900" x-show="open" x-cloak>
 									{% for child in item.children %}
 										{% if not child.meta('_menu-item-show-bottom') %}
 											<li>
