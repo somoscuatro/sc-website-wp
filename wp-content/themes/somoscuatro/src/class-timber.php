@@ -13,6 +13,7 @@ use Somoscuatro\Theme\ACF;
 use Somoscuatro\Theme\Attributes\Action;
 use Somoscuatro\Theme\Attributes\Filter;
 
+use Symfony\Component\VarDumper\VarDumper;
 use Timber\Timber as TimberLibrary;
 use Twig\Environment as TwigEnvironment;
 use Twig\TwigFunction;
@@ -137,6 +138,16 @@ class Timber {
 	 */
 	#[Filter( 'timber/twig' )]
 	public function extend_timber_functions( TwigEnvironment $twig ): TwigEnvironment {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			$twig->addFunction(
+				new TwigFunction( 'dump', array( $this, 'dump' ) )
+			);
+
+			$twig->addFunction(
+				new TwigFunction( 'dd', array( $this, 'dd' ) )
+			);
+		}
+
 		$twig->addFunction(
 			new TwigFunction( 'enqueue_script', array( $this, 'enqueue_script' ) )
 		);
@@ -170,6 +181,28 @@ class Timber {
 		);
 
 		return $twig;
+	}
+
+	/**
+	 * Dumps a list of variables.
+	 *
+	 * @param mixed ...$vars Variables to dump.
+	 */
+	public function dump( mixed ...$vars ): void {
+		foreach ( $vars as $var ) {
+			VarDumper::dump( $var );
+		}
+	}
+
+	/**
+	 * Dumps a list of variables and dies.
+	 *
+	 * @param mixed ...$vars Variables to dump.
+	 */
+	public function dd( ...$vars ) {
+		foreach ( $vars as $var ) {
+			dd( $var );
+		}
 	}
 
 	/**
