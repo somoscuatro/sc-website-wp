@@ -47,6 +47,17 @@ class Asset {
 		// Theme Script.
 		wp_enqueue_script( $theme_prefix, $this->get_base_url() . '/dist/scripts/main.js', array(), $this->get_filemtime( 'scripts/main.js' ), true );
 
+		wp_enqueue_script(
+			'alpine',
+			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',
+			array(),
+			'3.5.0',
+			array(
+				'footer'   => false,
+				'strategy' => 'async',
+			)
+		);
+
 		// Legal Pages Assets.
 		if ( is_page_template( 'legal.php' ) ) {
 			wp_enqueue_style( $theme_prefix . '-legal', $this->get_base_url() . '/dist/styles/legal.css', array(), $this->get_filemtime( 'styles/legal.css' ) );

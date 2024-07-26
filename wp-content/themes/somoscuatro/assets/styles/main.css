@@ -21,6 +21,10 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @config "../../tailwind.config.js";
 
+[x-cloak] {
+	@apply hidden;
+}
+
 html {
 
 	@apply text-anti-flash-white-900;

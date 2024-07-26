@@ -3,28 +3,90 @@
 		<a href="{{ homepage_url }}">
 			<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
 		</a>
-		<nav class="hidden gap-none xl:gap-6 lg:flex">
-			{% for item in site_header_primary.get_items %}
-				{% if not item.meta('_menu-item-call-to-action') %}
-					{% include 'button.twig' with {
-						title: item.title,
-						url: item.url,
-						target: item.target,
-						type: 'link'
-					} %}
-				{% endif %}
-			{% endfor %}
+		<nav class="hidden lg:block">
+			<ul class="flex gap-none xl:gap-6">
+				{% for item in site_header_primary.get_items %}
+					{% if not item.meta('_menu-item-call-to-action') %}
+						<div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+							<li :class="open ? 'bg-white border-b-anti-flash-white-100 !border-anti-flash-white-900' : 'bg-transparent'" class="{{ item.children|length > 0 ? 'relative z-20 border-l border-t border-r border-transparent' : '' }}">
+								{% if item.children|length > 0 %}
+									<div class="flex items-center gap-2 px-4 py-2 md:px-7">
+										<p class="font-medium w-fit">{{ item.title }}</p>
+										<span class="mt-1 -rotate-90 stroke-anti-flash-white-900" :class="open ? '!rotate-90' : '-rotate-90'">{% include 'icons/chevron.twig' with { size: '4', strokeWidth: 2.5 } %}{# w-4 h-4 #}</span>
+									</div>
+								{% else %}
+									{% include 'button.twig' with {
+										classes: '',
+										title: item.title,
+										url: item.url,
+										target: item.target,
+										type: 'link'
+									} %}
+								{% endif %}
+							</li>
+							{% if item.children %}
+								<ul class="absolute z-10 flex flex-col bg-white border shadow-lg py-4 top-[61px] border-anti-flash-white-900" x-show="open" x-cloak>
+									{% for child in item.children %}
+										{% if not child.meta('_menu-item-show-bottom') %}
+											<li>
+												{% include 'button.twig' with {
+													classes: 'block w-full py-2 px-7 hover:bg-anti-flash-white-200',
+													title: child.title,
+													url: child.url,
+													target: child.target,
+													type: 'link'
+												} %}
+											</li>
+										{% else %}
+											<li class="pt-4 mt-4 border-t px-7 border-anti-flash-white-400">
+												<a href="{{ child.url }}" class="flex items-center justify-between">
+													View all services
+													<span class="stroke-anti-flash-white-900">{% include 'icons/arrow.twig' %}</span>
+												</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+					{% endif %}
+				{% endfor %}
+			</ul>
 		</nav>
 		<nav id="nav-site-header-primary-mobile" class="absolute left-0 top-20 hidden w-full max-h-[calc(100vh_-_5rem)] overflow-y-scroll flex-col px-2 py-4 border-b border-anti-flash-white-400 bg-anti-flash-white-100">
 			{% for item in site_header_primary.get_items %}
 				{% if not item.meta('_menu-item-call-to-action') %}
-					{% include 'button.twig' with {
-						classes: 'w-full',
-						title: item.title,
-						url: item.url,
-						target: item.target,
-						type: 'link'
-					} %}
+					<div x-data="{ open: false }" @click="open = !open">
+						{% if item.children|length > 0 %}
+							<div class="flex items-center justify-between gap-2 px-4 py-2 md:px-7">
+								<p class="font-medium w-fit">{{ item.title }}</p>
+								<span class="mt-1 -rotate-90 stroke-anti-flash-white-900" :class="open ? '!rotate-90' : '-rotate-90'">{% include 'icons/chevron.twig' with { size: '4', strokeWidth: 2.5 } %}{# w-4 h-4 #}</span>
+							</div>
+						{% else %}
+							{% include 'button.twig' with {
+								classes: 'w-full',
+								title: item.title,
+								url: item.url,
+								target: item.target,
+								type: 'link'
+							} %}
+						{% endif %}
+						{% if item.children %}
+							<ul class="flex flex-col py-2" x-show="open" x-cloak>
+								{% for child in item.children %}
+									<li>
+										{% include 'button.twig' with {
+											classes: 'block w-full py-2 px-8',
+											title: child.title,
+											url: child.url,
+											target: child.target,
+											type: 'link'
+										} %}
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</div>
 				{% endif %}
 			{% endfor %}
 		</nav>
