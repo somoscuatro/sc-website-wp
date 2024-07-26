@@ -12,7 +12,7 @@
 			<p class="text-lg font-bold text-center uppercase">{{ __('Trusted By', 'somoscuatro-theme') }}</p>
 			<div class="flex flex-wrap justify-center lg:justify-between">
 				{% for item in customers_logos %}
-					{% include 'image.twig' with {
+					{% include 'image/template.twig' with {
 						class: "max-w-[140px] md:max-w-[176px]",
 						image: item.customer_logo,
 						allowed_sizes: ['sm']

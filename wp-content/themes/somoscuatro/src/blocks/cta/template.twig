@@ -11,7 +11,7 @@
 		<h2 class="text-4xl md:text-6xl font-syne">{{ text }}</h2>
 		<div class="flex gap-4">
 			{% for item in buttons %}
-				{% include 'button.twig' with {
+				{% include 'button/template.twig' with {
 					id: loop.index == 1 ? 'gtm-conversion-contact-cta' : 'gtm-conversion-schedule-call-cta',
 					title: item.button.title,
 					url: item.button.url,

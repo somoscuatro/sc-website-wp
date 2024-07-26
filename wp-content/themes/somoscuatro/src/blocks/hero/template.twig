@@ -14,7 +14,7 @@
 						<div class="flex flex-col max-w-lg gap-2 text-xl font-light">{{ text|striptags('<br><p>') }}</div>
 					{% endif %}
 					{% if cta %}
-						{% include 'button.twig' with {
+						{% include 'button/template.twig' with {
 							id: 'gtm-conversion-contact-hero',
 							title: cta.title,
 							url: cta.url,
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			{% if image %}
-				{% include 'image.twig' with {
+				{% include 'image/template.twig' with {
 					class: layout ? 'max-w-sm lg:max-w-2xl' : '',
 					image: image,
 					allowed_sizes: ['lg', 'xl'],

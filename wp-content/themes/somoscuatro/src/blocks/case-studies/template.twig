@@ -24,13 +24,13 @@
 						</a>
 					</div>
 					{% if loop.index == 1 and loop.length > 3 %}
-						{% include 'image.twig' with {
+						{% include 'image/template.twig' with {
 							class: 'xl:w-1/2 w-full order-first xl:order-last',
 							image: function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)),
 							allowed_sizes: ['md', 'lg']
 						} %}
 					{% else %}
-						{% include 'image.twig' with {
+						{% include 'image/template.twig' with {
 							class: 'object-contain h-auto max-w-full order-first',
 							image: function('acf_get_attachment', function('get_post_thumbnail_id', case_study.ID)),
 							allowed_sizes: ['md']
