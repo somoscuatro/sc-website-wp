@@ -1,6 +1,6 @@
 <?php
 /**
- * The Glossary Page Template File.
+ * Template Name: Glossary
  *
  * @package somoscuatro-theme
  */
