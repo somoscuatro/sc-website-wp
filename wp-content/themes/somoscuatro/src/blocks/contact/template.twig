@@ -11,7 +11,7 @@
 		<div class="flex flex-col gap-16 lg:flex-row">
 			<div class="{{ schedule_a_call ? 'lg:w-3/5' : 'w-full' }}">
 				{% apply shortcodes %}
-					[contact-form-7 id="{{ '518664a' }}" title="Contact form 1"]
+					[contact-form-7 id="{{ contact_form_id }}" {% if title %}title="{{ title }}"{% endif %}]
 				{% endapply %}
 			</div>
 			<div class="flex flex-col gap-6 lg:w-2/6">
@@ -32,7 +32,7 @@
 				{% endif %}
 				{% if details %}
 					<div class="px-10">
-						<h3 class="text-2xl font-medium font-syne">{{ __('Details') }}</h3>
+						<h3 class="text-2xl font-medium font-syne">{{ __('Details', 'somoscuatro-theme') }}</h3>
 						{{ details }}
 					</div>
 				{% endif %}
