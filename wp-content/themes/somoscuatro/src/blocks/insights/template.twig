@@ -5,10 +5,12 @@
 
 {% set posts = posts ? posts : get_latest_posts(number_of_posts) %}
 
+{% set heading_type = heading_type ? heading_type : 'h2' %}
+
 {% block section_content %}
 	<div class="flex flex-col gap-10 md:gap-16 text-{{ foreground }}">
 		{% if title %}
-			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
+			<{{ heading_type }} class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</{{ heading_type }}>
 		{% endif %}
 		<div x-data="{ show: false, aboveFold: true }" x-init="{{ 'aboveFold = (window.innerHeight > $el.getBoundingClientRect().top); show = aboveFold'|escape }}" x-intersect.once="show = true">
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 animate-fade-up animate-once animate-ease-in-out animate-normal" x-show="show" x-transition>
