@@ -24,6 +24,7 @@ wp-content/themes/somoscuatro/src/blocks/**/fields.json
 # Ignore cache files
 /wp-content/litespeed/
 /wp-content/cache/
+/wp-content/languages/mo-cache/
 /wp-content/autoptimize_404_handler.php
 
 # Plugin ewww-image-optimizer
