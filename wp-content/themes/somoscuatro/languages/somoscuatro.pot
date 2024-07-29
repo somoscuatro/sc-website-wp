@@ -1,0 +1,518 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: somoscuatro\n"
+"POT-Creation-Date: 2024-07-29 14:15+0200\n"
+"PO-Revision-Date: 2015-06-19 15:29+0100\n"
+"Last-Translator: \n"
+"Language-Team: somoscuatro\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: *.min.js\n"
+
+#: src/blocks/about-us/class-about-us.php:34
+msgid "Block: About Us"
+msgstr ""
+
+#: src/blocks/about-us/class-about-us.php:38
+#: src/blocks/case-studies/class-case-studies.php:38
+#: src/blocks/content/class-content.php:38 src/blocks/cta/class-cta.php:38
+#: src/blocks/faqs/class-faqs.php:38 src/blocks/hero/class-hero.php:38
+#: src/blocks/insights/class-insights.php:38
+#: src/blocks/related-content/class-related-content.php:39
+#: src/blocks/services/class-services.php:38
+#: src/blocks/testimonial-banner/class-testimonial-banner.php:38
+#: src/blocks/testimonials/class-testimonials.php:62
+msgid "Background Color"
+msgstr ""
+
+#: src/blocks/about-us/class-about-us.php:46
+#: src/blocks/contact/class-contact.php:74 src/blocks/faqs/class-faqs.php:53
+#: src/blocks/hero/class-hero.php:62
+#: src/blocks/process-steps/class-process-steps.php:55
+#: src/blocks/process-steps/class-process-steps.php:80
+#: src/class-customizer.php:213
+msgid "Text"
+msgstr ""
+
+#: src/blocks/about-us/class-about-us.php:52
+msgid "Customers Logos"
+msgstr ""
+
+#: src/blocks/about-us/class-about-us.php:58
+msgid "Add Customer Logo"
+msgstr ""
+
+#: src/blocks/about-us/class-about-us.php:62
+msgid "Customer Logo"
+msgstr ""
+
+#: src/blocks/case-studies/class-case-studies.php:34
+msgid "Block: Case Studies"
+msgstr ""
+
+#: src/blocks/case-studies/class-case-studies.php:46
+#: src/blocks/contact/class-contact.php:38
+#: src/blocks/contact/class-contact.php:59
+#: src/blocks/content/class-content.php:46
+#: src/blocks/content/class-content.php:63
+#: src/blocks/content/class-content.php:70 src/blocks/cta/class-cta.php:46
+#: src/blocks/faqs/class-faqs.php:46 src/blocks/hero/class-hero.php:55
+#: src/blocks/insights/class-insights.php:46
+#: src/blocks/process-steps/class-process-steps.php:47
+#: src/blocks/process-steps/class-process-steps.php:72
+#: src/blocks/related-content/class-related-content.php:47
+#: src/blocks/services/class-services.php:46
+#: src/blocks/testimonials/class-testimonials.php:70
+msgid "Title"
+msgstr ""
+
+#: src/blocks/case-studies/class-case-studies.php:53 src/class-seo.php:118
+msgid "Case Studies"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:34
+#: src/blocks/insight-content/class-insight-content.php:34
+msgid "Block: Case Study Content"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:38
+#: src/blocks/case-study-content/template.twig:7
+msgid "Brand"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:45
+#: src/blocks/case-study-content/template.twig:11
+msgid "Location"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:52
+#: src/blocks/case-study-content/template.twig:15
+msgid "Industry"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:59
+#: src/blocks/services/class-services.php:53 src/class-seo.php:111
+msgid "Services"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:66
+#: src/blocks/case-study-content/template.twig:23
+msgid "Release"
+msgstr ""
+
+#: src/blocks/case-study-content/class-case-study-content.php:73
+#: src/blocks/glossary-term-content/class-glossary-term-content.php:38
+#: src/blocks/insight-content/class-insight-content.php:38
+msgid "Content"
+msgstr ""
+
+#: src/blocks/contact/class-contact.php:34
+msgid "Block: Contact"
+msgstr ""
+
+#: src/blocks/contact/class-contact.php:44
+msgid "Contact Form ID"
+msgstr ""
+
+#: src/blocks/contact/class-contact.php:50
+msgid "Enable Schedule a Call"
+msgstr ""
+
+#: src/blocks/contact/class-contact.php:89
+msgid "Contact Details"
+msgstr ""
+
+#: src/blocks/content/class-content.php:34
+msgid "Block: Content"
+msgstr ""
+
+#: src/blocks/content/class-content.php:59
+msgid "Add Column"
+msgstr ""
+
+#: src/blocks/cta/class-cta.php:34 src/blocks/faqs/class-faqs.php:34
+msgid "Block: CTA"
+msgstr ""
+
+#: src/blocks/cta/class-cta.php:59
+msgid "Add Button"
+msgstr ""
+
+#: src/blocks/cta/class-cta.php:63
+msgid "Button"
+msgstr ""
+
+#: src/blocks/faqs/class-faqs.php:60
+msgid "FAQs"
+msgstr ""
+
+#: src/blocks/glossary-term-content/class-glossary-term-content.php:34
+msgid "Block: Glossary Term Content"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:34 src/blocks/insights/class-insights.php:34
+msgid "Block: Hero"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:45
+msgid "Layout"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:50
+msgid "Horizontal"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:51
+msgid "Vertical"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:68 src/class-customizer.php:192
+#: src/custom-post-types/post-types/class-testimonials.php:72
+msgid "Image"
+msgstr ""
+
+#: src/blocks/hero/class-hero.php:74
+msgid "CTA"
+msgstr ""
+
+#: src/blocks/insights/class-insights.php:53
+msgid "Number of Posts"
+msgstr ""
+
+#: src/blocks/insights/class-insights.php:62
+msgid "Posts"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:34
+msgid "Block: Process Steps"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:38
+msgid "Steps"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:43
+msgid "Add Step"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:63
+msgid "Sub-Steps"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:68
+msgid "Add Sub-Step"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:88
+#: src/blocks/process-steps/template.twig:22
+#: src/blocks/tech-tools/template.twig:3
+msgid "Capabilities"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:93
+msgid "Add Capability"
+msgstr ""
+
+#: src/blocks/process-steps/class-process-steps.php:97
+msgid "Capability"
+msgstr ""
+
+#: src/blocks/related-content/class-related-content.php:35
+msgid "Block: Related Content"
+msgstr ""
+
+#: src/blocks/related-content/class-related-content.php:54
+msgid "Related Content"
+msgstr ""
+
+#: src/blocks/services/class-services.php:34
+#: src/blocks/testimonial-banner/class-testimonial-banner.php:34
+msgid "Block: Services"
+msgstr ""
+
+#: src/blocks/tech-tools/class-tech-tools.php:37
+msgid "Block: Tech Tools"
+msgstr ""
+
+#: src/blocks/testimonial-banner/class-testimonial-banner.php:46
+msgid "Testimonial"
+msgstr ""
+
+#: src/blocks/testimonials/class-testimonials.php:58
+msgid "Block: Testimonials"
+msgstr ""
+
+#: src/blocks/testimonials/class-testimonials.php:77
+msgid "Testimonials"
+msgstr ""
+
+#: src/blocks/values/class-values.php:37
+msgid "Block: Values"
+msgstr ""
+
+#: src/blocks/values/class-values.php:41
+msgid "Groups"
+msgstr ""
+
+#: src/blocks/values/class-values.php:46
+msgid "Add Values Group"
+msgstr ""
+
+#: src/blocks/values/class-values.php:50
+msgid "Group Image"
+msgstr ""
+
+#: src/blocks/values/class-values.php:57 src/blocks/values/class-values.php:80
+msgid "Group Title"
+msgstr ""
+
+#: src/blocks/values/class-values.php:64 src/blocks/values/class-values.php:87
+msgid "Group Text"
+msgstr ""
+
+#: src/blocks/values/class-values.php:71
+msgid "Values"
+msgstr ""
+
+#: src/blocks/values/class-values.php:75
+msgid "Add Value"
+msgstr ""
+
+#: src/class-customizer.php:32
+msgid "Custom Pages"
+msgstr ""
+
+#: src/class-customizer.php:50
+msgid "Services Page"
+msgstr ""
+
+#: src/class-customizer.php:71
+msgid "Case Studies Page"
+msgstr ""
+
+#: src/class-customizer.php:92
+msgid "Glossary Page"
+msgstr ""
+
+#: src/class-customizer.php:113
+msgid "Site Footer"
+msgstr ""
+
+#: src/class-customizer.php:132
+msgid "Claim"
+msgstr ""
+
+#: src/class-customizer.php:153
+msgid "Email"
+msgstr ""
+
+#: src/class-customizer.php:173
+msgid "404"
+msgstr ""
+
+#: src/class-customizer.php:233
+msgid "Google Tag Manager"
+msgstr ""
+
+#: src/class-customizer.php:251
+msgid "GTM ID"
+msgstr ""
+
+#: src/class-gutenberg.php:39
+msgid "Somoscuatro Custom Blocks"
+msgstr ""
+
+#: src/class-navigation.php:24
+msgid "Site Header Primary"
+msgstr ""
+
+#: src/class-navigation.php:25
+msgid "Site Footer Primary"
+msgstr ""
+
+#: src/class-navigation.php:26
+msgid "Site Footer Legals"
+msgstr ""
+
+#: src/class-navigation.php:42
+msgid "Call to Action"
+msgstr ""
+
+#: src/class-navigation.php:51
+msgid "Show at the Bottom"
+msgstr ""
+
+#: src/class-seo.php:125
+msgid "Glossary"
+msgstr ""
+
+#: src/class-theme.php:104
+#, php-format
+msgid "%s plugin is not installed. Please install the plugin to use the Somoscuatro Theme."
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:62
+msgid "Add New"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:63
+#: src/custom-taxonomies/class-custom-taxonomy.php:74
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:64
+msgid "Edit"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:65
+#: src/custom-taxonomies/class-custom-taxonomy.php:72
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:66
+#: src/custom-taxonomies/class-custom-taxonomy.php:75
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:67
+msgid "View"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:68
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:69
+#: src/custom-taxonomies/class-custom-taxonomy.php:68
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:70
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:71
+#, php-format
+msgid "No %s found in Trash"
+msgstr ""
+
+#: src/custom-post-types/class-custom-post-type.php:72
+#: src/custom-taxonomies/class-custom-taxonomy.php:70
+#: src/custom-taxonomies/class-custom-taxonomy.php:71
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: src/custom-post-types/post-types/class-testimonials.php:61
+msgid "CPT: Testimonials"
+msgstr ""
+
+#: src/custom-post-types/post-types/class-testimonials.php:65
+msgid "Company Logo"
+msgstr ""
+
+#: src/custom-post-types/post-types/class-testimonials.php:79
+msgid "Role & Company"
+msgstr ""
+
+#: src/custom-taxonomies/class-custom-taxonomy.php:69
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: src/custom-taxonomies/class-custom-taxonomy.php:73
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: vendor/timber/timber/src/Archives.php:188
+#, php-format
+msgid "%1$s %2$d"
+msgstr ""
+
+#: vendor/timber/timber/src/DateTimeHelper.php:84
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: vendor/timber/timber/src/DateTimeHelper.php:89
+#, php-format
+msgid "%s from now"
+msgstr ""
+
+#: vendor/timber/timber/src/PagesMenu.php:79
+msgid "Pages"
+msgstr ""
+
+#: vendor/timber/timber/src/Pagination.php:144
+msgid "&laquo; Previous"
+msgstr ""
+
+#: vendor/timber/timber/src/Pagination.php:145
+msgid "Next &raquo;"
+msgstr ""
+
+#: vendor/timber/timber/src/Pagination.php:221
+#: vendor/timber/timber/src/TextHelper.php:47
+msgid "&hellip;"
+msgstr ""
+
+#: vendor/timber/timber/src/TextHelper.php:74
+msgctxt "Word count type. Do not translate!"
+msgid "words"
+msgstr ""
+
+#: src/blocks/about-us/template.twig:12
+msgid "Trusted By"
+msgstr ""
+
+#: src/blocks/case-studies/template.twig:23
+#: src/blocks/insights/template.twig:33
+#: src/blocks/related-content/template.twig:22
+#: src/blocks/services/template.twig:21
+msgid "Know More"
+msgstr ""
+
+#: src/blocks/case-study-content/template.twig:19
+msgid "What we did"
+msgstr ""
+
+#: src/blocks/contact/template.twig:35
+msgid "Details"
+msgstr ""
+
+#: src/blocks/process-steps/template.twig:9
+msgid "Step"
+msgstr ""
+
+#: src/blocks/tech-tools/template.twig:6
+msgid "All"
+msgstr ""
+
+#: src/blocks/tech-tools/template.twig:16
+msgid "Techs & Tools"
+msgstr ""
+
+#: templates/page-glossary.twig:13
+msgid "Search"
+msgstr ""
+
+#: templates/page-glossary.twig:50
+msgid "Show all terms"
+msgstr ""
