@@ -49,6 +49,19 @@ class Case_Studies extends Block {
 					'required' => true,
 				),
 				array(
+					'key'      => 'field_' . self::$acf_block_prefix . '_heading_type',
+					'label'    => __( 'Heading type', 'somoscuatro-theme' ),
+					'name'     => self::$acf_block_prefix . '_heading_type',
+					'type'     => 'select',
+					'choices'  => array(
+						'h1' => 'h1',
+						'h2' => 'h2',
+						'h3' => 'h3',
+					),
+					'default'  => 'h2',
+					'required' => true,
+				),
+				array(
 					'key'         => 'field_' . self::$acf_block_prefix . '_case_studies',
 					'label'       => __( 'Case Studies', 'somoscuatro-theme' ),
 					'name'        => self::$acf_block_prefix . '_case_studies',
