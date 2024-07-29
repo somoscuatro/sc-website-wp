@@ -10,32 +10,34 @@
 		{% if title %}
 			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
 		{% endif %}
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-			{% for post in posts %}
-				<div class="border border-{{ foreground }}">
-					<div>
-						{% include 'image/template.twig' with {
-							image: function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)),
-							allowed_sizes: ['md']
-						} %}
-					</div>
-					<div class="flex flex-col gap-4 py-6 px-9">
-						<p class="text-sm font-semibold uppercase text-folly-700">{{ post.terms('category') | join(', ') }}</p>
-						<div class="flex flex-col gap-8">
-							<div class="flex flex-col gap-2">
-								<a href="{{ function('get_permalink', post.ID) }}">
-									<h3 class="text-2xl font-semibold md:text-3xl font-syne">{{ post.post_title }}</h3>
+		<div x-data="{ show: false, aboveFold: true }" x-init="{{ 'aboveFold = (window.innerHeight > $el.getBoundingClientRect().top); show = aboveFold'|escape }}" x-intersect.once="show = true">
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 animate-fade-up animate-once animate-ease-in-out animate-normal" x-show="show" x-transition>
+				{% for post in posts %}
+					<div class="border border-{{ foreground }}">
+						<div>
+							{% include 'image/template.twig' with {
+								image: function('acf_get_attachment', function('get_post_thumbnail_id', post.ID)),
+								allowed_sizes: ['md']
+							} %}
+						</div>
+						<div class="flex flex-col gap-4 py-6 px-9">
+							<p class="text-sm font-semibold uppercase text-folly-700">{{ post.terms('category') | join(', ') }}</p>
+							<div class="flex flex-col gap-8">
+								<div class="flex flex-col gap-2">
+									<a href="{{ function('get_permalink', post.ID) }}">
+										<h3 class="text-2xl font-semibold md:text-3xl font-syne">{{ post.post_title }}</h3>
+									</a>
+									<p class="md:min-h-[160px]">{{ post.post_excerpt }}</p>
+								</div>
 								<a href="{{ function('get_permalink', post.ID) }}" class="flex items-center gap-1 group">
 									{{ __('Know More', 'somoscuatro-theme') }}
 									<span class="group-hover:animate-jump animate-once stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 								</a>
-								<p class="md:min-h-[160px]">{{ post.post_excerpt }}</p>
 							</div>
-							</a>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
