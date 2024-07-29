@@ -10,7 +10,7 @@
 					<div class="max-w-2xl md:mx-auto content">{{ post.content }}</div>
 				</div>
 				<div class="flex justify-center">
-					<input class="w-full h-10 px-4 py-1 border min-w-56 border-pale-sky md:w-fit" type="text" id="glossary-search" placeholder="Search" x-model="search" />
+					<input class="w-full h-10 px-4 py-1 border min-w-56 border-pale-sky md:w-fit" type="text" id="glossary-search" placeholder="{{ __( 'Search', 'somoscuatro-theme' ) }}" x-model="search" />
 					<div class="p-2 bg-anti-flash-white-900 stroke-anti-flash-white-100">
 						{% include 'icons/magnifying-glass.twig' %}
 					</div>
@@ -58,4 +58,3 @@
 </main>
 {{ enqueue_script('alpine') }}
 {% endblock %}
-
