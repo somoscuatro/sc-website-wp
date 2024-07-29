@@ -48,13 +48,24 @@ class Asset {
 		wp_enqueue_script( $theme_prefix, $this->get_base_url() . '/dist/scripts/main.js', array(), $this->get_filemtime( 'scripts/main.js' ), true );
 
 		wp_enqueue_script(
-			'alpine',
+			'alpine-intersect',
+			'https://unpkg.com/@alpinejs/intersect@3.14.1/dist/cdn.min.js',
 			array(),
-			'https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js',
 			'3.14.1',
 			array(
 				'footer'   => false,
-				'strategy' => 'async',
+				'strategy' => 'defer',
+			)
+		);
+
+		wp_enqueue_script(
+			'alpine',
+			'https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js',
+			array( 'alpine-intersect' ),
+			'3.14.1',
+			array(
+				'footer'   => false,
+				'strategy' => 'defer',
 			)
 		);
 

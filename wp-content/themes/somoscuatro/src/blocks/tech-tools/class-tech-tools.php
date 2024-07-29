@@ -108,12 +108,12 @@ class Tech_Tools extends Block {
 	public function register_assets(): void {
 		wp_register_script(
 			'alpine',
-			array(),
 			'https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js',
+			array( 'alpine-intersect' ),
 			'3.14.1',
 			array(
 				'footer'   => false,
-				'strategy' => 'async',
+				'strategy' => 'defer',
 			)
 		);
 	}
