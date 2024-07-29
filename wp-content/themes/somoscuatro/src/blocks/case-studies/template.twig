@@ -15,12 +15,12 @@
 						<div class="flex flex-col h-full gap-2">
 							<a href="{{ function('get_permalink', case_study.ID) }}">
 								<h3 class="text-2xl font-medium md:text-3xl font-syne">{{ case_study.post_title }}</h3>
+							<a href="{{ function('get_permalink', case_study.ID) }}" class="flex items-center gap-1 group">
+								{{ __('Know More', 'somoscuatro-theme') }}
+								<span class="group-hover:animate-jump animate-once stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 							</a>
 							<p>{{ case_study.post_excerpt }}</p>
 						</div>
-						<a href="{{ function('get_permalink', case_study.ID) }}" class="flex items-center gap-2">
-							{{ __('Know More', 'somoscuatro-theme') }}
-							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 						</a>
 					</div>
 					{% if loop.index == 1 and loop.length > 3 %}

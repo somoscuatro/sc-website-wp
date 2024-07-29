@@ -17,9 +17,9 @@
 						</a>
 						<p class="h-full">{{ service.post_excerpt }}</p>
 					</div>
-					<a href="{{ function('get_permalink', service.ID) }}" class="flex items-center gap-2">
+					<a href="{{ function('get_permalink', service.ID) }}" class="flex items-center gap-1 group">
 						{{ __('Know More', 'somoscuatro-theme') }}
-						<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
+						<span class="group-hover:animate-jump animate-once stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 					</a>
 				</div>
 			{% endfor %}

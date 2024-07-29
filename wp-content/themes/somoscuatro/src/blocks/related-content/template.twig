@@ -18,9 +18,9 @@
 								<h3 class="text-2xl font-medium md:text-3xl font-syne">{{ content.post_title }}</h3>
 							</a>
 						</div>
-						<a href="{{ function('get_permalink', content.ID) }}" class="flex items-center gap-2">
+						<a href="{{ function('get_permalink', content.ID) }}" class="flex items-center gap-1 group">
 							{{ __('Know More', 'somoscuatro-theme') }}
-							<span class="stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
+							<span class="group-hover:animate-jump animate-once stroke-{{foreground}}">{% include 'icons/arrow.twig' %}</span>
 						</a>
 					</div>
 				</div>
