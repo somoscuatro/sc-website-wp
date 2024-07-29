@@ -91,9 +91,9 @@ class FAQs extends Block {
 	public function register_assets(): void {
 		wp_register_script(
 			'alpine',
-			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',
 			array(),
-			'3.5.0',
+			'https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js',
+			'3.14.1',
 			array(
 				'footer'   => false,
 				'strategy' => 'defer',

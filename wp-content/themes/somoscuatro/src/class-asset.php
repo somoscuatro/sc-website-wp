@@ -49,9 +49,9 @@ class Asset {
 
 		wp_enqueue_script(
 			'alpine',
-			'https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js',
 			array(),
-			'3.5.0',
+			'https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js',
+			'3.14.1',
 			array(
 				'footer'   => false,
 				'strategy' => 'async',
