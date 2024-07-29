@@ -15,7 +15,7 @@
 				<div class="flex flex-col gap-4">
 					<p class="text-xl md:text-2xl">{{ testimonial.post_content|striptags }}</p>
 					<div class="flex flex-col">
-						<h3 class="text-lg font-bold">{{ testimonial.post_title }}</h3>
+						<p class="text-lg font-bold">{{ testimonial.post_title }}</p>
 						<p>{{ function('get_field', 'cpt_testimonials_role_company', testimonial.ID) }}</p>
 					</div>
 				</div>
