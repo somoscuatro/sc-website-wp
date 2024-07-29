@@ -4,12 +4,17 @@
 			<img src="{{ logo }}" alt="somoscuatro" width="158" height="52" />
 		</a>
 		<nav class="hidden lg:block">
-			<ul class="flex gap-none xl:gap-6">
+			<ul class="flex gap-none xl:gap-6" role="menu">
 				{% for item in site_header_primary.get_items %}
 					{% if not item.meta('_menu-item-call-to-action') %}
+						{% set has_children = item.children|length > 0 %}
 						<div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-							<li :class="open ? 'bg-white border-b-anti-flash-white-100 !border-anti-flash-white-900' : 'bg-transparent'" class="{{ item.children|length > 0 ? 'relative z-20 border-l border-t border-r border-transparent' : '' }}">
-								{% if item.children|length > 0 %}
+							<li
+								class="{{ has_children ? 'relative z-20 border-l border-t border-r border-transparent' : '' }}"
+								:class="open ? 'bg-white border-b-anti-flash-white-100 !border-anti-flash-white-900' : 'bg-transparent'"
+								role="menuitem" {{ has_children ? 'aria-haspopup="true"' }} :aria-expanded="open ? 'true' : 'false'"
+							>
+								{% if has_children %}
 									<div class="flex items-center gap-2 px-4 py-2 md:px-7">
 										<p class="font-medium w-fit">{{ item.title }}</p>
 										<span class="mt-1 -rotate-90 stroke-anti-flash-white-900" :class="open ? '!rotate-90' : '-rotate-90'">{% include 'icons/chevron.twig' with { size: '4', strokeWidth: 2.5 } %}{# w-4 h-4 #}</span>
