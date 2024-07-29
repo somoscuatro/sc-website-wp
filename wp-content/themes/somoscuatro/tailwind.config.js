@@ -29,7 +29,7 @@ module.exports = {
 			colors: tailwindColorPalette,
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwindcss-animated')],
 	safelist: [
 		...tailwindSafeBgColorPalette.colors,
 		'border-anti-flash-white-100',
