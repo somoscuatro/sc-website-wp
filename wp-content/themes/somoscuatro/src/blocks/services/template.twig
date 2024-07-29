@@ -3,10 +3,12 @@
 {% set background = get_color_name(bg_color) %}
 {% set foreground = get_foreground_color_name(background) %}
 
+{% set heading_type = heading_type ? heading_type : 'h2' %}
+
 {% block section_content %}
 	<div class="flex flex-col gap-10 md:gap-16 text-{{ foreground }}">
 		{% if title %}
-			<h2 class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</h2>
+			<{{ heading_type }} class="text-4xl font-medium md:text-6xl font-syne">{{ title }}</{{ heading_type }}>
 		{% endif %}
 		<div class="grid grid-cols-1 gap-10 md:gap-20 md:grid-cols-2 xl:grid-cols-3">
 			{% for service in services %}

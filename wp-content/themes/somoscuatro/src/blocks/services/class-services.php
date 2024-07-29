@@ -49,6 +49,19 @@ class Services extends Block {
 					'required' => true,
 				),
 				array(
+					'key'      => 'field_' . self::$acf_block_prefix . '_heading_type',
+					'label'    => __( 'Heading type', 'somoscuatro-theme' ),
+					'name'     => self::$acf_block_prefix . '_heading_type',
+					'type'     => 'select',
+					'choices'  => array(
+						'h1' => 'h1',
+						'h2' => 'h2',
+						'h3' => 'h3',
+					),
+					'default'  => 'h2',
+					'required' => true,
+				),
+				array(
 					'key'         => 'field_' . self::$acf_block_prefix . '_services',
 					'label'       => __( 'Services', 'somoscuatro-theme' ),
 					'name'        => self::$acf_block_prefix . '_services',
