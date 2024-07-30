@@ -310,7 +310,12 @@ class Timber {
 			return array();
 		}
 
-		return apply_filters( 'wpml_post_language_details', null, get_the_ID() );
+		$current_language = apply_filters( 'wpml_post_language_details', null, get_the_ID() );
+		if ( is_wp_error( $current_language ) ) {
+			return array();
+		}
+
+		return $current_language;
 	}
 
 	public function get_active_languages(): array {
