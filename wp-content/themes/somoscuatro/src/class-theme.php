@@ -147,4 +147,15 @@ class Theme {
 	public function get_prefix(): string {
 		return $this->prefix;
 	}
+
+	/**
+	 * Redirects feeds to homepage.
+	 */
+	#[Action( 'template_redirect' )]
+	public function redirect_feeds_to_homepage(): void {
+		if ( is_feed() ) {
+			wp_safe_redirect( home_url(), 301 );
+			exit();
+		}
+	}
 }
