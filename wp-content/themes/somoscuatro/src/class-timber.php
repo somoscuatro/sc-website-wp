@@ -318,6 +318,11 @@ class Timber {
 		return $current_language;
 	}
 
+	/**
+	 * Gets the WPML active languages.
+	 *
+	 * @return array The WPML active languages.
+	 */
 	public function get_active_languages(): array {
 		if ( ! function_exists( 'icl_get_languages' ) ) {
 			return array();
