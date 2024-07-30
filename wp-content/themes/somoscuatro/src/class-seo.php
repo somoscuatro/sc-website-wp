@@ -155,7 +155,7 @@ class SEO {
 
 		foreach ( $links as $index => &$link ) {
 			if ( $index < count( $links ) - 1 ) {
-				$link['text'] = '<a class="text-sm hover:underline" href="' . esc_url( $link['url'] ) . '">' . $link['text'] . '</a>';
+				$link['text'] = '<span class="text-sm hover:underline">' . $link['text'] . '</span>';
 			} else {
 				$link['text'] = '<span class="text-sm">' . $link['text'] . '</span>';
 			}
