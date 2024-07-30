@@ -67,6 +67,29 @@ class SEO {
 	}
 
 	/**
+	 * Redirects Blog Posts.
+	 *
+	 * We name posts as `insights`.
+	 */
+	#[Action( 'template_redirect' )]
+	public function redirect_posts(): void {
+		global $post;
+
+		if ( ! is_object( $post ) || 'post' !== $post->post_type ) {
+			return;
+		}
+
+		$query_args = add_query_arg( array() );
+
+		if ( ! str_starts_with( $query_args, '/insights/' ) ) {
+			$url = preg_replace( '@/+@', '/', sprintf( '/insights/%s', $query_args ) );
+
+			wp_safe_redirect( $url, 301 );
+			exit();
+		}
+	}
+
+	/**
 	 * Adds a Rewrite Rule for Blog Posts.
 	 */
 	#[Action( 'init', accepted_args: 0 )]
