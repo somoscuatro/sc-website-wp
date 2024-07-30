@@ -18,7 +18,7 @@
 				{% if schedule_a_call %}
 					<div id="contact-schedule-call-block" class="flex flex-col gap-10 px-10 py-6 bg-folly-700 text-anti-flash-white-100 h-fit">
 						<div class="flex flex-col gap-2">
-							<h3 class="text-2xl font-medium font-syne">{{ schedule_a_call_title }}</h3>
+							<h2 class="text-2xl font-medium font-syne">{{ schedule_a_call_title }}</h2>
 							<p>{{ schedule_a_call_text }}</p>
 						</div>
 						{% include 'button/template.twig' with {
@@ -32,7 +32,7 @@
 				{% endif %}
 				{% if details %}
 					<div class="px-10">
-						<h3 class="text-2xl font-medium font-syne">{{ __('Details', 'somoscuatro-theme') }}</h3>
+						<h2 class="text-2xl font-medium font-syne">{{ __('Details', 'somoscuatro-theme') }}</h2>
 						{{ details }}
 					</div>
 				{% endif %}
