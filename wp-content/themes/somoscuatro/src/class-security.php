@@ -37,4 +37,14 @@ class Security {
 
 		return $access;
 	}
+
+	/**
+	 * Disables XML-RPC.
+	 *
+	 * @return bool Returns false to disable XML-RPC.
+	 */
+	#[Filter( 'xmlrpc_enabled' )]
+	public function disable_xmlrpc() {
+		return false;
+	}
 }
