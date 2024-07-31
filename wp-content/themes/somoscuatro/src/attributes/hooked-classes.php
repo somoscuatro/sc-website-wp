@@ -13,6 +13,7 @@ use Somoscuatro\Theme\Gutenberg;
 use Somoscuatro\Theme\Media;
 use Somoscuatro\Theme\Navigation;
 use Somoscuatro\Theme\Performance;
+use Somoscuatro\Theme\Security;
 use Somoscuatro\Theme\SEO;
 use Somoscuatro\Theme\Theme;
 use Somoscuatro\Theme\Timber;
@@ -32,6 +33,7 @@ return array(
 	Media::class,
 	Navigation::class,
 	Performance::class,
+	Security::class,
 	SEO::class,
 	Timber::class,
 	Translation::class,
