@@ -46,6 +46,7 @@ wp-content/themes/somoscuatro/src/blocks/**/fields.json
 /vendor
 /wp-content/themes/somoscuatro/vendor
 node_modules/
+.pnpm-store
 
 # SQL dumps
 *.sql
