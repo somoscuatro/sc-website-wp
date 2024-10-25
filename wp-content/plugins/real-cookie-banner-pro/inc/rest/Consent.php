@@ -47,7 +47,7 @@ class Consent
         \register_rest_route($namespace, '/consent/all', ['methods' => 'DELETE', 'callback' => [$this, 'routeDeleteAll'], 'permission_callback' => [$this, 'permission_callback']]);
         \register_rest_route($namespace, '/consent/clear', ['methods' => 'DELETE', 'callback' => [$this, 'routeDeleteClear'], 'permission_callback' => '__return_true', 'args' => ['cookies' => ['type' => 'string', 'required' => \true]]]);
         \register_rest_route($namespace, '/consent', ['methods' => 'GET', 'callback' => [$this, 'routeGet'], 'permission_callback' => '__return_true']);
-        \register_rest_route($namespace, '/consent/dynamic-predecision', ['methods' => 'POST', 'callback' => [$this, 'routePostDynamicPredecision'], 'args' => ['viewPortWidth' => ['type' => 'number', 'default' => 0], 'viewPortHeight' => ['type' => 'number', 'default' => 0], 'referer' => ['type' => 'string']], 'permission_callback' => '__return_true']);
+        \register_rest_route($namespace, '/consent/dynamic-predecision', ['methods' => 'POST', 'callback' => [$this, 'routePostDynamicPredecision'], 'args' => ['viewPortWidth' => ['type' => 'number', 'default' => 0], 'viewPortHeight' => ['type' => 'number', 'default' => 0], 'referer' => ['type' => 'string'], 'tcfStringImplicitEssentials' => ['type' => 'string']], 'permission_callback' => '__return_true']);
         \register_rest_route($namespace, '/consent', ['methods' => 'POST', 'callback' => [$this, 'routePost'], 'permission_callback' => '__return_true', 'args' => [
             'dummy' => ['type' => 'boolean', 'default' => \false],
             'markAsDoNotTrack' => ['type' => 'boolean', 'default' => \false],
@@ -197,6 +197,7 @@ class Consent
      * @api {post} /real-cookie-banner/v1/consent/dynamic-predecision Calculate a dynamic predecision for the current page request
      * @apiParam {number} [viewPortWidth=0]
      * @apiParam {number} [viewPortHeight=0]
+     * @apiParam {string} [tcfStringImplicitEssentials]
      * @apiName CalculateDynamicPredecision
      * @apiGroup Consent
      * @apiVersion 1.0.0
@@ -267,21 +268,20 @@ class Consent
             return new WP_Error('rest_rcb_forbidden');
         }
         $transaction = new Transaction();
-        $transaction->decision = $request->get_param('decision');
-        $transaction->markAsDoNotTrack = $markAsDoNotTrack;
-        $transaction->buttonClicked = $buttonClicked;
-        $transaction->viewPortWidth = $viewPortWidth;
-        $transaction->viewPortHeight = $viewPortHeight;
-        $transaction->referer = $referer;
-        $transaction->blocker = $blocker;
-        $transaction->blockerThumbnail = $blockerThumbnail;
-        $transaction->tcfString = $tcfString;
-        $transaction->gcmConsent = $request->get_param('gcmConsent');
-        $transaction->recorderJsonString = $recorderJsonString;
-        $transaction->uiView = $uiView;
-        $transaction->setCookies = $setCookies;
+        $transaction->setDecision($request->get_param('decision'));
+        $transaction->setMarkAsDoNotTrack($markAsDoNotTrack);
+        $transaction->setButtonClicked($buttonClicked);
+        $transaction->setViewPort($viewPortWidth, $viewPortHeight);
+        $transaction->setReferer($referer);
+        $transaction->setBlocker($blocker);
+        $transaction->setBlockerThumbnail($blockerThumbnail);
+        $transaction->setTcfString($tcfString);
+        $transaction->setGcmConsent($request->get_param('gcmConsent'));
+        $transaction->setRecorderJsonString($recorderJsonString);
+        $transaction->setUiView($uiView);
+        $transaction->setSetCookies($setCookies);
         if ($createdClientTime !== null && \strtotime($createdClientTime) > 0) {
-            $transaction->createdClientTime = $createdClientTime;
+            $transaction->setCreatedClientTime($createdClientTime);
         }
         $persist = MyConsent::getInstance()->persist($transaction, $dummy);
         if (\is_wp_error($persist)) {

@@ -154,7 +154,7 @@ trait TCF
     public function localize($arr, $context)
     {
         $isActive = $this->isActive();
-        $isFrontend = $context === Constants::ASSETS_TYPE_FRONTEND || \is_customize_preview();
+        $isFrontend = \in_array($context, [Constants::ASSETS_TYPE_FRONTEND, Constants::ASSETS_TYPE_LOGIN], \true) || \is_customize_preview();
         $banner = TcfBanner::getInstance();
         if ($isFrontend && $isActive || $context === Constants::ASSETS_TYPE_ADMIN) {
             $arr['bannerI18n'] = \array_merge($arr['bannerI18n'], $banner->localizeTexts());

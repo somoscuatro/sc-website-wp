@@ -16,13 +16,13 @@ use DevOwl\RealCookieBanner\view\shortcode\LinkShortcode;
 trait Stats
 {
     // Documented in IOverrideStats
-    public function fetchMainStats($from, $to, $context)
+    public function fetchMainStats($from, $to, $context = null)
     {
         global $wpdb;
         $table_name = $this->getTableName(RealCookieBannerStats::TABLE_NAME_TERMS);
         $rows = $wpdb->get_results(
             // phpcs:disable WordPress.DB.PreparedSQL
-            $wpdb->prepare("SELECT IFNULL(t.name, CONCAT(s.term_name, %s)) AS term_name, s.accepted, SUM(s.count) AS `count`\n                FROM {$table_name} AS s\n                LEFT JOIN {$wpdb->terms} AS t\n                ON s.term_id = t.term_id\n                WHERE s.day BETWEEN %s AND %s\n                AND s.context = %s\n                GROUP BY 1, 2\n                ORDER BY s.term_id ASC, s.accepted ASC", ' (' . \__('deleted', RCB_TD) . ')', $from, $to, $context),
+            $wpdb->prepare("SELECT IFNULL(t.name, CONCAT(s.term_name, %s)) AS term_name, s.accepted, SUM(s.count) AS `count`\n                FROM {$table_name} AS s\n                LEFT JOIN {$wpdb->terms} AS t\n                ON s.term_id = t.term_id\n                WHERE s.day BETWEEN %s AND %s\n                AND s.context = %s\n                GROUP BY 1, 2\n                ORDER BY s.term_id ASC, s.accepted DESC", ' (' . \__('deleted', RCB_TD) . ')', $from, $to, $context),
             ARRAY_A
         );
         // Transform object types

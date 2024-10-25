@@ -3,12 +3,14 @@
 namespace DevOwl\RealCookieBanner\Vendor\DevOwl\HeadlessContentBlocker;
 
 use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder\match\AbstractMatch;
+use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder\match\SelectorSyntaxMatch;
+use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder\SelectorSyntaxAttributeFunctionVariableResolver;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder\SelectorSyntaxFinder;
 /**
  * Describe a blockable item by selector syntax and regular expressions (e.g. to be used in `href` and `src`).
  * @internal
  */
-abstract class AbstractBlockable
+abstract class AbstractBlockable implements SelectorSyntaxAttributeFunctionVariableResolver
 {
     /**
      * See `SelectorSyntaxFinder`.
@@ -24,6 +26,12 @@ abstract class AbstractBlockable
      * @var string[]
      */
     private $originalExpressions = [];
+    /**
+     * Variables can be passed as rule in format `:$myVar=...` and can be reused in selector syntax function arguments.
+     *
+     * @var string[]
+     */
+    private $variables = [];
     /**
      * C'tor.
      *
@@ -41,14 +49,27 @@ abstract class AbstractBlockable
      */
     public function appendFromStringArray($blockers)
     {
+        // @codeCoverageIgnoreStart
         if (!\is_array($blockers)) {
             return;
         }
-        // Filter out custom element expressions
+        // @codeCoverageIgnoreEnd
+        // Filter out custom element expressions and variables
         foreach ($blockers as $idx => &$line) {
             $line = $this->headlessContentBlocker->runBlockableStringExpressionCallback($line, $this);
+            // https://regex101.com/r/TfcqVi/1
+            if (Utils::startsWith($line, ':$') && \preg_match('/^:\\$(\\w+)\\s*=(.*)$/m', $line, $matches)) {
+                $this->variables[$matches[1]] = $matches[2];
+                unset($blockers[$idx]);
+                continue;
+            }
             $selectorSyntaxFinder = SelectorSyntaxFinder::fromExpression($line);
             if ($selectorSyntaxFinder !== \false) {
+                foreach ($selectorSyntaxFinder->getAttributes() as $attr) {
+                    foreach ($attr->getFunctions() as $fn) {
+                        $fn->setVariableResolver($this);
+                    }
+                }
                 $selectorSyntaxFinder->setFastHtmlTag($this->headlessContentBlocker);
                 unset($blockers[$idx]);
                 $this->selectorSyntaxFinder[] = $selectorSyntaxFinder;
@@ -72,8 +93,24 @@ abstract class AbstractBlockable
     public function findSelectorSyntaxFinderForMatch($match)
     {
         foreach ($this->getSelectorSyntaxFinder() as $selectorSyntaxFinder) {
-            if ($selectorSyntaxFinder->getTag() === $match->getTag()) {
-                if ($selectorSyntaxFinder->matchesAttributes($selectorSyntaxFinder->getAttributes(), $match)) {
+            /**
+             * The match to use
+             *
+             * @var SelectorSyntaxMatch
+             */
+            $useMatch = null;
+            if ($match instanceof SelectorSyntaxMatch) {
+                // @codeCoverageIgnoreStart
+                $useMatch = $match;
+                // @codeCoverageIgnoreEnd
+            } elseif (\count($match->getAttributes()) > 0) {
+                $useMatch = new SelectorSyntaxMatch($selectorSyntaxFinder, $match->getOriginalMatch(), $match->getTag(), $match->getAttributes(), \array_keys($match->getAttributes())[0]);
+            } else {
+                // It can never `matchesAttributes` as we do not have any attribute
+                return null;
+            }
+            if ($selectorSyntaxFinder->getTag() === $useMatch->getTag()) {
+                if ($selectorSyntaxFinder->matchesAttributes($useMatch->getAttributes(), $useMatch)) {
                     return $selectorSyntaxFinder;
                 }
             }
@@ -84,7 +121,7 @@ abstract class AbstractBlockable
      * Get the blocker ID. This is added as a custom HTML attribute to the blocked
      * element so your frontend can e.g. add a visual content blocker.
      *
-     * @return int|null
+     * @return int|string|null
      */
     public abstract function getBlockerId();
     /**
@@ -145,5 +182,17 @@ abstract class AbstractBlockable
     public function getOriginalExpressions()
     {
         return $this->originalExpressions;
+    }
+    // Documented in SelectorSyntaxAttributeFunctionVariableResolver
+    // @codeCoverageIgnoreStart
+    public function getVariables()
+    {
+        return $this->variables;
+    }
+    // @codeCoverageIgnoreEnd
+    // Documented in SelectorSyntaxAttributeFunctionVariableResolver
+    public function getVariable($variableName, $default = '')
+    {
+        return $this->variables[$variableName] ?? $default;
     }
 }

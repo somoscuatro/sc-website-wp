@@ -102,16 +102,14 @@ class Forwarding
             return new WP_Error('rest_rcb_forbidden', \__('Consent Forwarding is not active.', RCB_TD));
         }
         $transaction = new Transaction();
-        $transaction->forwardedUuid = $uuid;
-        $transaction->forwarded = $consentId;
-        $transaction->decision = Multisite::getInstance()->mapUniqueNamesToDecision($cookies);
-        $transaction->buttonClicked = $buttonClicked;
-        $transaction->viewPortWidth = $viewPortWidth;
-        $transaction->viewPortHeight = $viewPortHeight;
-        $transaction->referer = $referer;
-        $transaction->forwardedBlocker = $blocker;
-        $transaction->tcfString = $tcfString;
-        $transaction->gcmConsent = $gcmConsent;
+        $transaction->setForwarded($consentId, $uuid, $blocker);
+        $transaction->setDecision(Multisite::getInstance()->mapUniqueNamesToDecision($cookies));
+        $transaction->setButtonClicked($buttonClicked);
+        $transaction->setViewPort($viewPortWidth, $viewPortHeight);
+        $transaction->setReferer($referer);
+        $transaction->setBlocker($blocker);
+        $transaction->setTcfString($tcfString);
+        $transaction->setGcmConsent($gcmConsent);
         $persist = MyConsent::getInstance()->persist($transaction);
         if (\is_wp_error($persist)) {
             return $persist;

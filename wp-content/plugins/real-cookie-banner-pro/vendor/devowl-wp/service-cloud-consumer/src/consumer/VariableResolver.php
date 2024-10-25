@@ -83,6 +83,16 @@ use Exception;
  * i18n.OneOfMiddleware.disabledTooltip                                       = "This template is currently disabled because a dependency component is not installed or the desired function is not active."
  * i18n.TcfMiddleware.disabled                                                = "TCF required"
  * i18n.TcfMiddleware.disabledTooltip                                         = "This template requires the integration of TCF, as the provider of this template uses this standard. Please activate this in the settings to be able to block this service."
+ * i18n.CdnMiddleware.introduction                                            = "..."
+ * i18n.CdnMiddleware.introductionNoScc                                       = "..."
+ * i18n.CdnMiddleware.introductionNotEssential                                = "..."
+ * i18n.CdnMiddleware.introductionSccAndEmbedsOnlyExternalResources1          = "..."
+ * i18n.CdnMiddleware.introductionSccAndEmbedsOnlyExternalResources2          = "..."
+ * i18n.CdnMiddleware.introductionRemoveService                               = "..."
+ * i18n.CdnMiddleware.moreInfoTitle                                           = "..."
+ * i18n.CdnMiddleware.moreInfoDescription                                     = "..."
+ * i18n.CdnMiddleware.sccConclusionInstructionsNoticeTitle                    = "..."
+ * i18n.CdnMiddleware.buttonLabel                                             = "..."
  * ```
  * @internal
  */
@@ -95,6 +105,12 @@ class VariableResolver
      * @var mixed[]
      */
     private $data = [];
+    /**
+     * Callables should only be resolved once.
+     *
+     * @var string[]
+     */
+    private $resolvedCallableKeys = [];
     /**
      * C'tor.
      *
@@ -113,6 +129,10 @@ class VariableResolver
     public function add($key, $value)
     {
         $this->data[$key] = $value;
+        $idx = \array_search($key, $this->resolvedCallableKeys, \true);
+        if ($idx > -1) {
+            unset($this->resolvedCallableKeys[$idx]);
+        }
     }
     /**
      * Resolve a variable by key with a default value.
@@ -138,10 +158,11 @@ class VariableResolver
     {
         if (isset($this->data[$key])) {
             $value = $this->data[$key];
-            if (!\in_array($key, ['oneOf'], \true) && !\is_string($value) && \is_callable($value)) {
+            if (!\in_array($key, ['oneOf'], \true) && !\is_string($value) && \is_callable($value) && !\in_array($key, $this->resolvedCallableKeys, \true)) {
                 // Resolve by closure and cache value
                 $value = $value($this);
                 $this->data[$key] = $value;
+                $this->resolvedCallableKeys[] = $key;
             }
             return $value;
         }

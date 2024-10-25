@@ -4,6 +4,7 @@ namespace DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\frontend
 
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\consent\PersistedTransaction;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\CookieConsentManagement;
+use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\settings\AbstractConsent;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\settings\AbstractCountryBypass;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\CookieConsentManagement\Utils;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\ServiceCloudConsumer\middlewares\services\ManagerMiddleware;
@@ -56,6 +57,7 @@ class Frontend
             'languageSwitcher' => \array_map(function ($language) {
                 return $language->toJson();
             }, $general->getLanguages()),
+            'predefinedDataProcessingInSafeCountriesLists' => AbstractConsent::PREDEFINED_DATA_PROCESSING_IN_SAFE_COUNTRIES_LISTS,
             // Misc
             'decisionCookieName' => $this->getCookieName(),
             'revisionHash' => $revision->getEnsuredCurrentHash(),
@@ -66,10 +68,10 @@ class Frontend
             'failedConsentDocumentationHandling' => $consent->getFailedConsentDocumentationHandling(),
             'isAcceptAllForBots' => $consent->isAcceptAllForBots(),
             'isDataProcessingInUnsafeCountries' => $consent->isDataProcessingInUnsafeCountries(),
-            'dataProcessingInUnsafeCountriesSafeCountries' => $consent->getDataProcessingInUnsafeCountriesSafeCountries(),
             'isAgeNotice' => $consent->isAgeNoticeEnabled(),
             'ageNoticeAgeLimit' => $consent->getAgeNoticeAgeLimit(),
             'isListServicesNotice' => $consent->isListServicesNoticeEnabled(),
+            'isBannerLessConsent' => $consent->isBannerLessConsent(),
             'isTcf' => $tcf->isActive(),
             'isGcm' => $googleConsentMode->isEnabled(),
             'isGcmListPurposes' => $googleConsentMode->isListPurposes(),
@@ -93,24 +95,24 @@ class Frontend
      */
     public function persistedTransactionToJsonForHistoryViewer($transaction)
     {
-        $obj = ['id' => $transaction->id, 'uuid' => $transaction->uuid, 'isDoNotTrack' => $transaction->markAsDoNotTrack, 'isUnblock' => $transaction->blocker > 0, 'isForwarded' => $transaction->forwarded > 0, 'created' => $transaction->created, 'context' => [
-            'buttonClicked' => $transaction->buttonClicked,
-            'groups' => $transaction->revision['groups'],
-            'consent' => $transaction->decision,
-            'gcmConsent' => $transaction->gcmConsent,
+        $obj = ['id' => $transaction->getId(), 'uuid' => $transaction->getUuid(), 'isDoNotTrack' => $transaction->isMarkAsDoNotTrack(), 'isUnblock' => $transaction->getBlocker() > 0, 'isForwarded' => $transaction->getForwarded() > 0, 'created' => $transaction->getCreated(), 'context' => [
+            'buttonClicked' => $transaction->getButtonClicked(),
+            'groups' => $transaction->getRevision()['groups'],
+            'consent' => $transaction->getDecision(),
+            'gcmConsent' => $transaction->getGcmConsent(),
             // TCF compatibility
-            'tcf' => isset($transaction->revision['tcf']) ? [
-                'tcf' => $transaction->revision['tcf'],
+            'tcf' => isset($transaction->getRevision()['tcf']) ? [
+                'tcf' => $transaction->getRevision()['tcf'],
                 // Keep `tcfMeta` for backwards-compatibility
-                'tcfMetadata' => $transaction->revisionIndependent['tcfMetadata'] ?? $transaction->revisionIndependent['tcfMeta'],
-                'tcfString' => $transaction->tcfString,
+                'tcfMetadata' => $transaction->getRevisionIndependent()['tcfMetadata'] ?? $transaction->getRevisionIndependent()['tcfMeta'],
+                'tcfString' => $transaction->getTcfString(),
             ] : null,
         ]];
         $lazyLoaded = $this->prepareLazyData($obj['context']['tcf']);
         $obj['context']['lazyLoadedDataForSecondView'] = $lazyLoaded;
         // Backwards-compatibility for older records using Geo-restriction bypass
-        if ($transaction->revision['options']['isCountryBypass'] && $transaction->customBypass === AbstractCountryBypass::CUSTOM_BYPASS && !Utils::startsWith($transaction->buttonClicked, 'implicit_')) {
-            $obj['context']['buttonClicked'] = $transaction->revision['options']['countryBypassType'] === AbstractCountryBypass::TYPE_ALL ? 'implicit_all' : 'implicit_essential';
+        if ($transaction->getRevision()['options']['isCountryBypass'] && $transaction->getCustomBypass() === AbstractCountryBypass::CUSTOM_BYPASS && !Utils::startsWith($transaction->getButtonClicked(), 'implicit_')) {
+            $obj['context']['buttonClicked'] = $transaction->getRevision()['options']['countryBypassType'] === AbstractCountryBypass::TYPE_ALL ? 'implicit_all' : 'implicit_essential';
         }
         return $obj;
     }
@@ -177,6 +179,40 @@ class Frontend
             $output[] = \is_callable($outputModifier) ? $outputModifier($gcmOutput, null) : $gcmOutput;
         }
         return $output;
+    }
+    /**
+     * Determine if the current page should not handle a predecision. See also `preDecisionGatewayIsPreventPreDecision`.
+     * When returning `true`, the cookie banner does not get shown and should use the existing consent if given, or fallback
+     * to `essentials`-only.
+     *
+     * @param int[] $pageIds The current page IDs
+     */
+    public function isPreventPreDecision($pageIds = null)
+    {
+        $settings = $this->getCookieConsentManagement()->getSettings();
+        if (\is_array($pageIds) && \count($pageIds) > 0 && !$settings->getConsent()->isBannerLessConsent()) {
+            $hideIds = $settings->getGeneral()->getAdditionalPageHideIds();
+            if (\count(\array_intersect($pageIds, $hideIds)) > 0) {
+                return \true;
+            }
+            foreach ($settings->getGeneral()->getBannerLinks() as $bannerLink) {
+                if ($bannerLink->isHideCookieBanner() && !$bannerLink->isExternalUrl() && $bannerLink->getPageId() > 0 && \in_array($bannerLink->getPageId(), $pageIds, \true)) {
+                    return \true;
+                }
+            }
+        }
+        return \false;
+    }
+    /**
+     * Determine if the implicit user consent should be invalidated when we visit a page which is configured to show the
+     * cookie banner in banner-less consent mode.
+     *
+     * @param int[] $pageIds The current page IDs
+     */
+    public function isInvalidateImplicitUserConsent($pageIds = null)
+    {
+        $consent = $this->getCookieConsentManagement()->getSettings()->getConsent();
+        return $consent->isBannerLessConsent() && \is_array($pageIds) && \count($pageIds) > 0 && \count(\array_intersect($pageIds, $consent->getBannerLessConsentShowOnPageIds())) > 0;
     }
     /**
      * Generate the code on page load for Google Consent Mode.

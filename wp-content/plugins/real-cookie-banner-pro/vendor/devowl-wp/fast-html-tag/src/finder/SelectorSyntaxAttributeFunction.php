@@ -2,6 +2,7 @@
 
 namespace DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder;
 
+use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\finder\match\SelectorSyntaxMatch;
 use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\Utils;
 /**
  * An function definition for `SelectorSyntaxAttribute` with function name and parsed arguments.
@@ -9,16 +10,27 @@ use DevOwl\RealCookieBanner\Vendor\DevOwl\FastHtmlTag\Utils;
  */
 class SelectorSyntaxAttributeFunction
 {
+    /**
+     * Variables can be resolved in argument values with `{{ .myVar }}`.
+     *
+     * @see https://regex101.com/r/wKi38x/3
+     */
+    const VARIABLE_TEMPLATE_REGEXP = '/{{\\s*\\.([-_\\w]+)\\s*}}/m';
     private $attribute;
     private $name;
     private $arguments;
+    /**
+     * A variable resolver for the arguments.
+     *
+     * @var SelectorSyntaxAttributeFunctionVariableResolver
+     */
+    private $variableResolver;
     /**
      * C'tor.
      *
      * @param SelectorSyntaxAttribute $attribute
      * @param string $name
      * @param string[] $arguments
-     * @codeCoverageIgnore
      */
     public function __construct($attribute, $name, $arguments)
     {
@@ -40,6 +52,22 @@ class SelectorSyntaxAttributeFunction
         return \true;
     }
     /**
+     * Expose variables from the variable resolver on the argument values once when we want to access the argument.
+     */
+    protected function exposeVariablesToArgumentValues()
+    {
+        if ($this->variableResolver !== null) {
+            // Arguments can be also an array, e.g. `key[]=val1&key[]=val2`
+            \array_walk_recursive($this->arguments, function (&$val) {
+                if (\strpos($val, '{{') !== \false) {
+                    $val = \preg_replace_callback(self::VARIABLE_TEMPLATE_REGEXP, function ($m) {
+                        return $this->getVariableResolver()->getVariable($m[1]);
+                    }, $val);
+                }
+            });
+        }
+    }
+    /**
      * Get argument by name.
      *
      * @param string $argument
@@ -47,12 +75,10 @@ class SelectorSyntaxAttributeFunction
      */
     public function getArgument($argument, $default = null)
     {
-        return $this->arguments[$argument] ?? $default;
+        return $this->getArguments()[$argument] ?? $default;
     }
     /**
      * Getter.
-     *
-     * @codeCoverageIgnore
      */
     public function getAttribute()
     {
@@ -60,8 +86,6 @@ class SelectorSyntaxAttributeFunction
     }
     /**
      * Getter.
-     *
-     * @codeCoverageIgnore
      */
     public function getAttributeName()
     {
@@ -69,8 +93,6 @@ class SelectorSyntaxAttributeFunction
     }
     /**
      * Getter.
-     *
-     * @codeCoverageIgnore
      */
     public function getName()
     {
@@ -78,21 +100,34 @@ class SelectorSyntaxAttributeFunction
     }
     /**
      * Getter.
-     *
-     * @codeCoverageIgnore
      */
     public function getArguments()
     {
+        $this->exposeVariablesToArgumentValues();
         return $this->arguments;
     }
     /**
      * Getter.
-     *
-     * @codeCoverageIgnore
      */
     public function getFinder()
     {
         return $this->getAttribute()->getFinder();
+    }
+    /**
+     * Getter.
+     */
+    public function getVariableResolver()
+    {
+        return $this->variableResolver;
+    }
+    /**
+     * Setter.
+     *
+     * @param SelectorSyntaxAttributeFunctionVariableResolver $variableResolver
+     */
+    public function setVariableResolver($variableResolver)
+    {
+        $this->variableResolver = $variableResolver;
     }
     /**
      * Convert a string expression to multiple function instances.
