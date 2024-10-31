@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: somoscuatro\n"
-"POT-Creation-Date: 2024-07-29 14:15+0200\n"
+"POT-Creation-Date: 2024-10-30 14:25+0100\n"
 "PO-Revision-Date: 2015-06-19 15:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: somoscuatro\n"
@@ -76,7 +76,13 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: src/blocks/case-studies/class-case-studies.php:53 src/class-seo.php:118
+#: src/blocks/case-studies/class-case-studies.php:53
+#: src/blocks/insights/class-insights.php:53
+#: src/blocks/services/class-services.php:53
+msgid "Heading type"
+msgstr ""
+
+#: src/blocks/case-studies/class-case-studies.php:66 src/class-seo.php:141
 msgid "Case Studies"
 msgstr ""
 
@@ -101,7 +107,7 @@ msgid "Industry"
 msgstr ""
 
 #: src/blocks/case-study-content/class-case-study-content.php:59
-#: src/blocks/services/class-services.php:53 src/class-seo.php:111
+#: src/blocks/services/class-services.php:66 src/class-seo.php:134
 msgid "Services"
 msgstr ""
 
@@ -185,11 +191,11 @@ msgstr ""
 msgid "CTA"
 msgstr ""
 
-#: src/blocks/insights/class-insights.php:53
+#: src/blocks/insights/class-insights.php:66
 msgid "Number of Posts"
 msgstr ""
 
-#: src/blocks/insights/class-insights.php:62
+#: src/blocks/insights/class-insights.php:75
 msgid "Posts"
 msgstr ""
 
@@ -352,7 +358,7 @@ msgstr ""
 msgid "Show at the Bottom"
 msgstr ""
 
-#: src/class-seo.php:125
+#: src/class-seo.php:148
 msgid "Glossary"
 msgstr ""
 
@@ -482,10 +488,10 @@ msgstr ""
 msgid "Trusted By"
 msgstr ""
 
-#: src/blocks/case-studies/template.twig:23
-#: src/blocks/insights/template.twig:33
+#: src/blocks/case-studies/template.twig:25
+#: src/blocks/insights/template.twig:35
 #: src/blocks/related-content/template.twig:22
-#: src/blocks/services/template.twig:21
+#: src/blocks/services/template.twig:23
 msgid "Know More"
 msgstr ""
 
@@ -507,6 +513,11 @@ msgstr ""
 
 #: src/blocks/tech-tools/template.twig:16
 msgid "Techs & Tools"
+msgstr ""
+
+#: templates/components/site-footer/template.twig:6
+#: templates/components/site-header/template.twig:4
+msgid "somoscuatro logo"
 msgstr ""
 
 #: templates/page-glossary.twig:13

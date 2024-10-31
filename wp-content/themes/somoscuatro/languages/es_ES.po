@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: somoscuatro\n"
-"POT-Creation-Date: 2024-07-29 14:15+0200\n"
-"PO-Revision-Date: 2024-07-29 14:15+0200\n"
+"POT-Creation-Date: 2024-10-30 14:25+0100\n"
+"PO-Revision-Date: 2024-10-31 10:27+0100\n"
 "Last-Translator: Joan López <joan@somoscuatro.es>\n"
 "Language-Team: somoscuatro\n"
 "Language: es\n"
@@ -78,9 +78,15 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: src/blocks/case-studies/class-case-studies.php:53 src/class-seo.php:118
-msgid "Case Studies"
+#: src/blocks/case-studies/class-case-studies.php:53
+#: src/blocks/insights/class-insights.php:53
+#: src/blocks/services/class-services.php:53
+msgid "Heading type"
 msgstr ""
+
+#: src/blocks/case-studies/class-case-studies.php:66 src/class-seo.php:141
+msgid "Case Studies"
+msgstr "Casos de éxito"
 
 #: src/blocks/case-study-content/class-case-study-content.php:34
 #: src/blocks/insight-content/class-insight-content.php:34
@@ -103,9 +109,9 @@ msgid "Industry"
 msgstr ""
 
 #: src/blocks/case-study-content/class-case-study-content.php:59
-#: src/blocks/services/class-services.php:53 src/class-seo.php:111
+#: src/blocks/services/class-services.php:66 src/class-seo.php:134
 msgid "Services"
-msgstr ""
+msgstr "Servicios"
 
 #: src/blocks/case-study-content/class-case-study-content.php:66
 #: src/blocks/case-study-content/template.twig:23
@@ -187,11 +193,11 @@ msgstr ""
 msgid "CTA"
 msgstr ""
 
-#: src/blocks/insights/class-insights.php:53
+#: src/blocks/insights/class-insights.php:66
 msgid "Number of Posts"
 msgstr ""
 
-#: src/blocks/insights/class-insights.php:62
+#: src/blocks/insights/class-insights.php:75
 msgid "Posts"
 msgstr ""
 
@@ -219,7 +225,7 @@ msgstr ""
 #: src/blocks/process-steps/template.twig:22
 #: src/blocks/tech-tools/template.twig:3
 msgid "Capabilities"
-msgstr ""
+msgstr "Capacidades"
 
 #: src/blocks/process-steps/class-process-steps.php:93
 msgid "Add Capability"
@@ -284,7 +290,7 @@ msgstr ""
 
 #: src/blocks/values/class-values.php:71
 msgid "Values"
-msgstr ""
+msgstr "Valores"
 
 #: src/blocks/values/class-values.php:75
 msgid "Add Value"
@@ -354,7 +360,7 @@ msgstr ""
 msgid "Show at the Bottom"
 msgstr ""
 
-#: src/class-seo.php:125
+#: src/class-seo.php:148
 msgid "Glossary"
 msgstr ""
 
@@ -438,7 +444,7 @@ msgstr ""
 #: src/custom-taxonomies/class-custom-taxonomy.php:69
 #, php-format
 msgid "All %s"
-msgstr ""
+msgstr "Todos %s"
 
 #: src/custom-taxonomies/class-custom-taxonomy.php:73
 #, php-format
@@ -466,16 +472,16 @@ msgstr ""
 
 #: vendor/timber/timber/src/Pagination.php:144
 msgid "&laquo; Previous"
-msgstr ""
+msgstr "&laquo; Anterior"
 
 #: vendor/timber/timber/src/Pagination.php:145
 msgid "Next &raquo;"
-msgstr ""
+msgstr "Siguiente &raquo;"
 
 #: vendor/timber/timber/src/Pagination.php:221
 #: vendor/timber/timber/src/TextHelper.php:47
 msgid "&hellip;"
-msgstr ""
+msgstr "&hellip;"
 
 #: vendor/timber/timber/src/TextHelper.php:74
 msgctxt "Word count type. Do not translate!"
@@ -484,34 +490,39 @@ msgstr ""
 
 #: src/blocks/about-us/template.twig:12
 msgid "Trusted By"
-msgstr "Clientes que han confiado en nosotros"
+msgstr "Clientes que confían en nosotros"
 
-#: src/blocks/case-studies/template.twig:23
-#: src/blocks/insights/template.twig:33
+#: src/blocks/case-studies/template.twig:25
+#: src/blocks/insights/template.twig:35
 #: src/blocks/related-content/template.twig:22
-#: src/blocks/services/template.twig:21
+#: src/blocks/services/template.twig:23
 msgid "Know More"
 msgstr "Saber más"
 
 #: src/blocks/case-study-content/template.twig:19
 msgid "What we did"
-msgstr ""
+msgstr "Qué hicimos"
 
 #: src/blocks/contact/template.twig:35
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #: src/blocks/process-steps/template.twig:9
 msgid "Step"
-msgstr "Pasos"
+msgstr "Paso"
 
 #: src/blocks/tech-tools/template.twig:6
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 #: src/blocks/tech-tools/template.twig:16
 msgid "Techs & Tools"
 msgstr "Tecnologías y herramientas"
+
+#: templates/components/site-footer/template.twig:6
+#: templates/components/site-header/template.twig:4
+msgid "somoscuatro logo"
+msgstr ""
 
 #: templates/page-glossary.twig:13
 msgid "Search"
