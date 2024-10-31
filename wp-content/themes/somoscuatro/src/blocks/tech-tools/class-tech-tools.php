@@ -76,14 +76,6 @@ class Tech_Tools extends Block {
 			array(
 				'posts_per_page' => -1,
 				'post_type'      => 'tech-tool',
-				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'tech_tools_area',
-						'field'    => 'object',
-						'terms'    => wp_list_pluck( $context['tech_tools_areas'], 'term_id' ),
-					),
-				),
 			)
 		);
 
