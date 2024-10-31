@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: somoscuatro\n"
-"POT-Creation-Date: 2024-10-30 14:25+0100\n"
-"PO-Revision-Date: 2024-10-31 10:27+0100\n"
+"POT-Creation-Date: 2024-10-31 16:00+0100\n"
+"PO-Revision-Date: 2024-10-31 16:01+0100\n"
 "Last-Translator: Joan López <joan@somoscuatro.es>\n"
 "Language-Team: somoscuatro\n"
 "Language: es\n"
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Heading type"
 msgstr ""
 
-#: src/blocks/case-studies/class-case-studies.php:66 src/class-seo.php:141
+#: src/blocks/case-studies/class-case-studies.php:66 src/class-seo.php:142
 msgid "Case Studies"
 msgstr "Casos de éxito"
 
@@ -109,7 +109,7 @@ msgid "Industry"
 msgstr ""
 
 #: src/blocks/case-study-content/class-case-study-content.php:59
-#: src/blocks/services/class-services.php:66 src/class-seo.php:134
+#: src/blocks/services/class-services.php:66 src/class-seo.php:135
 msgid "Services"
 msgstr "Servicios"
 
@@ -360,9 +360,16 @@ msgstr ""
 msgid "Show at the Bottom"
 msgstr ""
 
-#: src/class-seo.php:148
+#: src/class-seo.php:149
 msgid "Glossary"
 msgstr ""
+
+#: src/class-seo.php:174
+#, fuzzy
+#| msgid "insights"
+msgctxt "Posts prefix to be used in url/slug"
+msgid "insights"
+msgstr "articulos"
 
 #: src/class-theme.php:104
 #, php-format
