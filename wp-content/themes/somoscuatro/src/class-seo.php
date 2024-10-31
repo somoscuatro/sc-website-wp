@@ -79,10 +79,11 @@ class SEO {
 			return;
 		}
 
-		$query_args = add_query_arg( array() );
+		$query_args      = add_query_arg( array() );
+		$post_url_prefix = sprintf( '/%s/', $this->get_posts_prefix() );
 
-		if ( ! str_starts_with( $query_args, '/insights/' ) ) {
-			$url = preg_replace( '@/+@', '/', sprintf( '/insights/%s', $query_args ) );
+		if ( ! str_starts_with( $query_args, $post_url_prefix ) ) {
+			$url = preg_replace( '@/+@', '/', sprintf( '%s%s', $post_url_prefix, $query_args ) );
 
 			wp_safe_redirect( $url, 301 );
 			exit();
@@ -95,7 +96,7 @@ class SEO {
 	#[Action( 'init', accepted_args: 0 )]
 	public function rewrite_rules(): void {
 		add_rewrite_rule(
-			'^insights/([^/]+)/?$',
+			sprintf( '^%s/([^/]+)/?$', $this->get_posts_prefix() ),
 			'index.php?post_type=post&name=$matches[1]',
 			'top'
 		);
@@ -108,9 +109,9 @@ class SEO {
 	 * @param WP_Post $post The Post Object.
 	 */
 	#[Filter( 'post_link', priority: 1, accepted_args: 2 )]
-	public function change_permalink_structure( string $permalink, WP_Post $post ) {
-		if ( is_object( $post ) && 'post' === $post->post_type ) {
-			$permalink = home_url( '/insights/' . $post->post_name . '/' );
+	public function change_permalink_structure( string $permalink, WP_Post $post ): string {
+		if ( 'post' === $post->post_type ) {
+			$permalink = home_url( sprintf( '/%s/', $this->get_posts_prefix() ) . $post->post_name . '/' );
 		}
 
 		return $permalink;
@@ -162,5 +163,14 @@ class SEO {
 		}
 
 		return $links;
+	}
+
+	/**
+	 * Retrieves the prefix used for blog posts URLs.
+	 *
+	 * @return string The prefix for blog posts.
+	 */
+	private function get_posts_prefix(): string {
+		return sprintf( '%s', _x( 'insights', 'Posts prefix to be used in url/slug', 'somoscuatro-theme' ) );
 	}
 }
