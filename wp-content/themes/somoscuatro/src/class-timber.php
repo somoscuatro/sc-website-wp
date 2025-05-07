@@ -78,6 +78,8 @@ class Timber {
 		$context['site_footer_claim'] = get_theme_mod( 'site_footer_claim' );
 		$context['site_footer_email'] = get_theme_mod( 'site_footer_email' );
 
+		$context['uploads_base_url'] = wp_upload_dir()['baseurl'];
+
 		return $context;
 	}
 
